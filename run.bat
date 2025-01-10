@@ -1,3 +1,3 @@
 @ECHO OFF
-java --server --jar
+java --jar ./CBRO.jar
 PAUSE
