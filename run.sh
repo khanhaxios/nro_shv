@@ -1,0 +1,1 @@
+nohup java -jar CBRO.jar > app.log 2 >&1 &
