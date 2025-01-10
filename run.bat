@@ -1,3 +1,3 @@
 @ECHO OFF
-java -server -jar -Dfile.encoding=UTF-8 -Xms1000M -Xmx1000M dist/Server99.jar
+java --server --jar
 PAUSE
