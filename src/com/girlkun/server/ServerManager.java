@@ -2,6 +2,8 @@ package com.girlkun.server;
 
 import com.girlkun.database.GirlkunDB;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 
 import com.girlkun.jdbc.daos.HistoryTransactionDAO;
@@ -37,6 +39,7 @@ import com.girlkun.services.func.TaiXiu;
 
 import java.io.IOException;
 
+import java.net.Socket;
 import java.util.*;
 import java.util.logging.Level;
 //import com.girlkun.models.boss.list_boss.yadart.BossDao;
@@ -206,65 +209,83 @@ public class ServerManager {
         }
     }
 
+    private void handleProcessCommand(String command) {
+        String line = command;
+        if (line.equals("baotri")) {
+            Maintenance.gI().start(15);
+        } else if (line.equals("baotrinhanh")) {
+            Maintenance.gI().start(0);
+        } else if (line.equals("athread")) {
+            ServerNotify.gI().notify("Nro Mới debug server: " + Thread.activeCount());
+        } else if (line.equals("nplayer")) {
+            Logger.error("Player in game: " + Client.gI().getPlayers().size() + "\n");
+        } else if (line.equals("admin")) {
+            new Thread(() -> {
+                Client.gI().close();
+            }).start();
+        } else if (line.startsWith("bang")) {
+            new Thread(() -> {
+                try {
+                    ClanService.gI().close();
+                    Logger.error("Save " + Manager.CLANS.size() + " bang");
+                } catch (Exception e) {
+                    Logger.error("Lỗi save clan!...................................\n");
+                }
+            }).start();
+        } else if (line.startsWith("a")) {
+            String a = line.replace("a ", "");
+            Service.gI().sendThongBaoAllPlayer(a);
+        } else if (line.startsWith("qua")) {
+            try {
+                List<Item.ItemOption> ios = new ArrayList<>();
+                String[] pagram1 = line.split("=")[1].split("-");
+                String[] pagram2 = line.split("=")[2].split("-");
+                if (pagram1.length == 4 && pagram2.length % 2 == 0) {
+                    Player p = Client.gI().getPlayer(Integer.parseInt(pagram1[0]));
+                    if (p != null) {
+                        for (int i = 0; i < pagram2.length; i += 2) {
+                            ios.add(new Item.ItemOption(Integer.parseInt(pagram2[i]), Integer.parseInt(pagram2[i + 1])));
+                        }
+                        Item i = Util.sendDo(Integer.parseInt(pagram1[2]), Integer.parseInt(pagram1[3]), ios);
+                        i.quantity = Integer.parseInt(pagram1[1]);
+                        InventoryServiceNew.gI().addItemBag(p, i);
+                        InventoryServiceNew.gI().sendItemBags(p);
+                        Service.gI().sendThongBao(p, "Admin trả đồ. anh em thông cảm nhé...");
+                    } else {
+                        System.out.println("Người chơi không online");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Lỗi quà");
+            }
+        } else if (line.equals("barcoll")) {
+            System.gc();
+            System.err.println("Clean.........");
+        }
+    }
+
     private void activeCommandLine() {
         new Thread(() -> {
-            Scanner sc = new Scanner(System.in);
-            while (true) {
-                String line = sc.nextLine();
-                if (line.equals("baotri")) {
-                    Maintenance.gI().start(15);
-                } else if (line.equals("baotrinhanh")) {
-                    Maintenance.gI().start(0);
-                } else if (line.equals("athread")) {
-                    ServerNotify.gI().notify("Nro Mới debug server: " + Thread.activeCount());
-                } else if (line.equals("nplayer")) {
-                    Logger.error("Player in game: " + Client.gI().getPlayers().size() + "\n");
-                } else if (line.equals("admin")) {
-                    new Thread(() -> {
-                        Client.gI().close();
-                    }).start();
-                } else if (line.startsWith("bang")) {
-                    new Thread(() -> {
-                        try {
-                            ClanService.gI().close();
-                            Logger.error("Save " + Manager.CLANS.size() + " bang");
-                        } catch (Exception e) {
-                            Logger.error("Lỗi save clan!...................................\n");
-                        }
-                    }).start();
-                } else if (line.startsWith("a")) {
-                    String a = line.replace("a ", "");
-                    Service.gI().sendThongBaoAllPlayer(a);
-                } else if (line.startsWith("qua")) {
-//                    =1-1-1-1=1-1-1-1=
-//                     =playerId-quantily-itemId-sql=optioneId-pagram=
+            try (ServerSocket serverSocket = new ServerSocket(12345)) {
+                System.out.println("Server is running on port 12345...");
+                while (true) {
+                    Socket socket = serverSocket.accept();
+                    System.out.println("Accepted a new connection");
 
-                    try {
-                        List<Item.ItemOption> ios = new ArrayList<>();
-                        String[] pagram1 = line.split("=")[1].split("-");
-                        String[] pagram2 = line.split("=")[2].split("-");
-                        if (pagram1.length == 4 && pagram2.length % 2 == 0) {
-                            Player p = Client.gI().getPlayer(Integer.parseInt(pagram1[0]));
-                            if (p != null) {
-                                for (int i = 0; i < pagram2.length; i += 2) {
-                                    ios.add(new Item.ItemOption(Integer.parseInt(pagram2[i]), Integer.parseInt(pagram2[i + 1])));
-                                }
-                                Item i = Util.sendDo(Integer.parseInt(pagram1[2]), Integer.parseInt(pagram1[3]), ios);
-                                i.quantity = Integer.parseInt(pagram1[1]);
-                                InventoryServiceNew.gI().addItemBag(p, i);
-                                InventoryServiceNew.gI().sendItemBags(p);
-                                Service.gI().sendThongBao(p, "Admin trả đồ. anh em thông cảm nhé...");
-                            } else {
-                                System.out.println("Người chơi không online");
+                    // Handle each client in a separate thread
+                    new Thread(() -> {
+                        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+                            String input;
+                            while ((input = reader.readLine()) != null) {
+                                handleProcessCommand(input);
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    } catch (Exception e) {
-                        System.out.println("Lỗi quà");
-                    }
-                } else if (line.equals("barcoll")) {
-                    System.gc();
-                    System.err.println("Clean.........");
+                    }).start();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }, "Active line").start();
     }
