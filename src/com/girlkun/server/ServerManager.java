@@ -79,8 +79,8 @@ public class ServerManager {
 
     public static void main(String[] args) {
         timeStart = TimeUtil.getTimeNow("dd/MM/yyyy HH:mm:ss");
-//        ServerManager.gI().run();
-        new com.girlkun.server.barcoll().setVisible(true);
+        ServerManager.gI().run();
+//        new com.girlkun.server.barcoll().setVisible(true);
     }
 
     public void run() {
