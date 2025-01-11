@@ -533,13 +533,13 @@ public class ItemService {
         Item item = null;
         switch (itemUseId) {
             case 0:
-                item = itemSKH(items[0][select], options[0][skhId]);
+                item = itemSKH(items[0][select], options[0][skhId], true);
                 break;
             case 1:
-                item = itemSKH(items[1][select], options[1][skhId]);
+                item = itemSKH(items[1][select], options[1][skhId], true);
                 break;
             case 2:
-                item = itemSKH(items[2][select], options[2][skhId]);
+                item = itemSKH(items[2][select], options[2][skhId], true);
                 break;
         }
         return item;
@@ -1595,22 +1595,7 @@ public class ItemService {
 
     public Item itemSKH(int itemId, int skhId) {
         Item item = createItemSetKichHoat(itemId, 1);
-        int param = 1;
-        if (Util.isTrue(5, 10)) {
-            param = 5;
-        }
-        if (Util.isTrue(5, 20)) {
-            param = 20;
-        }
-        if (Util.isTrue(5, 40)) {
-            param = 45;
-        }
-        if (Util.isTrue(5, 50)) {
-            param = 65;
-        }
-        if (Util.isTrue(5, 100)) {
-            param = 100;
-        }
+        int param = 100;
         if (item != null) {
             item.itemOptions.addAll(ItemService.gI().getListOptionItemShop((short) itemId));
             item.itemOptions.add(new Item.ItemOption(skhId, 1));
@@ -1618,6 +1603,36 @@ public class ItemService {
             item.itemOptions.add(new Item.ItemOption(30, 1));
         }
         return item;
+    }
+
+    public Item itemSKH(int itemId, int skhId, boolean hasRatio) {
+        if (hasRatio) {
+            Item item = createItemSetKichHoat(itemId, 1);
+            int param = 1;
+            if (Util.isTrue(5, 10)) {
+                param = 5;
+            }
+            if (Util.isTrue(5, 20)) {
+                param = 20;
+            }
+            if (Util.isTrue(5, 40)) {
+                param = 45;
+            }
+            if (Util.isTrue(5, 50)) {
+                param = 65;
+            }
+            if (Util.isTrue(5, 100)) {
+                param = 100;
+            }
+            if (item != null) {
+                item.itemOptions.addAll(ItemService.gI().getListOptionItemShop((short) itemId));
+                item.itemOptions.add(new Item.ItemOption(skhId, 1));
+                item.itemOptions.add(new Item.ItemOption(optionIdSKH(skhId), param));
+                item.itemOptions.add(new Item.ItemOption(30, 1));
+            }
+            return item;
+        }
+        return null;
     }
 
     public int optionItemSKH(int typeItem) {

@@ -966,8 +966,8 @@ public class Mob {
             }
         }
         if (player.setClothes.setGod14() && this.zone.map.mapId == 155) {
-            if (Util.isTrue(5, 100)) {    //up bí kíp
-                list.add(new ItemMap(zone, Util.nextInt(1066, 1070), 1, x, player.location.y, player.id));
+            if (Util.isTrue(10, 100)) {
+                list.add(new ItemMap(zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), x, player.location.y, player.id));
             }
         }
         Item item = player.inventory.itemsBody.get(1);

@@ -39,6 +39,8 @@ import com.girlkun.kygui.ShopKyGuiService;
 import com.girlkun.models.map.sieuhang.SieuHangService;
 import com.girlkun.models.skill.Skill;
 
+import static com.girlkun.models.item.ItemTime.*;
+
 public class Controller implements IMessageHandler {
 
     private static Controller instance;
@@ -800,7 +802,7 @@ public class Controller implements IMessageHandler {
                 player.location.y = 336;
             }
             NpcService.gI().createTutorial(player, -1,
-                    "Chào mừng " + player.name + " đến với ngọc rồng ba con\n"
+                    "Chào mừng " + player.name + " đến với ngọc rồng shv\n"
                             + "Nhiệm vụ đầu tiên của bạn là di chuyển\n"
                             + "Bạn hãy di chuyển nhân vật theo mũi tên chỉ hướng");
         }
@@ -854,11 +856,11 @@ public class Controller implements IMessageHandler {
     private long lastTimeGK;
 
     private void sendThongBaoServer(Player player) {
-        Service.gI().sendThongBaoFromAdmin(player, "|7| Chào Mừng " + player.name + " Đến Với Server Barcoll\b|2| Chúc Anh Em Chơi Game Vui Vẻ...\nThời gian offline của bạn là " + player.timeoff + " phút");
-//    ItemTimeService.gI().sendTextTime(player, (byte) KHI_GASS, "Mỗi ngày nhận ngẫu nhiên bùa 1h tại Bà Hạt Mít ", 5);
-//    ItemTimeService.gI().sendTextTime(player, (byte) BAN_DO_KHO_BAU, "Nhớ muốn tăng tiến sức mạnh nhanh cần đọc cẩm nang ở diễn đàn ", 10);
-//    ItemTimeService.gI().sendTextTime(player, (byte) DOANH_TRAI, "Nạp tiền tự động ngay trên website: nrobarcoll.com ", 15);
-//    ItemTimeService.gI().sendTextTime(player, (byte) CON_DUONG_RAN_DOC, "Mọi thắc mắc liên hệ key vàng để được hỗ trợ ", 20);
+        Service.gI().sendThongBaoFromAdmin(player, "|7| Chào Mừng " + player.name + " Đến Với Server SHV\b|2| Chúc Anh Em Chơi Game Vui Vẻ...\nThời gian offline của bạn là " + player.timeoff + " phút");
+//        ItemTimeService.gI().sendTextTime(player, (byte) KHI_GASS, "Mỗi ngày nhận ngẫu nhiên bùa 1h tại Bà Hạt Mít ", 5);
+//        ItemTimeService.gI().sendTextTime(player, (byte) BAN_DO_KHO_BAU, "Nhớ muốn tăng tiến sức mạnh nhanh cần đọc cẩm nang ở diễn đàn ", 10);
+//        ItemTimeService.gI().sendTextTime(player, (byte) DOANH_TRAI, "Nạp tiền tự động ngay trên website: nrobarcoll.com ", 15);
+//        ItemTimeService.gI().sendTextTime(player, (byte) CON_DUONG_RAN_DOC, "Mọi thắc mắc liên hệ key vàng để được hỗ trợ ", 20);
         if (Util.canDoWithTime(this.lastTimeGK, 15000)) {
             this.lastTimeGK = System.currentTimeMillis();
             Service.gI().sendThongBaoAllPlayer("Hãy nhớ điểm danh hằng ngày để nhận phần thưởng nhé");

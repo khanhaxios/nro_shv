@@ -1078,7 +1078,7 @@ public class UseItem {
             } else {
                 if (index > 5) {
                     if (Util.isTrue(5, 50)) {
-                        int percent = Util.nextInt(1, 10);
+                        int percent = Util.nextInt(1, 3);
                         Item it = ItemService.gI().createPercentItem(temp[index], percent);
                         it.itemOptions.add(new ItemOption(30, 0));
                         InventoryServiceNew.gI().addItemBag(pl, it);

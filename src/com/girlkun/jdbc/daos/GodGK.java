@@ -63,6 +63,7 @@ public class GodGK {
         }
         return ops;
     }
+
     public static Boolean baotri = false;
 
     public static synchronized Player login(MySession session, AntiLogin al) {
@@ -85,10 +86,6 @@ public class GodGK {
                 int secondsPass1 = (int) ((System.currentTimeMillis() - lastTimeLogin) / 1000);
                 long lastTimeLogout = rs.getTimestamp("last_time_logout").getTime();
                 int secondsPass = (int) ((System.currentTimeMillis() - lastTimeLogout) / 1000);
-
-//                if (!session.isAdmin) {
-//                    Service.gI().sendThongBaoOK(session, "Chi danh cho admin");
-//                }else
                 if (rs.getBoolean("ban")) {
                     Service.gI().sendThongBaoOK(session, "Tài khoản đã bị khóa, do liên tục thực hiện hành vi xấu!");
                 } else if (baotri && session.isAdmin) {
@@ -105,9 +102,7 @@ public class GodGK {
                     if (plInGame != null) {
                         Client.gI().kickSession(plInGame.getSession());
                         Service.gI().sendThongBaoOK(session, "Ai đó đã vô acc bạn :3");
-                    } else {
                     }
-//                    Service.gI().sendThongBaoOK(session, "Tài khoản đang được đăng nhập tại máy chủ khác");
                 } else {
                     if (secondsPass < Manager.SECOND_WAIT_LOGIN) {
                         Service.gI().sendThongBaoOK(session, "Vui lòng chờ " + (Manager.SECOND_WAIT_LOGIN - secondsPass) + "s");
@@ -1735,7 +1730,8 @@ public class GodGK {
                                 item = ItemService.gI().createItemNull();
                             }
                         } else {
-                            item = ItemService.gI().createItemNull();;
+                            item = ItemService.gI().createItemNull();
+                            ;
                         }
                         pet.inventory.itemsBody.add(item);
                     }

@@ -11193,14 +11193,16 @@ public class NpcFactory {
                                     tvnhan.quantity = 200000;
                                     InventoryServiceNew.gI().addItemBag(player, tvnhan);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Nhận thành công 200k Thỏi Kim tệ");
+//                                    Service.gI().sendThongBao(player, "Nhận thành công 200k Thỏi Kim tệ");
+                                    Service.gI().sendThongBao(player, "Hiện tại không hỗ trợ");
                                     break;
                                 } else {
-                                    thoivang = InventoryServiceNew.gI().findItemBag(player, 457);
-                                    if (thoivang.quantity >= 200000) {
-                                        Service.gI().sendThongBao(player, "Quá giới hạn nhận Thỏi Kim tệ");
-                                        break;
-                                    }
+                                    Service.gI().sendThongBao(player, "Hiện tại không hỗ trợ");
+//                                    thoivang = InventoryServiceNew.gI().findItemBag(player, 457);
+//                                    if (thoivang.quantity >= 200000) {
+//                                        Service.gI().sendThongBao(player, "Quá giới hạn nhận Thỏi Kim tệ");
+//                                        break;
+//                                    }
                                 }
                                 break;
                             case 3:

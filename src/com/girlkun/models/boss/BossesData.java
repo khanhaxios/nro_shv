@@ -63,7 +63,7 @@ public class BossesData {
                     "|-1|Tao đã có lệnh từ đại ca Fide rồi"
             }, //text chat 2
             new String[]{"|-2|Đẹp trai nó phải thế"}, //text chat 3
-            REST_15_M //second rest
+            REST_5_M //second rest
     );
 
     public static final BossData MAP_DAU_DINH = new BossData(
@@ -360,7 +360,7 @@ public class BossesData {
                     "|-1|Ngươi sẽ không bao giờ thắng được đâu!!",
                     "|-2|Ngươi vừa hút được nhiều rồi đấy, nhưng giờ thì đừng hòng!!",}, //text chat 2
             new String[]{}, //text chat 3
-            REST_15_M//second rest
+            REST_5_M//second rest
     );
 
     //**************************************************************************
@@ -445,7 +445,7 @@ public class BossesData {
                     "|-2|Tại sao cô gái xinh đẹp thế này mà lại là rôbốt nhỉ?"
             }, //text chat 2
             new String[]{"|-2|Cô gái xinh đẹp vậy mà lại bị tên tiến sĩ Kôrê biến thành người máy.."}, //text chat 3
-            REST_15_M
+            REST_5_M
     );
 
     public static final BossData PIC = new BossData(
@@ -533,7 +533,7 @@ public class BossesData {
                     "|-1|Lại thêm một tên ngốc nữa chán sống!"
             }, //text chat 2
             new String[]{"|-2|Khốn kiếp, Pic.. hắn bị Cell hấp thu rồi!!"}, //text chat 3
-            REST_15_M
+            REST_5_M
     );
 
     public static final BossData XEN_BO_HUNG_2 = new BossData(
@@ -813,7 +813,7 @@ public class BossesData {
                     "|-1|Tao sẽ thiêu rụi mày"
             }, //text chat 2
             new String[]{"|-2|Đêm qua em đẹp lắm!"}, //text chat 3
-            REST_1_M //second rest          
+            REST_1_M //second rest
     );
 
     public static final BossData XEN_CON_2 = new BossData(
@@ -1058,7 +1058,7 @@ public class BossesData {
                     "|-1|Được thôi, nếu muốn chết đến vậy, ta rất vui lòng!!"
             }, //text chat 2
             new String[]{"|-1|Biến hình! Super Sayan Rose"}, //text chat 3
-            REST_15_M //second rest
+            REST_5_M //second rest
     );
 
     public static final BossData SUPER_BLACK_GOKU = new BossData(
@@ -1085,7 +1085,7 @@ public class BossesData {
 
             new String[]{"|-1|Chúng ta sẽ gặp lại nhau sớm thôi",
                     "|-2|Ngươi nói gì chứ?"}, //text chat 3
-            REST_20_M //type appear
+            REST_5_M //type appear
     );
 
     public static final BossData ZAMAS = new BossData(
@@ -1122,7 +1122,7 @@ public class BossesData {
 
             new String[]{"|-1|Chỉ còn một cách duy nhất mà thôi",
                     "|-1|Bông tai Porata!"}, //text chat 3
-            REST_30_M
+            REST_5_M
     );
     //-------------------------------------------------------------------
     public static final BossData THANZM2 = new BossData(
@@ -1147,7 +1147,7 @@ public class BossesData {
                     "|-1|Ta sẽ đem công lí tới toàn bộ vũ trụ này", "|-2|Ngươi cứ lải nhải hoài 2 chữ công lí vậy?", "|-1|Lũ các ngươi làm ta thấy đau rồi ấy haha"
             }, //text chat 2
             new String[]{}, //text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     //**************************************************************************
@@ -1223,7 +1223,7 @@ public class BossesData {
                     "|-2|Không thể nào",
                     "|-2|Tại sao lại vậy chứ !",}, //text chat 2
             new String[]{"|-1|Ta đi về đây!Cảm ơn vì món ăn"}, //text chat 3
-            REST_30_M,
+            REST_5_M,
             new int[]{BossID.THAN_HUY_DIET}
     );
     public static final BossData THAN_HUY_DIET = new BossData(
@@ -1268,7 +1268,7 @@ public class BossesData {
                     "|-2|Khốn khiếp!",
                     "|-2|Tại sao lại vậy chứ !",}, //text chat 2
             new String[]{"|-1|Hẹn gặp lại,ta rất hài lòng về cuộc chiến"}, //text chat 3
-            REST_30_M, //second rest
+            REST_5_M, //second rest
             new int[]{BossID.THAN_HUY_DIET_CHAMPA}
     );
     public static final BossData THAN_HUY_DIET_CHAMPA = new BossData(
@@ -1471,7 +1471,7 @@ public class BossesData {
             new String[]{"|-1|Thấy ảo chưa nè!"}, //text chat 2
             new String[]{"|-1|Nhớ mặt tao đấy",
                     "|-1|Tobe continue.."}, //text chat 3
-            REST_15_M
+            REST_5_M
     );
     public static final BossData DRABURA = new BossData(
             "Ma Vương Dabura",
@@ -1572,7 +1572,7 @@ public class BossesData {
                     "|-1|Không có ai đủ mạnh để đấu với ta sao?",
                     "|-1|Ta sẽ cho ngươi cái nịt!",}, //text chat 2
             new String[]{"|-1|Biến hình !!!!!!!!!!!!"}, //text chat 3
-            REST_30_M
+            REST_5_M
     );
     public static final BossData COOLER_2 = new BossData(
             "Cooler 2", //name
@@ -1611,7 +1611,7 @@ public class BossesData {
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
             new String[]{}, //text chat 3
-            REST_15_M
+            REST_5_M
     );
     public static final BossData SUPER_XEN = new BossData(
             "Super Xên SooMe", //name
@@ -1643,7 +1643,7 @@ public class BossesData {
             new String[]{"|-1|Người thật yếu đuối"}, //text chat 1
             new String[]{"|-1|Ta sẽ cho ngươi thấy đâu mới là sức mạnh tối thượng"}, //text chat 2
             new String[]{"|-1|Hãy gọi đồng bọn đi"}, //text chat 3
-            REST_10_M
+            REST_5_M
     );
 
     public static final BossData SU = new BossData(
@@ -1657,7 +1657,7 @@ public class BossesData {
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat 1
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat 2
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat
-            REST_10_M
+            REST_5_M
     );
 
     public static final BossData PI_LAP = new BossData(
@@ -1671,7 +1671,7 @@ public class BossesData {
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat 1
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat 2
             new String[]{"|-1|Dragon Goku Comeback"}, //text chat 3
-            REST_10_M
+            REST_5_M
     );
     public static final BossData KAMIRIN = new BossData(
             "Thần Tài 1", //name
@@ -1739,7 +1739,7 @@ public class BossesData {
             new String[]{"|-2|Tái tạo, tái tạo nào..."}, // text chat 1
             new String[]{"|-1|Nghe danh Ma Vương Picolo chưa?"}, // text chat 2
             new String[]{"|-1|Ngươi định giết ta ư ...."}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     public static final BossData BOSS_BANG_TINH = new BossData(
@@ -1802,7 +1802,7 @@ public class BossesData {
             new String[]{"|-2|Tái tạo, tái tạo nào..."}, // text chat 1
             new String[]{"|-1|Nghe danh MaBư chưa?"}, // text chat 2
             new String[]{"|-1|Ngươi định giết ta ư ...."}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     public static final BossData BOSS_MA_BU_MAP = new BossData(
@@ -1823,7 +1823,7 @@ public class BossesData {
             new String[]{"|-2|Xí hụt, Xí hụt..."}, // text chat 1
             new String[]{""}, // text chat 2
             new String[]{"|-1|Hãy xem ta né đây...."}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     public static final BossData BOSS_MA_BU_DEP_TRAI = new BossData(
@@ -1844,7 +1844,7 @@ public class BossesData {
             new String[]{"|-2|Tái tạo, tái tạo nào..."}, // text chat 1
             new String[]{"|-1|Nghe danh Ma Vương Picolo chưa?"}, // text chat 2
             new String[]{"|-1|Ngươi định giết ta ư ...."}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
     public static final BossData BOSS_KHI_ULTRA = new BossData(
             "Khỉ Đột",
@@ -1864,7 +1864,7 @@ public class BossesData {
             new String[]{"|-2|Ta sẽ nuốt chửng ngươi!"}, // text chat 1
             new String[]{"|-1|21h đến 23h rồi, ta sẽ cho ngươi thấy sức mạnh của ta"}, // text chat 2
             new String[]{"|-1|Trăng tròn... Ngươi không thoát được đâu"}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     public static final BossData BOSS_THO_DAI_KA = new BossData(
@@ -1901,7 +1901,7 @@ public class BossesData {
             new String[]{"|-2|Muốn tăng sức mạnh thì hãy giết ta đi!!"}, // text chat 1
             new String[]{"|-1|20h đến 22h rồi, ta sẽ cho ngươi thấy sức mạnh của ta"}, // text chat 2
             new String[]{"|-1|Bay bay ngươi đã mạnh hơn hãy gặp ta vào lần sau"}, // text chat 3
-            REST_30_M
+            REST_5_M
     );
 
     public static final BossData KAMI_SOOME = new BossData(
@@ -2453,7 +2453,7 @@ public class BossesData {
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
             new String[]{}, //text chat 3
-            REST_15_M //second rest
+            REST_5_M //second rest
     );
 
     public static final BossData TAPSU2 = new BossData(
@@ -2470,7 +2470,7 @@ public class BossesData {
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
             new String[]{}, //text chat 3
-            REST_15_M //second rest
+            REST_5_M //second rest
     );
 
     public static final BossData TAPSU3 = new BossData(
@@ -2487,7 +2487,7 @@ public class BossesData {
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
             new String[]{}, //text chat 3
-            REST_15_M //second rest
+            REST_5_M //second rest
     );
     public static final BossData TAPSU4 = new BossData(
             "Tập Sự 4",

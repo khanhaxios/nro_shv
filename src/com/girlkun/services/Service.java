@@ -1036,21 +1036,21 @@ public class Service {
             }
             return;
         }
-        if (text.equals("sts")) {
-            Service.gI().sendThongBaoOK(player, "Trạng thái admin " + (player.isAdmin() ? "Admin" : "Dân thường"));
-            return;
-        }
-        if (text.startsWith("testdo ")) {
-            int param = Integer.parseInt(text.replace("testdo ", ""));
-            Item item = ItemService.gI().createPercentItem((short) 21, param);
-            InventoryServiceNew.gI().addItemBag(player, item);
-            InventoryServiceNew.gI().sendItemBags(player);
-            Service.gI().sendThongBao(player, "Đã thêm đồ với chỉ số " + param + "%");
-            return;
-        }
-        if (text.equals("vodich")) {
-            return;
-        }
+//        if (text.equals("sts")) {
+//            Service.gI().sendThongBaoOK(player, "Trạng thái admin " + (player.isAdmin() ? "Admin" : "Dân thường"));
+//            return;
+//        }
+//        if (text.startsWith("testdo ")) {
+//            int param = Integer.parseInt(text.replace("testdo ", ""));
+//            Item item = ItemService.gI().createPercentItem((short) 21, param);
+//            InventoryServiceNew.gI().addItemBag(player, item);
+//            InventoryServiceNew.gI().sendItemBags(player);
+//            Service.gI().sendThongBao(player, "Đã thêm đồ với chỉ số " + param + "%");
+//            return;
+//        }
+//        if (text.equals("vodich")) {
+//            return;
+//        }
 
 //        if (text.startsWith("smp ")) {
 //            try {
@@ -1062,19 +1062,19 @@ public class Service {
 //            }
 //            return;
 //        }
-        if (text.startsWith("item ")) {
-            int itemId = Integer.parseInt(text.replace("item ", ""));
-            Item item = new Item();
-
-            item.template = ItemService.gI().getTemplate(itemId);
-            if (itemId == 457) {
-                item.quantity = 99999;
-            }
-            InventoryServiceNew.gI().addItemBag(player, item);
-            InventoryServiceNew.gI().sendItemBags(player);
-            Service.gI().sendThongBao(player,"Buff " +  item.template.name + " to player " +  player.name);
-            return;
-        }
+//        if (text.startsWith("item ")) {
+//            int itemId = Integer.parseInt(text.replace("item ", ""));
+//            Item item = new Item();
+//
+//            item.template = ItemService.gI().getTemplate(itemId);
+//            if (itemId == 457) {
+//                item.quantity = 99999;
+//            }
+//            InventoryServiceNew.gI().addItemBag(player, item);
+//            InventoryServiceNew.gI().sendItemBags(player);
+//            Service.gI().sendThongBao(player,"Buff " +  item.template.name + " to player " +  player.name);
+//            return;
+//        }
 //        if (text.startsWith("callbot ")) {
 //            try {
 //                MySession _session = player.getSession();
@@ -1088,526 +1088,526 @@ public class Service {
 //            }
 //            return;
 //        }
-        if (text.startsWith("drop")) {
-            try {
-                Boss trung = new TrungUyTrang(1000, 1000000000, player.zone);
-                System.err.println("name: " + trung.name);
-                System.err.println("mapid: " + trung.zoneFinal.map.mapId);
-                trung.joinMap();
 
-            } catch (Exception ex) {
-                java.util.logging.Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//        if (text.startsWith("drop")) {
+//            try {
+//                Boss trung = new TrungUyTrang(1000, 1000000000, player.zone);
+//                System.err.println("name: " + trung.name);
+//                System.err.println("mapid: " + trung.zoneFinal.map.mapId);
+//                trung.joinMap();
+//
+//            } catch (Exception ex) {
+//                java.util.logging.Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
 
-        }
+//        if (player.getSession() != null && player.isAdmin()) {
+//            if (text.equals("loadsv")) {
+//                Manager.loadPart();
+//                DataGame.updateData(player.getSession());
+//                return;
+//            }
+//            if (text.equals("hoiskill")) {
+//                Service.getInstance().releaseCooldownSkill(player);
+//                return;
+//            }
+//            if (text.equals("skillxd")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
+//                return;
+//            }
+//            if (text.equals("skilltd")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
+//                return;
+//            }
+//            if (text.equals("skillnm")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.MA_PHONG_BA);
+//                return;
+//            }
+//            if (text.equals("dt")) {
+//                PetService.Pet03(player, 467, 468, 469);
+//                Service.getInstance().point(player);
+//                return;
+//            }
+//            if (text.equals("hskill")) {
+//                Service.getInstance().releaseCooldownSkill(player);
+//                return;
+//            }
+//            if (text.equals("skillxd")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
+//                return;
+//            }
+//            if (text.equals("broly")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.BIEN_BROLY);
+//                return;
+//            }
+//            if (text.equals("tienhoa")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.TIEN_HOA);
+//                return;
+//            }
+//            if (text.equals("khi")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.BIEN_KHI);
+//                return;
+//            }
+//            if (text.equals("knn")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.KHIEN_NANG_LUONG);
+//                return;
+//            }
+//            if (text.equals("skilltd")) {
+//                SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
+//                SkillService.gI().learSkillSpecial(player, Skill.TIEN_HOA);
+//                SkillService.gI().learSkillSpecial(player, Skill.BIEN_BROLY);
+//                SkillService.gI().learSkillSpecial(player, Skill.VO_HIEU_CHUONG);
+//
+//                return;
+//            }
+//            if (text.equals("client")) {
+//                Client.gI().show(player);
+//            } else if (text.equals("map")) {
+//                sendThongBao(player, "Thông tin map: " + player.zone.map.mapName + " (" + player.zone.map.mapId + ")");
+//                return;
+//
+//            } else if (text.startsWith("e ")) {
+//                try {
+//                    int mapId = Integer.parseInt(text.replace("e ", ""));
+//                    EffectMapService.gI().sendEffectMapToAllInMap(player.zone, mapId, 3, 1, player.location.x, player.location.y + 32, 0);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            } else if (text.startsWith("h ")) {
+//                try {
+//                    byte mapId = Byte.parseByte(text.replace("h ", ""));
+//                    EffectSkillService.gI().sendEffectPlayer(player, player, EffectSkillService.TURN_ON_EFFECT, (byte) mapId);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            } else if (text.equals("dh")) {
+//                TimerTask task = new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        EffectMapService.gI().sendEffectMapToAllInMap(player.zone,
+//                                215, 3, 1, player.location.x, player.location.y + 32, 0);
+//
+//                    }
+//                };
+//                Timer timer = new Timer();
+//                timer.schedule(task, 0, 500); // Bắt đầu thực thi sau 0 millisecond và lặp lại sau mỗi 1000 milliseconds
+//            } else if (text.equals("vt")) {
+//                sendThongBao(player, player.location.x + " - " + player.location.y + "\n"
+//                        + player.zone.map.yPhysicInTop(player.location.x, player.location.y));
+//            } else if (text.equals("hs")) {
+//                player.nPoint.setFullHpMp();
+//                PlayerService.gI().sendInfoHpMp(player);
+//                sendThongBao(player, "Quyền năng trị liệu\n");
+//                return;
+//            } else if (text.equals("m")) {
+//                sendThongBao(player, "Map " + player.zone.map.mapName + " (" + player.zone.map.mapId + ")");
+//                return;
+//            } else if (text.equals("boss")) {
+//                String str = "";
+//                for (Player b : player.zone.getBosses()) {
+//                    str += b.name + "\n";
+//                }
+//                sendThongBao(player, str);
+//            } else if (text.equals("vt")) {
+//                sendThongBao(player, player.location.x + " - " + player.location.y + "\n"
+//                        + player.zone.map.yPhysicInTop(player.location.x, player.location.y));
+//            } else if (text.startsWith("ss")) {
+//            } else if (text.equals("b")) {
+//                Message msg;
+//                try {
+//                    msg = new Message(52);
+//                    msg.writer().writeByte(0);
+//                    msg.writer().writeInt((int) player.id);
+//                    sendMessAllPlayerInMap(player, msg);
+//                    msg.cleanup();
+//                } catch (Exception e) {
+//                }
+//            } else if (text.equals("c")) {
+//                Message msg;
+//                try {
+//                    msg = new Message(52);
+//                    msg.writer().writeByte(2);
+//                    msg.writer().writeInt((int) player.id);
+//                    msg.writer().writeInt((int) player.zone.getHumanoids().get(1).id);
+//                    sendMessAllPlayerInMap(player, msg);
+//                    msg.cleanup();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            if (text.equals("nrnm")) {
+//                Service.gI().activeNamecShenron(player);
+//            }
+//            if (text.equals("ts")) {
+//                sendThongBaoFromAdmin(player, "Time start server: " + ServerManager.timeStart + "\n");
+//                return;
+//            }
+//            if (text.startsWith("notify")) {
+//                String a = text.replace("notify ", "");
+//                Service.gI().sendThongBaoAllPlayer(a);
+//            }
+//            if (text.equals("rr")) {
+//                addEffectChar(player.pet, 357, 1, -1, -1, 1);
+//                if (player.pet.gender == 0) {
+//                    addEffectChar(player.pet, 85, 1, -1, -1, 1);
+//                } else if (player.pet.gender == 1) {
+//                    addEffectChar(player.pet, 84, 1, -1, -1, 1);
+//                } else if (player.pet.gender == 2) {
+//                    addEffectChar(player.pet, 86, 1, -1, -1, 1);
+//                }
+//                return;
+//            }
+//            if (text.startsWith("ep ")) {
+//                try {
+//                    int effid = Integer.parseInt(text.replace("ep ", ""));
+//                    addEffectChar(player, effid, 1, -1, -1, 1);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//            if (text.equals("77")) {
+//                try {
+//                    new Thuongde(BossID.THUONG_DE, BossesData.THUONG_DE, player.zone, player.location.x - 10, player.location.y);
+//                    player.zone.load_Another_To_Me(player);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            if (text.equals("info")) {
+//                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_PLAYER, 30046,
+//                        "|1|Nhân vật: " + player.name + "\n"
+//                                + "|7|Chỉ số hiện tại"
+//                                + "\nHành Tinh " + player.gender
+//                                + "\nSức đánh " + player.nPoint.dame
+//                                + "\nHp " + player.nPoint.hp + "/" + player.nPoint.hpMax
+//                                + "\nKi " + player.nPoint.mp + "/" + player.nPoint.mpMax
+//                                + "\n|7| Đệ Tử " + player.pet.name
+//                                + "\nHành Tinh " + player.pet.gender
+//                                + "\nSức Đánh " + player.pet.nPoint.dame
+//                                + "\nHp " + player.pet.nPoint.hp + "/" + player.pet.nPoint.hpMax
+//                                + "\nKi " + player.pet.nPoint.mp + "/" + player.pet.nPoint.hpMax, "Đóng");
+//                return;
+//            } else if (text.equals("a")) {
+//                BossManager.gI().showListBoss(player);
+//                return;
+//            } else if (text.equals("onl")) {
+//                showListPlayer(player);
+//                return;
+//            } else if (text.equals("nrnm")) {
+//                Service.gI().activeNamecShenron(player);
+//                return;
+//            } else if (text.equals("loadtop")) {
+//                Manager.gI().loadAllTop();
+//                sendThongBao(player, "RELOAD SHOP SUCCESS!");
+//                return;
+//            } else if (text.equals("hocskill")) {
+//                List<Skill> skfix2 = new ArrayList<>();
+//                switch (player.gender) {
+//                    case 0:
+//                        skfix2.add(SkillUtil.createSkill(0, 7));
+//                        skfix2.add(SkillUtil.createSkill(1, 7));
+//                        skfix2.add(SkillUtil.createSkill(6, 7));
+//                        skfix2.add(SkillUtil.createSkill(9, 7));
+//                        skfix2.add(SkillUtil.createSkill(10, 7));
+//                        skfix2.add(SkillUtil.createSkill(20, 7));
+//                        skfix2.add(SkillUtil.createSkill(22, 7));
+//                        skfix2.add(SkillUtil.createSkill(19, 7));
+//                        skfix2.add(SkillUtil.createSkill(24, 7));
+//                        skfix2.add(SkillUtil.createSkill(27, 7));
+//                        skfix2.add(SkillUtil.createSkill(28, 7));
+//                        skfix2.add(SkillUtil.createSkill(29, 7));
+//                        player.playerSkill.skills = skfix2;
+//                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
+//                        return;
+//                    case 1: // namek 2, 3, 7, 11, 12, 17, 18,26, 19}
+//                        skfix2.add(SkillUtil.createSkill(2, 7));
+//                        skfix2.add(SkillUtil.createSkill(3, 7));
+//                        skfix2.add(SkillUtil.createSkill(7, 7));
+//                        skfix2.add(SkillUtil.createSkill(11, 7));
+//                        skfix2.add(SkillUtil.createSkill(12, 7));
+//                        skfix2.add(SkillUtil.createSkill(17, 7));
+//                        skfix2.add(SkillUtil.createSkill(18, 7));
+//                        skfix2.add(SkillUtil.createSkill(19, 7));
+//                        skfix2.add(SkillUtil.createSkill(26, 7));
+//                        skfix2.add(SkillUtil.createSkill(27, 7));
+//                        skfix2.add(SkillUtil.createSkill(28, 7));
+//                        skfix2.add(SkillUtil.createSkill(29, 7));
+//                        skfix2.add(SkillUtil.createSkill(30, 7));
+//                        player.playerSkill.skills = skfix2;
+//                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
+//                        return;
+//                    case 2:
+//                        skfix2.add(SkillUtil.createSkill(4, 7));
+//                        skfix2.add(SkillUtil.createSkill(5, 7));
+//                        skfix2.add(SkillUtil.createSkill(8, 7));
+//                        skfix2.add(SkillUtil.createSkill(13, 7));
+//                        skfix2.add(SkillUtil.createSkill(14, 7));
+//                        skfix2.add(SkillUtil.createSkill(21, 7));
+//                        skfix2.add(SkillUtil.createSkill(23, 7));
+//                        skfix2.add(SkillUtil.createSkill(25, 7));
+//                        skfix2.add(SkillUtil.createSkill(19, 7));
+//                        skfix2.add(SkillUtil.createSkill(27, 7));
+//                        skfix2.add(SkillUtil.createSkill(28, 7));
+//                        skfix2.add(SkillUtil.createSkill(29, 7));
+//                        player.playerSkill.skills = skfix2;
+//                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
+//                        return;
+//                }
+//            }
+//            if (text.equals("xoakillall")) {
+//                List<Skill> skfix = new ArrayList<>();
+//                if (player.gender == 0) { // td
+//                    skfix.add(SkillUtil.createSkill(0, 1));
+//                    skfix.add(SkillUtil.createSkillLevel0(1));
+//                    skfix.add(SkillUtil.createSkillLevel0(6));
+//                    skfix.add(SkillUtil.createSkillLevel0(9));
+//                    skfix.add(SkillUtil.createSkillLevel0(10));
+//                    skfix.add(SkillUtil.createSkillLevel0(20));
+//                    skfix.add(SkillUtil.createSkillLevel0(22));
+//                    skfix.add(SkillUtil.createSkillLevel0(19));
+//                    skfix.add(SkillUtil.createSkillLevel0(24));
+//                    player.playerSkill.skills = skfix;
+//                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
+//                    return;
+//                }
+//                if (player.gender == 1) { // namek 2, 3, 7, 11, 12, 17, 18,26, 19}
+//                    skfix.add(SkillUtil.createSkill(2, 1));
+//                    skfix.add(SkillUtil.createSkillLevel0(3));
+//                    skfix.add(SkillUtil.createSkillLevel0(7));
+//                    skfix.add(SkillUtil.createSkillLevel0(11));
+//                    skfix.add(SkillUtil.createSkillLevel0(12));
+//                    skfix.add(SkillUtil.createSkillLevel0(17));
+//                    skfix.add(SkillUtil.createSkillLevel0(18));
+//                    skfix.add(SkillUtil.createSkillLevel0(19));
+//                    skfix.add(SkillUtil.createSkillLevel0(26));
+//                    player.playerSkill.skills = skfix;
+//                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
+//                    return;
+//                }
+//                if (player.gender == 2) { // xd 4, 5, 8, 13, 14, 21, 23, 25, 19}
+//                    skfix.add(SkillUtil.createSkill(4, 1));
+//                    skfix.add(SkillUtil.createSkillLevel0(5));
+//                    skfix.add(SkillUtil.createSkillLevel0(8));
+//                    skfix.add(SkillUtil.createSkillLevel0(13));
+//                    skfix.add(SkillUtil.createSkillLevel0(14));
+//                    skfix.add(SkillUtil.createSkillLevel0(21));
+//                    skfix.add(SkillUtil.createSkillLevel0(23));
+//                    skfix.add(SkillUtil.createSkillLevel0(19));
+//                    skfix.add(SkillUtil.createSkillLevel0(25));
+//                    player.playerSkill.skills = skfix;
+//                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
+//                    return;
+//                }
+//            } else if (text.contains("tsm ")) {
+//                long power = Long.parseLong(text.replaceAll("tsm ", ""));
+//                player.nPoint.power += (long) power;
+//                addSMTN(player, (byte) 2, power, false);
+//                sendThongBao(player, "Bạn vừa tăng thành công " + power + " sức mạnh");
+//                return;
+//            } else if (text.contains("gsm ")) {
+//                long power = Long.parseLong(text.replaceAll("gsm ", ""));
+//                player.nPoint.power -= (long) power;
+//                addSMTN(player, (byte) 2, -power, false);
+//                sendThongBao(player, "Bạn vừa giảm thành công " + power + " sức mạnh");
+//                return;
+//            } else if (text.contains("ttn ")) {
+//                long power = Long.parseLong(text.replaceAll("ttn ", ""));
+//                player.nPoint.tiemNang += (long) power;
+//                addSMTN(player, (byte) 2, power, false);
+//                sendThongBao(player, "Bạn vừa tăng thành công " + power + " tiềm năng");
+//                return;
+//            } else if (text.contains("gtn ")) {
+//                long power = Long.parseLong(text.replaceAll("gtn ", ""));
+//                player.nPoint.tiemNang -= (long) power;
+//                addSMTN(player, (byte) 2, -power, false);
+//                sendThongBao(player, "Bạn vừa giảm thành công " + power + " tiềm năng");
+//                return;
+//            } else if (text.equals("nnv") && player.playerTask.taskMain.id <= 31) {
+//                TaskService.gI().sendNextTaskMain(player);
+//                return;
+//            } else if (text.equals("bnv") && player.playerTask.taskMain.id >= 1) {
+//                TaskService.gI().sendBackTaskMain(player);
+//                return;
+//            } else if (text.equals("thread")) {
+//                sendThongBao(player, "Current thread: " + Thread.activeCount());
+//                Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+//                threadSet.forEach((t) -> {
+//                    System.out.println(t.getName());
+//                });
+//                return;
+//            } else if (text.equals("toado")) {
+//                Service.getInstance().sendThongBao(player, player.location.x + " - " + player.location.y);
+//                return;
+//            } else if (text.equals("dapdo")) {
+//                player.autodapdo = !player.autodapdo;
+//                return;
+//            }
+//            if (text.equals("broly")) {
+//                if (Util.canDoWithTime(player.effectSkill.lastTimeUpBroly, 600000)) {
+//                    if (player.inventory.itemsBody.get(5).isNotNullItem()) {
+//                        if (player.inventory.itemsBody.get(5).template.id == 1479) {
+//                            EffectSkillService.gI().sendeffectBROLY(player);
+//                            EffectSkillService.gI().setIsBroly(player);
+//                            Service.gI().sendSpeedPlayer(player, 0);
+//                            Service.gI().Send_Caitrang(player);
+//                            Service.gI().sendSpeedPlayer(player, -1);
+//                            if (!player.isPet) {
+//                                PlayerService.gI().sendInfoHpMp(player);
+//                            }
+//                            Service.gI().point(player);
+//                            Service.gI().Send_Info_NV(player);
+//                            Service.gI().sendInfoPlayerEatPea(player);
+//                            player.zone.load_Another_To_Me(player);
+//                            player.zone.load_Another_To_Me(player);
+//                        } else {
+//                            Service.gI().sendThongBao(player, "Yêu cầu cải trang Broly");
+//                            return;
+//                        }
+//                    } else {
+//                        Service.gI().sendThongBao(player, "Yêu cầu cải trang Broly");
+//                        return;
+//                    }
+//                } else {
+//                    Service.gI().sendThongBao(player, "Vui lòng đợi " + TimeUtil.getTimeLeft(player.effectSkill.lastTimeUpBroly, 600));
+//                }
+//            } else if (text.equals("r")) {
+//                try {
+//                    activeNamecShenron(player);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+//            long totalPhysicalMemorySize = operatingSystemMXBean.getTotalPhysicalMemorySize();
+//            long freePhysicalMemorySize = operatingSystemMXBean.getFreePhysicalMemorySize();
+//            long usedPhysicalMemory = totalPhysicalMemorySize - freePhysicalMemorySize;
+//            DecimalFormat decimalFormat = new DecimalFormat("0.00");
+//            String cpuUsage = decimalFormat.format(operatingSystemMXBean.getSystemCpuLoad() * 100);
+//            String usedPhysicalMemoryStr = decimalFormat.format((double) usedPhysicalMemory / (1024 * 1024 * 1024));
+//            if (text.equals("admin")) {
+//                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, 30046, "|7| ADMIN\b|4| Người Đang Chơi: " + Client.gI().getPlayers().size() + "\n" + "|8|Current thread: " + (Thread.activeCount() - ServerManager.gI().threadMap)
+//                                + " : SeeSion " + GirlkunSessionManager.gI().getSessions().size()
+//                                + "\n|6|CPU : " + cpuUsage + "/100%" + "RAM : " + usedPhysicalMemoryStr + "/4GB"
+//                                + "\n|6|Time start server: " + ServerManager.timeStart,
+//                        "Menu Admin", "Call Boss", "Buff Item", "GIFTCODE", "Nạp", "LIS BOSS", "Đóng");
+//                return;
+//            } else if (text.startsWith("upp")) {
+//                try {
+//                    long power = Long.parseLong(text.replaceAll("upp", ""));
+//                    addSMTN(player.pet, (byte) 2, power, false);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            } else if (text.startsWith("up")) {
+//                try {
+//                    long power = Long.parseLong(text.replaceAll("up", ""));
+//                    addSMTN(player, (byte) 2, power, false);
+//                    return;
+//                } catch (Exception e) {
+//                }
+//
+//            } else if (text.startsWith("m")) {
+//                try {
+//                    int mapId = Integer.parseInt(text.replace("m", ""));
+//                    ChangeMapService.gI().changeMapInYard(player, mapId, -1, -1);
+//                    return;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (text.startsWith("i")) {
+//                try {
+//                    String[] item = text.replace("i", "").split(" ");
+//                    if (Short.parseShort(item[0]) <= 2065) {
+//                        Item it = ItemService.gI().createNewItem((short) Short.parseShort(item[0]));
+//                        if (it != null && item.length == 1) {
+//                            InventoryServiceNew.gI().addItemBag(player, it);
+//                            InventoryServiceNew.gI().sendItemBags(player);
+//                            Service.gI().sendThongBao(player, "Đã nhận được " + it.template.name);
+//                        } else if (it != null && item.length == 2 && Client.gI().getPlayer(String.valueOf(item[1])) == null) {
+//                            it.quantity = Integer.parseInt(item[1]);
+//                            InventoryServiceNew.gI().addItemBag(player, it);
+//                            InventoryServiceNew.gI().sendItemBags(player);
+//                            Service.gI().sendThongBao(player, "Đã nhận được x" + Integer.valueOf(item[1]) + " " + it.template.name);
+//                        } else if (it != null && item.length == 2 && Client.gI().getPlayer(String.valueOf(item[1])) != null) {
+//                            String name = String.valueOf(item[1]);
+//                            InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), it);
+//                            InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
+//                            Service.gI().sendThongBao(player, "Đã buff " + it.template.name + " đến player " + name);
+//                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Đã nhận được " + it.template.name);
+//                        } else if (it != null && item.length == 3 && Client.gI().getPlayer(String.valueOf(item[2])) != null) {
+//                            String name = String.valueOf(item[2]);
+//                            it.quantity = Integer.parseInt(item[1]);
+//                            InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), it);
+//                            InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
+//                            Service.gI().sendThongBao(player, "Đã buff x" + Integer.valueOf(item[1]) + " " + it.template.name + " đến player " + name);
+//                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Đã nhận được x" + Integer.valueOf(item[1]) + " " + it.template.name);
+//                        } else {
+//                            Service.gI().sendThongBao(player, "Không tìm thấy player");
+//                        }
+//                    } else {
+//                        Service.gI().sendThongBao(player, "Không tìm thấy item");
+//                    }
+//                } catch (NumberFormatException e) {
+//                    Service.gI().sendThongBao(player, "Không tìm thấy player");
+//                }
+//                return;
+//            } else if (text.equals("buff")) {
+//                Input.gI().createFormSenditem(player);
+//            } else if (text.equals("op")) {
+//                Input.gI().createFormSenditem1(player);
+//            } else if (text.equals("skh")) {
+//                Input.gI().createFormSenditem2(player);
+//            } else if (text.equals("thread")) {
+//                sendThongBao(player, "Current thread: " + Thread.activeCount());
+//                Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+//                return;
+//            } else if (text.startsWith("s")) {
+//                try {
+//                    player.nPoint.speed = (byte) Integer.parseInt(text.substring(1));
+//                    point(player);
+//                    return;
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
 
-        if (player.getSession() != null && player.isAdmin()) {
-            if (text.equals("loadsv")) {
-                Manager.loadPart();
-                DataGame.updateData(player.getSession());
-                return;
-            }
-            if (text.equals("hoiskill")) {
-                Service.getInstance().releaseCooldownSkill(player);
-                return;
-            }
-            if (text.equals("skillxd")) {
-                SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
-                return;
-            }
-            if (text.equals("skilltd")) {
-                SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
-                return;
-            }
-            if (text.equals("skillnm")) {
-                SkillService.gI().learSkillSpecial(player, Skill.MA_PHONG_BA);
-                return;
-            }
-            if (text.equals("dt")) {
-                PetService.Pet03(player, 467, 468, 469);
-                Service.getInstance().point(player);
-                return;
-            }
-            if (text.equals("hskill")) {
-                Service.getInstance().releaseCooldownSkill(player);
-                return;
-            }
-            if (text.equals("skillxd")) {
-                SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
-                return;
-            }
-            if (text.equals("broly")) {
-                SkillService.gI().learSkillSpecial(player, Skill.BIEN_BROLY);
-                return;
-            }
-            if (text.equals("tienhoa")) {
-                SkillService.gI().learSkillSpecial(player, Skill.TIEN_HOA);
-                return;
-            }
-            if (text.equals("khi")) {
-                SkillService.gI().learSkillSpecial(player, Skill.BIEN_KHI);
-                return;
-            }
-            if (text.equals("knn")) {
-                SkillService.gI().learSkillSpecial(player, Skill.KHIEN_NANG_LUONG);
-                return;
-            }
-            if (text.equals("skilltd")) {
-                SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
-                SkillService.gI().learSkillSpecial(player, Skill.TIEN_HOA);
-                SkillService.gI().learSkillSpecial(player, Skill.BIEN_BROLY);
-                SkillService.gI().learSkillSpecial(player, Skill.VO_HIEU_CHUONG);
-
-                return;
-            }
-            if (text.equals("client")) {
-                Client.gI().show(player);
-            } else if (text.equals("map")) {
-                sendThongBao(player, "Thông tin map: " + player.zone.map.mapName + " (" + player.zone.map.mapId + ")");
-                return;
-
-            } else if (text.startsWith("e ")) {
-                try {
-                    int mapId = Integer.parseInt(text.replace("e ", ""));
-                    EffectMapService.gI().sendEffectMapToAllInMap(player.zone, mapId, 3, 1, player.location.x, player.location.y + 32, 0);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else if (text.startsWith("h ")) {
-                try {
-                    byte mapId = Byte.parseByte(text.replace("h ", ""));
-                    EffectSkillService.gI().sendEffectPlayer(player, player, EffectSkillService.TURN_ON_EFFECT, (byte) mapId);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else if (text.equals("dh")) {
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        EffectMapService.gI().sendEffectMapToAllInMap(player.zone,
-                                215, 3, 1, player.location.x, player.location.y + 32, 0);
-
-                    }
-                };
-                Timer timer = new Timer();
-                timer.schedule(task, 0, 500); // Bắt đầu thực thi sau 0 millisecond và lặp lại sau mỗi 1000 milliseconds
-            } else if (text.equals("vt")) {
-                sendThongBao(player, player.location.x + " - " + player.location.y + "\n"
-                        + player.zone.map.yPhysicInTop(player.location.x, player.location.y));
-            } else if (text.equals("hs")) {
-                player.nPoint.setFullHpMp();
-                PlayerService.gI().sendInfoHpMp(player);
-                sendThongBao(player, "Quyền năng trị liệu\n");
-                return;
-            } else if (text.equals("m")) {
-                sendThongBao(player, "Map " + player.zone.map.mapName + " (" + player.zone.map.mapId + ")");
-                return;
-            } else if (text.equals("boss")) {
-                String str = "";
-                for (Player b : player.zone.getBosses()) {
-                    str += b.name + "\n";
-                }
-                sendThongBao(player, str);
-            } else if (text.equals("vt")) {
-                sendThongBao(player, player.location.x + " - " + player.location.y + "\n"
-                        + player.zone.map.yPhysicInTop(player.location.x, player.location.y));
-            } else if (text.startsWith("ss")) {
-            } else if (text.equals("b")) {
-                Message msg;
-                try {
-                    msg = new Message(52);
-                    msg.writer().writeByte(0);
-                    msg.writer().writeInt((int) player.id);
-                    sendMessAllPlayerInMap(player, msg);
-                    msg.cleanup();
-                } catch (Exception e) {
-                }
-            } else if (text.equals("c")) {
-                Message msg;
-                try {
-                    msg = new Message(52);
-                    msg.writer().writeByte(2);
-                    msg.writer().writeInt((int) player.id);
-                    msg.writer().writeInt((int) player.zone.getHumanoids().get(1).id);
-                    sendMessAllPlayerInMap(player, msg);
-                    msg.cleanup();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            if (text.equals("nrnm")) {
-                Service.gI().activeNamecShenron(player);
-            }
-            if (text.equals("ts")) {
-                sendThongBaoFromAdmin(player, "Time start server: " + ServerManager.timeStart + "\n");
-                return;
-            }
-            if (text.startsWith("notify")) {
-                String a = text.replace("notify ", "");
-                Service.gI().sendThongBaoAllPlayer(a);
-            }
-            if (text.equals("rr")) {
-                addEffectChar(player.pet, 357, 1, -1, -1, 1);
-                if (player.pet.gender == 0) {
-                    addEffectChar(player.pet, 85, 1, -1, -1, 1);
-                } else if (player.pet.gender == 1) {
-                    addEffectChar(player.pet, 84, 1, -1, -1, 1);
-                } else if (player.pet.gender == 2) {
-                    addEffectChar(player.pet, 86, 1, -1, -1, 1);
-                }
-                return;
-            }
-            if (text.startsWith("ep ")) {
-                try {
-                    int effid = Integer.parseInt(text.replace("ep ", ""));
-                    addEffectChar(player, effid, 1, -1, -1, 1);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-            if (text.equals("77")) {
-                try {
-                    new Thuongde(BossID.THUONG_DE, BossesData.THUONG_DE, player.zone, player.location.x - 10, player.location.y);
-                    player.zone.load_Another_To_Me(player);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            if (text.equals("info")) {
-                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_PLAYER, 30046,
-                        "|1|Nhân vật: " + player.name + "\n"
-                                + "|7|Chỉ số hiện tại"
-                                + "\nHành Tinh " + player.gender
-                                + "\nSức đánh " + player.nPoint.dame
-                                + "\nHp " + player.nPoint.hp + "/" + player.nPoint.hpMax
-                                + "\nKi " + player.nPoint.mp + "/" + player.nPoint.mpMax
-                                + "\n|7| Đệ Tử " + player.pet.name
-                                + "\nHành Tinh " + player.pet.gender
-                                + "\nSức Đánh " + player.pet.nPoint.dame
-                                + "\nHp " + player.pet.nPoint.hp + "/" + player.pet.nPoint.hpMax
-                                + "\nKi " + player.pet.nPoint.mp + "/" + player.pet.nPoint.hpMax, "Đóng");
-                return;
-            } else if (text.equals("a")) {
-                BossManager.gI().showListBoss(player);
-                return;
-            } else if (text.equals("onl")) {
-                showListPlayer(player);
-                return;
-            } else if (text.equals("nrnm")) {
-                Service.gI().activeNamecShenron(player);
-                return;
-            } else if (text.equals("loadtop")) {
-                Manager.gI().loadAllTop();
-                sendThongBao(player, "RELOAD SHOP SUCCESS!");
-                return;
-            } else if (text.equals("hocskill")) {
-                List<Skill> skfix2 = new ArrayList<>();
-                switch (player.gender) {
-                    case 0:
-                        skfix2.add(SkillUtil.createSkill(0, 7));
-                        skfix2.add(SkillUtil.createSkill(1, 7));
-                        skfix2.add(SkillUtil.createSkill(6, 7));
-                        skfix2.add(SkillUtil.createSkill(9, 7));
-                        skfix2.add(SkillUtil.createSkill(10, 7));
-                        skfix2.add(SkillUtil.createSkill(20, 7));
-                        skfix2.add(SkillUtil.createSkill(22, 7));
-                        skfix2.add(SkillUtil.createSkill(19, 7));
-                        skfix2.add(SkillUtil.createSkill(24, 7));
-                        skfix2.add(SkillUtil.createSkill(27, 7));
-                        skfix2.add(SkillUtil.createSkill(28, 7));
-                        skfix2.add(SkillUtil.createSkill(29, 7));
-                        player.playerSkill.skills = skfix2;
-                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
-                        return;
-                    case 1: // namek 2, 3, 7, 11, 12, 17, 18,26, 19}
-                        skfix2.add(SkillUtil.createSkill(2, 7));
-                        skfix2.add(SkillUtil.createSkill(3, 7));
-                        skfix2.add(SkillUtil.createSkill(7, 7));
-                        skfix2.add(SkillUtil.createSkill(11, 7));
-                        skfix2.add(SkillUtil.createSkill(12, 7));
-                        skfix2.add(SkillUtil.createSkill(17, 7));
-                        skfix2.add(SkillUtil.createSkill(18, 7));
-                        skfix2.add(SkillUtil.createSkill(19, 7));
-                        skfix2.add(SkillUtil.createSkill(26, 7));
-                        skfix2.add(SkillUtil.createSkill(27, 7));
-                        skfix2.add(SkillUtil.createSkill(28, 7));
-                        skfix2.add(SkillUtil.createSkill(29, 7));
-                        skfix2.add(SkillUtil.createSkill(30, 7));
-                        player.playerSkill.skills = skfix2;
-                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
-                        return;
-                    case 2:
-                        skfix2.add(SkillUtil.createSkill(4, 7));
-                        skfix2.add(SkillUtil.createSkill(5, 7));
-                        skfix2.add(SkillUtil.createSkill(8, 7));
-                        skfix2.add(SkillUtil.createSkill(13, 7));
-                        skfix2.add(SkillUtil.createSkill(14, 7));
-                        skfix2.add(SkillUtil.createSkill(21, 7));
-                        skfix2.add(SkillUtil.createSkill(23, 7));
-                        skfix2.add(SkillUtil.createSkill(25, 7));
-                        skfix2.add(SkillUtil.createSkill(19, 7));
-                        skfix2.add(SkillUtil.createSkill(27, 7));
-                        skfix2.add(SkillUtil.createSkill(28, 7));
-                        skfix2.add(SkillUtil.createSkill(29, 7));
-                        player.playerSkill.skills = skfix2;
-                        sendThongBao(player, "All Skill Thành Công, Hãy Học Lại Skill");
-                        return;
-                }
-            }
-            if (text.equals("xoakillall")) {
-                List<Skill> skfix = new ArrayList<>();
-                if (player.gender == 0) { // td
-                    skfix.add(SkillUtil.createSkill(0, 1));
-                    skfix.add(SkillUtil.createSkillLevel0(1));
-                    skfix.add(SkillUtil.createSkillLevel0(6));
-                    skfix.add(SkillUtil.createSkillLevel0(9));
-                    skfix.add(SkillUtil.createSkillLevel0(10));
-                    skfix.add(SkillUtil.createSkillLevel0(20));
-                    skfix.add(SkillUtil.createSkillLevel0(22));
-                    skfix.add(SkillUtil.createSkillLevel0(19));
-                    skfix.add(SkillUtil.createSkillLevel0(24));
-                    player.playerSkill.skills = skfix;
-                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
-                    return;
-                }
-                if (player.gender == 1) { // namek 2, 3, 7, 11, 12, 17, 18,26, 19}
-                    skfix.add(SkillUtil.createSkill(2, 1));
-                    skfix.add(SkillUtil.createSkillLevel0(3));
-                    skfix.add(SkillUtil.createSkillLevel0(7));
-                    skfix.add(SkillUtil.createSkillLevel0(11));
-                    skfix.add(SkillUtil.createSkillLevel0(12));
-                    skfix.add(SkillUtil.createSkillLevel0(17));
-                    skfix.add(SkillUtil.createSkillLevel0(18));
-                    skfix.add(SkillUtil.createSkillLevel0(19));
-                    skfix.add(SkillUtil.createSkillLevel0(26));
-                    player.playerSkill.skills = skfix;
-                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
-                    return;
-                }
-                if (player.gender == 2) { // xd 4, 5, 8, 13, 14, 21, 23, 25, 19}
-                    skfix.add(SkillUtil.createSkill(4, 1));
-                    skfix.add(SkillUtil.createSkillLevel0(5));
-                    skfix.add(SkillUtil.createSkillLevel0(8));
-                    skfix.add(SkillUtil.createSkillLevel0(13));
-                    skfix.add(SkillUtil.createSkillLevel0(14));
-                    skfix.add(SkillUtil.createSkillLevel0(21));
-                    skfix.add(SkillUtil.createSkillLevel0(23));
-                    skfix.add(SkillUtil.createSkillLevel0(19));
-                    skfix.add(SkillUtil.createSkillLevel0(25));
-                    player.playerSkill.skills = skfix;
-                    sendThongBao(player, "Fix Skill Thành Công, Hãy Học Lại Skill");
-                    return;
-                }
-            } else if (text.contains("tsm ")) {
-                long power = Long.parseLong(text.replaceAll("tsm ", ""));
-                player.nPoint.power += (long) power;
-                addSMTN(player, (byte) 2, power, false);
-                sendThongBao(player, "Bạn vừa tăng thành công " + power + " sức mạnh");
-                return;
-            } else if (text.contains("gsm ")) {
-                long power = Long.parseLong(text.replaceAll("gsm ", ""));
-                player.nPoint.power -= (long) power;
-                addSMTN(player, (byte) 2, -power, false);
-                sendThongBao(player, "Bạn vừa giảm thành công " + power + " sức mạnh");
-                return;
-            } else if (text.contains("ttn ")) {
-                long power = Long.parseLong(text.replaceAll("ttn ", ""));
-                player.nPoint.tiemNang += (long) power;
-                addSMTN(player, (byte) 2, power, false);
-                sendThongBao(player, "Bạn vừa tăng thành công " + power + " tiềm năng");
-                return;
-            } else if (text.contains("gtn ")) {
-                long power = Long.parseLong(text.replaceAll("gtn ", ""));
-                player.nPoint.tiemNang -= (long) power;
-                addSMTN(player, (byte) 2, -power, false);
-                sendThongBao(player, "Bạn vừa giảm thành công " + power + " tiềm năng");
-                return;
-            } else if (text.equals("nnv") && player.playerTask.taskMain.id <= 31) {
-                TaskService.gI().sendNextTaskMain(player);
-                return;
-            } else if (text.equals("bnv") && player.playerTask.taskMain.id >= 1) {
-                TaskService.gI().sendBackTaskMain(player);
-                return;
-            } else if (text.equals("thread")) {
-                sendThongBao(player, "Current thread: " + Thread.activeCount());
-                Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-                threadSet.forEach((t) -> {
-                    System.out.println(t.getName());
-                });
-                return;
-            } else if (text.equals("toado")) {
-                Service.getInstance().sendThongBao(player, player.location.x + " - " + player.location.y);
-                return;
-            } else if (text.equals("dapdo")) {
-                player.autodapdo = !player.autodapdo;
-                return;
-            }
-            if (text.equals("broly")) {
-                if (Util.canDoWithTime(player.effectSkill.lastTimeUpBroly, 600000)) {
-                    if (player.inventory.itemsBody.get(5).isNotNullItem()) {
-                        if (player.inventory.itemsBody.get(5).template.id == 1479) {
-                            EffectSkillService.gI().sendeffectBROLY(player);
-                            EffectSkillService.gI().setIsBroly(player);
-                            Service.gI().sendSpeedPlayer(player, 0);
-                            Service.gI().Send_Caitrang(player);
-                            Service.gI().sendSpeedPlayer(player, -1);
-                            if (!player.isPet) {
-                                PlayerService.gI().sendInfoHpMp(player);
-                            }
-                            Service.gI().point(player);
-                            Service.gI().Send_Info_NV(player);
-                            Service.gI().sendInfoPlayerEatPea(player);
-                            player.zone.load_Another_To_Me(player);
-                            player.zone.load_Another_To_Me(player);
-                        } else {
-                            Service.gI().sendThongBao(player, "Yêu cầu cải trang Broly");
-                            return;
-                        }
-                    } else {
-                        Service.gI().sendThongBao(player, "Yêu cầu cải trang Broly");
-                        return;
-                    }
-                } else {
-                    Service.gI().sendThongBao(player, "Vui lòng đợi " + TimeUtil.getTimeLeft(player.effectSkill.lastTimeUpBroly, 600));
-                }
-            } else if (text.equals("r")) {
-                try {
-                    activeNamecShenron(player);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            OperatingSystemMXBean operatingSystemMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-            long totalPhysicalMemorySize = operatingSystemMXBean.getTotalPhysicalMemorySize();
-            long freePhysicalMemorySize = operatingSystemMXBean.getFreePhysicalMemorySize();
-            long usedPhysicalMemory = totalPhysicalMemorySize - freePhysicalMemorySize;
-            DecimalFormat decimalFormat = new DecimalFormat("0.00");
-            String cpuUsage = decimalFormat.format(operatingSystemMXBean.getSystemCpuLoad() * 100);
-            String usedPhysicalMemoryStr = decimalFormat.format((double) usedPhysicalMemory / (1024 * 1024 * 1024));
-            if (text.equals("admin")) {
-                NpcService.gI().createMenuConMeo(player, ConstNpc.MENU_ADMIN, 30046, "|7| ADMIN\b|4| Người Đang Chơi: " + Client.gI().getPlayers().size() + "\n" + "|8|Current thread: " + (Thread.activeCount() - ServerManager.gI().threadMap)
-                                + " : SeeSion " + GirlkunSessionManager.gI().getSessions().size()
-                                + "\n|6|CPU : " + cpuUsage + "/100%" + "RAM : " + usedPhysicalMemoryStr + "/4GB"
-                                + "\n|6|Time start server: " + ServerManager.timeStart,
-                        "Menu Admin", "Call Boss", "Buff Item", "GIFTCODE", "Nạp", "LIS BOSS", "Đóng");
-                return;
-            } else if (text.startsWith("upp")) {
-                try {
-                    long power = Long.parseLong(text.replaceAll("upp", ""));
-                    addSMTN(player.pet, (byte) 2, power, false);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else if (text.startsWith("up")) {
-                try {
-                    long power = Long.parseLong(text.replaceAll("up", ""));
-                    addSMTN(player, (byte) 2, power, false);
-                    return;
-                } catch (Exception e) {
-                }
-
-            } else if (text.startsWith("m")) {
-                try {
-                    int mapId = Integer.parseInt(text.replace("m", ""));
-                    ChangeMapService.gI().changeMapInYard(player, mapId, -1, -1);
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (text.startsWith("i")) {
-                try {
-                    String[] item = text.replace("i", "").split(" ");
-                    if (Short.parseShort(item[0]) <= 2065) {
-                        Item it = ItemService.gI().createNewItem((short) Short.parseShort(item[0]));
-                        if (it != null && item.length == 1) {
-                            InventoryServiceNew.gI().addItemBag(player, it);
-                            InventoryServiceNew.gI().sendItemBags(player);
-                            Service.gI().sendThongBao(player, "Đã nhận được " + it.template.name);
-                        } else if (it != null && item.length == 2 && Client.gI().getPlayer(String.valueOf(item[1])) == null) {
-                            it.quantity = Integer.parseInt(item[1]);
-                            InventoryServiceNew.gI().addItemBag(player, it);
-                            InventoryServiceNew.gI().sendItemBags(player);
-                            Service.gI().sendThongBao(player, "Đã nhận được x" + Integer.valueOf(item[1]) + " " + it.template.name);
-                        } else if (it != null && item.length == 2 && Client.gI().getPlayer(String.valueOf(item[1])) != null) {
-                            String name = String.valueOf(item[1]);
-                            InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), it);
-                            InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
-                            Service.gI().sendThongBao(player, "Đã buff " + it.template.name + " đến player " + name);
-                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Đã nhận được " + it.template.name);
-                        } else if (it != null && item.length == 3 && Client.gI().getPlayer(String.valueOf(item[2])) != null) {
-                            String name = String.valueOf(item[2]);
-                            it.quantity = Integer.parseInt(item[1]);
-                            InventoryServiceNew.gI().addItemBag(Client.gI().getPlayer(name), it);
-                            InventoryServiceNew.gI().sendItemBags(Client.gI().getPlayer(name));
-                            Service.gI().sendThongBao(player, "Đã buff x" + Integer.valueOf(item[1]) + " " + it.template.name + " đến player " + name);
-                            Service.gI().sendThongBao(Client.gI().getPlayer(name), "Đã nhận được x" + Integer.valueOf(item[1]) + " " + it.template.name);
-                        } else {
-                            Service.gI().sendThongBao(player, "Không tìm thấy player");
-                        }
-                    } else {
-                        Service.gI().sendThongBao(player, "Không tìm thấy item");
-                    }
-                } catch (NumberFormatException e) {
-                    Service.gI().sendThongBao(player, "Không tìm thấy player");
-                }
-                return;
-            } else if (text.equals("buff")) {
-                Input.gI().createFormSenditem(player);
-            } else if (text.equals("op")) {
-                Input.gI().createFormSenditem1(player);
-            } else if (text.equals("skh")) {
-                Input.gI().createFormSenditem2(player);
-            } else if (text.equals("thread")) {
-                sendThongBao(player, "Current thread: " + Thread.activeCount());
-                Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-                return;
-            } else if (text.startsWith("s")) {
-                try {
-                    player.nPoint.speed = (byte) Integer.parseInt(text.substring(1));
-                    point(player);
-                    return;
-                } catch (Exception e) {
-                }
-            }
-        }
-
-        if (text.equals("banv")) {
-
-            long now = System.currentTimeMillis();
-            if (now >= lasttimechatbanv + 10000) {
-                if (player.muav == false) {
-                    if (player.banv == false) {
-                        player.banv = true;
-                        Service.getInstance().sendThongBao(player, "Đã bật tự động bán vàng khi vàng dưới 1 tỷ !");
-                        lasttimechatbanv = System.currentTimeMillis();
-                        Logger.success("Thằng " + player.name + " chat banv\n");
-                        return;
-                    } else if (player.banv == true) {
-                        player.banv = false;
-                        Service.getInstance().sendThongBao(player, "Đã tắt tự động bán vàng khi vàng dưới 1 tỷ !");
-                        lasttimechatbanv = System.currentTimeMillis();
-                        Logger.success("Thằng " + player.name + " chat banv\n");
-                        return;
-                    }
-                } else {
-                    Service.getInstance().sendThongBao(player, "Vui lòng tắt mua vàng !");
-                    lasttimechatbanv = System.currentTimeMillis();
-                    return;
-                }
-            } else {
-                Service.getInstance().sendThongBao(player, "Spam chat con mọe m !");
-                return;
-            }
-        }
+//        if (text.equals("banv")) {
+//
+//            long now = System.currentTimeMillis();
+//            if (now >= lasttimechatbanv + 10000) {
+//                if (player.muav == false) {
+//                    if (player.banv == false) {
+//                        player.banv = true;
+//                        Service.getInstance().sendThongBao(player, "Đã bật tự động bán vàng khi vàng dưới 1 tỷ !");
+//                        lasttimechatbanv = System.currentTimeMillis();
+//                        Logger.success("Thằng " + player.name + " chat banv\n");
+//                        return;
+//                    } else if (player.banv == true) {
+//                        player.banv = false;
+//                        Service.getInstance().sendThongBao(player, "Đã tắt tự động bán vàng khi vàng dưới 1 tỷ !");
+//                        lasttimechatbanv = System.currentTimeMillis();
+//                        Logger.success("Thằng " + player.name + " chat banv\n");
+//                        return;
+//                    }
+//                } else {
+//                    Service.getInstance().sendThongBao(player, "Vui lòng tắt mua vàng !");
+//                    lasttimechatbanv = System.currentTimeMillis();
+//                    return;
+//                }
+//            } else {
+//                Service.getInstance().sendThongBao(player, "Spam chat con mọe m !");
+//                return;
+//            }
+//        }
 
 //        if (text.equals("muav")) {
 //
@@ -1637,7 +1637,7 @@ public class Service {
 //                return;
 //            }
 //        }
-        if (text.equals("a")) {
+        if (text.equals("lb")) {
             BossManager.gI().showListBoss(player);
             return;
 
