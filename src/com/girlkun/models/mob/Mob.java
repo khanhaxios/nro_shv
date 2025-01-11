@@ -653,7 +653,7 @@ public class Mob {
 
     private List<ItemMap> mobReward(Player player, ItemMap itemTask, Message msg) {
         int mapid = player.zone.map.mapId;
-
+        player.congduc += 1;
 //        nplayer
         List<ItemMap> itemReward = new ArrayList<>();
         try {
@@ -689,6 +689,24 @@ public class Mob {
                 ItemMap itemMap = new ItemMap(this.zone, 457, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
+            if (Util.isTrue(2, 10)) {
+                int[] idspl = {441, 442, 443, 444, 445, 446, 447};
+                int rd = Util.nextInt(0, idspl.length - 1);
+                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                Service.gI().dropItemMap(this.zone, itemMap);
+            }
+            if (Util.isTrue(5, 10)) {
+                int[] idspl = {220, 221, 222, 223, 224, 225, 226};
+                int rd = Util.nextInt(0, idspl.length - 1);
+                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                Service.gI().dropItemMap(this.zone, itemMap);
+            }
+            if (Util.isTrue(5, 50)) {
+                int[] idspl = {361, 382, 383, 384, 385};
+                int rd = Util.nextInt(0, idspl.length - 1);
+                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                Service.gI().dropItemMap(this.zone, itemMap);
+            }
             if (Util.isTrue(10, 50)) {
                 player.inventory.ruby += 2;
                 Service.gI().sendThongBao(player, "Bạn vừa nhặt được 2 hồng ngọc ngon!");
@@ -698,7 +716,6 @@ public class Mob {
                 byte random = 1;
                 if (Util.isTrue(100, 100)) {
                     random = 1;
-
                     Item i = Manager.HONGNGOC_REWARDS.get(Util.nextInt(0, Manager.HONGNGOC_REWARDS.size() - 1));
                     i.quantity = random;
                     InventoryServiceNew.gI().addItemBag(player, i);
@@ -731,34 +748,18 @@ public class Mob {
 
         final Calendar rightNow = Calendar.getInstance();
         int hour = rightNow.get(11);
-
-        int tileVang = 0;
-        byte randomDo = (byte) new Random().nextInt(Manager.itemIds_TL.length);
-//        List<ItemMap> list = new ArrayList<>();
-//        int tileVang = 0;
-//        MobReward mobReward = Manager.MOB_REWARDS.get(this.tempId);
-//        if (mobReward == null) {
-//            return list;
-//
-//        }
-//        final Calendar rightNow = Calendar.getInstance();
-//        int hour = rightNow.get(11);
-//        List<ItemMobReward> items = mobReward.getItemReward();
-//        List<ItemMobReward> golds = mobReward.getGoldReward();
-//        if (!items.isEmpty()) {
-//            ItemMobReward item = items.get(Util.nextInt(0, items.size() - 1));
-//            ItemMap itemMap = item.getItemMap(zone, player, x, yEnd);
-//            if (itemMap != null) {
-//                list.add(itemMap);
-//            }
-//        }
-//        if (!golds.isEmpty()) {
-//            ItemMobReward gold = golds.get(Util.nextInt(0, golds.size() - 1));
-//            ItemMap itemMap = gold.getItemMap(zone, player, x, yEnd);
-//            if (itemMap != null) {
-//                list.add(itemMap);
-//            }
-//        }
+        // drop set kich hoat
+        List<Integer> mapsRoi = Arrays.asList(1, 2, 3, 8, 9, 10, 15, 16, 17);
+        if (mapsRoi.contains(player.zone.map.mapId)) {
+            // roi skh
+            if (Util.isTrue(5, 10)) {
+                Item item = ItemService.gI().randomSKH();
+                if (item != null) {
+                    Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+                }
+            }
+        }
+        //
         if (player.itemTime.isUseMayDo && Util.isTrue(21, 100) && this.tempId > 57 && this.tempId < 66) {
             list.add(new ItemMap(zone, 380, 1, x, player.location.y, player.id));
             if (Util.isTrue(1, 100) && this.tempId > 57 && this.tempId < 66) {    //up bí kíp
@@ -789,7 +790,7 @@ public class Mob {
             }
         }
 
-        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )        
+        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )
         if (this.zone.map.mapId == 156) {
             if (Util.isTrue(70, 100)) {
                 Item manh2 = ItemService.gI().createNewItem((short) (1359));
@@ -798,7 +799,7 @@ public class Mob {
                 Service.gI().sendThongBao(player, "Bạn vừa nhận được Mảnh Vỡ Bông Tai ");
             }
         }
-        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )        
+        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )
         if (this.zone.map.mapId == 157) {
             if (Util.isTrue(70, 100)) {
                 Item manh3 = ItemService.gI().createNewItem((short) (1360));
@@ -807,7 +808,7 @@ public class Mob {
                 Service.gI().sendThongBao(player, "Bạn vừa nhận được Mảnh Vỡ Bông Tai ");
             }
         }
-        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )        
+        // Rơi vật phẩm Mảnh Vỡ Bông Tai ( ID 541 )
         if (this.zone.map.mapId == 158) {
             if (Util.isTrue(70, 100)) {
                 Item manh4 = ItemService.gI().createNewItem((short) (1361));
@@ -919,13 +920,13 @@ public class Mob {
                 }
                 for (int i = 0; i < player.clan.banDoKhoBau.level / 6; i++) {
                     ItemMap it = new ItemMap(this.zone, 76, randomvang2, this.location.x + i * 20, this.location.y, player.id);
-                    //    ItemMap it2 = new ItemMap(this.zone, 861, 1,this.location.x + i * 17, this.location.y, player.id);
-                    //    Service.gI().dropItemMap(this.zone, it2);
+                    ItemMap it2 = new ItemMap(this.zone, 861, 1, this.location.x + i * 17, this.location.y, player.id);
+                    Service.gI().dropItemMap(this.zone, it2);
                 }
                 for (int i = 0; i < player.clan.banDoKhoBau.level / 6; i++) {
                     ItemMap it = new ItemMap(this.zone, 76, randomvang2, this.location.x + i * 20, this.location.y, player.id);
-                    //    ItemMap it2 = new ItemMap(this.zone, 861, 1,this.location.x - i * 17, this.location.y, player.id);
-                    //    Service.gI().dropItemMap(this.zone, it2);
+                    ItemMap it2 = new ItemMap(this.zone, 861, 1, this.location.x - i * 17, this.location.y, player.id);
+                    Service.gI().dropItemMap(this.zone, it2);
                 }
             }
         }

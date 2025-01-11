@@ -3827,55 +3827,61 @@ public class NpcFactory {
                                 Service.getInstance().sendThongBao(player, "Bạn vừa nhận được 2 triệu ngọc xanh");
                                 break;
                             case 1:
-                                if (player.playerTask.taskMain.id == 5) {
-                                    if (player.playerTask.taskMain.index == 0) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_0);
-                                    }
-                                } else if (player.playerTask.taskMain.index == 1) {
-                                    for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_1);
-                                    }
-                                } else if (player.playerTask.taskMain.index == 2) {
-                                    for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_2);
-                                    }
-                                } else if (player.playerTask.taskMain.id == 11) {
-                                    if (player.playerTask.taskMain.index == 0) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_11_0);
-                                    } else if (player.playerTask.taskMain.index == 1) {
-                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                            TaskService.gI().doneTask(player, ConstTask.TASK_11_1);
-                                        }
-                                    } else if (player.playerTask.taskMain.index == 2) {
-                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                            TaskService.gI().doneTask(player, ConstTask.TASK_11_2);
-                                        }
-                                    } else {
-                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
-                                    }
-                                } else if (player.playerTask.taskMain.id == 13) {
-                                    if (player.playerTask.taskMain.index == 0) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_13_0);
-                                    } else {
-                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
-                                    }
-                                } else if (player.playerTask.taskMain.id == 27) {
-                                    if (player.playerTask.taskMain.index == 0) {
-                                        TaskService.gI().doneTask(player, ConstTask.TASK_27_0);
-                                    } else if (player.playerTask.taskMain.index == 1) {
-                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                            TaskService.gI().doneTask(player, ConstTask.TASK_27_1);
-                                        }
-                                    } else if (player.playerTask.taskMain.index == 2) {
-                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
-                                            TaskService.gI().doneTask(player, ConstTask.TASK_27_2);
-                                        }
-                                    } else {
-                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
-                                    }
-                                } else {
-                                    Service.getInstance().sendThongBao(player, "Nhiệm vụ hiện tại không thuộc diện hỗ trợ");
+                                if (player.playerTask.taskMain.id > 0) {
+                                    player.playerTask.taskMain.id = 21;
+                                    TaskService.gI().sendNextTaskMain(player);
+                                    Service.gI().sendThongBao(player, "Đã next nhiệm vụ");
                                 }
+
+//                                if (player.playerTask.taskMain.id == 5) {
+//                                    if (player.playerTask.taskMain.index == 0) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_0);
+//                                    }
+//                                } else if (player.playerTask.taskMain.index == 1) {
+//                                    for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_1);
+//                                    }
+//                                } else if (player.playerTask.taskMain.index == 2) {
+//                                    for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_5_2);
+//                                    }
+//                                } else if (player.playerTask.taskMain.id == 11) {
+//                                    if (player.playerTask.taskMain.index == 0) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_11_0);
+//                                    } else if (player.playerTask.taskMain.index == 1) {
+//                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                            TaskService.gI().doneTask(player, ConstTask.TASK_11_1);
+//                                        }
+//                                    } else if (player.playerTask.taskMain.index == 2) {
+//                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                            TaskService.gI().doneTask(player, ConstTask.TASK_11_2);
+//                                        }
+//                                    } else {
+//                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
+//                                    }
+//                                } else if (player.playerTask.taskMain.id == 13) {
+//                                    if (player.playerTask.taskMain.index == 0) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_13_0);
+//                                    } else {
+//                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
+//                                    }
+//                                } else if (player.playerTask.taskMain.id == 27) {
+//                                    if (player.playerTask.taskMain.index == 0) {
+//                                        TaskService.gI().doneTask(player, ConstTask.TASK_27_0);
+//                                    } else if (player.playerTask.taskMain.index == 1) {
+//                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                            TaskService.gI().doneTask(player, ConstTask.TASK_27_1);
+//                                        }
+//                                    } else if (player.playerTask.taskMain.index == 2) {
+//                                        for (int i = player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).count; i < 25; i++) {
+//                                            TaskService.gI().doneTask(player, ConstTask.TASK_27_2);
+//                                        }
+//                                    } else {
+//                                        Service.getInstance().sendThongBao(player, "Ta đã giúp con hoàn thành nhiệm vụ rồi mau đi trả nhiệm vụ");
+//                                    }
+//                                } else {
+//                                    Service.getInstance().sendThongBao(player, "Nhiệm vụ hiện tại không thuộc diện hỗ trợ");
+//                                }
                                 break;
                         }
                     }
@@ -4092,12 +4098,12 @@ public class NpcFactory {
 
                         if (player.zone.map.mapId == 7 && player.idNRNM != -1) {
                             if (player.idNRNM == 353) {
-                                NgocRongNamecService.gI().tOpenNrNamec = System.currentTimeMillis() + 86400000;
-                                NgocRongNamecService.gI().firstNrNamec = true;
-                                NgocRongNamecService.gI().timeNrNamec = 0;
-                                NgocRongNamecService.gI().doneDragonNamec();
-                                NgocRongNamecService.gI().initNgocRongNamec((byte) 1);
-                                NgocRongNamecService.gI().reInitNrNamec((long) 86399000);
+//                                NgocRongNamecService.gI().tOpenNrNamec = System.currentTimeMillis() + 86400000;
+//                                NgocRongNamecService.gI().firstNrNamec = true;
+//                                NgocRongNamecService.gI().timeNrNamec = 0;
+//                                NgocRongNamecService.gI().doneDragonNamec();
+//                                NgocRongNamecService.gI().initNgocRongNamec((byte) 1);
+//                                NgocRongNamecService.gI().reInitNrNamec((long) 86399000);
                                 SummonDragon.gI().summonNamec(player);
                             } else {
                                 Service.gI().sendThongBao(player, "Anh phải có viên ngọc rồng Namếc 1 sao");
@@ -4120,7 +4126,6 @@ public class NpcFactory {
                         } else {
                             this.createOtherMenu(player, ConstNpc.BASE_MENU, "Cadic và Fide đang kéo cả hành tinh Namec đến bờ vực diệt vong, hãy đến giải cứu hành tinh Namec", "Đến chiến trường", "Bảng xếp hạng");
                         }
-
                     }
                 }
             }
@@ -4187,7 +4192,6 @@ public class NpcFactory {
                                     break;
                             }
                         } else {
-
                             switch (select) {
                                 // về trạm vũ trụ
                                 case 0:
@@ -10786,6 +10790,8 @@ public class NpcFactory {
                                 InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2067), 99);
                                 InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2068), player.nPoint.getNumberItemRequiredNextByLevel(1));
                                 InventoryServiceNew.gI().sendItemBags(player);
+                            } else {
+                                Service.gI().sendThongBao(player, "Đột phá thất bại huhuhu");
                             }
                         }
                         break;
@@ -10796,10 +10802,6 @@ public class NpcFactory {
                         PVPService.gI().sendInvitePVP(player, (byte) select);
                         break;
                     }
-//                        else {
-//                            Service.gI().sendThongBao(player, "|5|VUI LÒNG KÍCH HOẠT TÀI KHOẢN TẠI\n|7|NROGOD.COM\n|5|ĐỂ MỞ KHÓA TÍNH NĂNG");
-//                            break;
-//                        }
                     case ConstNpc.MAKE_FRIEND:
                         if (select == 0) {
                             Object playerId = PLAYERID_OBJECT.get(player.id);

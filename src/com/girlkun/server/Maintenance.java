@@ -34,6 +34,7 @@ public class Maintenance extends Thread {
     public void run() {
         while (this.min > 0) {
             this.min--;
+            Logger.log("maintenance after " + min + " seconds");
             Service.gI().sendThongBaoAllPlayer("Hệ thống sẽ bảo trì sau " + min
                     + " giây nữa, vui lòng thoát game để tránh mất vật phẩm");
             try {

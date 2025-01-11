@@ -1052,23 +1052,27 @@ public class Service {
             return;
         }
 
-        if (text.startsWith("smp ")) {
-            try {
-                Long power = Long.parseLong(text.replace("smp ", ""));
-                Service.gI().addSMTN(player, (byte) 2, power, false);
-                PlayerDAO.updatePlayer(player);
-            } catch (Exception e) {
-                Logger.error(e.getMessage());
-            }
-            return;
-        }
+//        if (text.startsWith("smp ")) {
+//            try {
+//                Long power = Long.parseLong(text.replace("smp ", ""));
+//                Service.gI().addSMTN(player, (byte) 2, power, false);
+//                PlayerDAO.updatePlayer(player);
+//            } catch (Exception e) {
+//                Logger.error(e.getMessage());
+//            }
+//            return;
+//        }
         if (text.startsWith("item ")) {
             int itemId = Integer.parseInt(text.replace("item ", ""));
             Item item = new Item();
+
             item.template = ItemService.gI().getTemplate(itemId);
-            item.quantity = 99;
+            if (itemId == 457) {
+                item.quantity = 99999;
+            }
             InventoryServiceNew.gI().addItemBag(player, item);
             InventoryServiceNew.gI().sendItemBags(player);
+            Service.gI().sendThongBao(player,"Buff " +  item.template.name + " to player " +  player.name);
             return;
         }
 //        if (text.startsWith("callbot ")) {

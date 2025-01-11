@@ -204,11 +204,11 @@ public class Input {
                         }
                     }
                     if (thoivangchange.quantity >= Gold) {
-                        long goldsum = (long) (500 * (long) Gold);
+                        long goldsum = (long) (500000000 * (long) Gold);
                         if (player.inventory.gold + goldsum > Inventory.LIMIT_GOLD) {
                             Service.gI().sendThongBao(player, "Số kim tệ quy đổi vượt quá giới hạn 200 tỉ");
                         } else {
-                            player.inventory.gold += (long) (500 * (long) Gold);
+                            player.inventory.gold += (long) (500000000 * (long) Gold);
                             InventoryServiceNew.gI().subQuantityItemsBag(player, thoivangchange, Gold);
                             InventoryServiceNew.gI().sendItemBags(player);
                             Service.gI().sendMoney(player);

@@ -492,6 +492,7 @@ public class ItemService {
         }
     }
 
+
     public boolean isOutOfDateTime(Item item) {
         if (item != null) {
             for (Item.ItemOption io : item.itemOptions) {
@@ -509,6 +510,39 @@ public class ItemService {
             }
         }
         return false;
+    }
+
+    public Item randomSKH() {
+        int[][] items = {{0, 6, 21, 27, 12}, {1, 7, 22, 28, 12}, {2, 8, 23, 29, 12}};
+        int[][] options = {{128, 129, 127}, {130, 131, 132}, {133, 135, 134}};
+        int select = Util.nextInt(0, 4);
+        int itemUseId = Util.nextInt(0, 2);
+        int skhv1 = 25;// ti le
+        int skhv2 = 35;//ti le
+        int skhc = 40;//ti le
+        int skhId = 0;
+
+        int rd = Util.nextInt(20, 110);
+        if (rd <= skhv1) {
+            skhId = 0;
+        } else if (rd <= skhv1 + skhv2) {
+            skhId = 1;
+        } else if (rd <= skhv1 + skhv2 + skhc) {
+            skhId = 2;
+        }
+        Item item = null;
+        switch (itemUseId) {
+            case 0:
+                item = itemSKH(items[0][select], options[0][skhId]);
+                break;
+            case 1:
+                item = itemSKH(items[1][select], options[1][skhId]);
+                break;
+            case 2:
+                item = itemSKH(items[2][select], options[2][skhId]);
+                break;
+        }
+        return item;
     }
 
     public void OpenSKH(Player player, int itemUseId, int select) throws Exception {
@@ -1561,10 +1595,26 @@ public class ItemService {
 
     public Item itemSKH(int itemId, int skhId) {
         Item item = createItemSetKichHoat(itemId, 1);
+        int param = 1;
+        if (Util.isTrue(5, 10)) {
+            param = 5;
+        }
+        if (Util.isTrue(5, 20)) {
+            param = 20;
+        }
+        if (Util.isTrue(5, 40)) {
+            param = 45;
+        }
+        if (Util.isTrue(5, 50)) {
+            param = 65;
+        }
+        if (Util.isTrue(5, 100)) {
+            param = 100;
+        }
         if (item != null) {
             item.itemOptions.addAll(ItemService.gI().getListOptionItemShop((short) itemId));
             item.itemOptions.add(new Item.ItemOption(skhId, 1));
-            item.itemOptions.add(new Item.ItemOption(optionIdSKH(skhId), 1));
+            item.itemOptions.add(new Item.ItemOption(optionIdSKH(skhId), param));
             item.itemOptions.add(new Item.ItemOption(30, 1));
         }
         return item;

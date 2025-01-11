@@ -1,6 +1,9 @@
 package com.girlkun.services;
 
+import com.girlkun.models.item.Item;
 import com.girlkun.models.map.ItemMap;
+import com.girlkun.models.map.Zone;
+import com.girlkun.models.player.Location;
 import com.girlkun.models.player.Player;
 import com.girlkun.network.io.Message;
 import com.girlkun.utils.Logger;
@@ -50,12 +53,18 @@ public class ItemMapService {
     public boolean isBlackBall(int tempId) {
         return tempId >= 372 && tempId <= 378;
     }
-    
+
     public boolean isVodaiBall(int tempId) {
         return tempId >= 1816 && tempId <= 1822;
     }
 
     public boolean isNamecBall(int tempId) {
         return tempId >= 353 && tempId <= 360;
+    }
+
+    public ItemMap createItemMapFromItem(Zone zone, Location location, Item item, Player player) {
+        ItemMap itemMap = new ItemMap(zone, item.template.id, 1, location.x, zone.map.yPhysicInTop(location.x, location.y - 24), player.id);
+        itemMap.options = item.itemOptions;
+        return itemMap;
     }
 }

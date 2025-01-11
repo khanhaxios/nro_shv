@@ -91,7 +91,8 @@ public class ServerManager {
         Logger.log(Logger.RED, "Run Server thành công\n");
         ChonAiDay.gI().lastTimeEnd = System.currentTimeMillis() + 300000;
         TaiXiu.gI().lastTimeEnd = System.currentTimeMillis() + 50000;
-        NgocRongNamecService.gI().initNgocRongNamec((byte) 0);
+        activeCommandLine();
+//        NgocRongNamecService.gI().initNgocRongNamec((byte) 0);
 
         new Thread(() -> {
             while (true) {
@@ -105,7 +106,7 @@ public class ServerManager {
         }).start();
         new Thread(DaiHoiVoThuat.gI(), "Thread DHVT").start();
         new Thread(ChonAiDay.gI(), "Thread CAD").start();
-        new Thread(NgocRongNamecService.gI(), "Thread NRNM").start();
+//        new Thread(NgocRongNamecService.gI(), "Thread NRNM").start();
         new Thread(NauBanh.gI(), "Thread NauBanh").start();
         new Thread(TopService.gI(), "Thread TOP").start();
         new Thread(TaiXiu.gI(), "Thread TaiXiu").start();

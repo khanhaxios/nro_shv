@@ -32,7 +32,7 @@ public class barcoll extends JFrame {
     private Timer countdownTimer;
     private int remainingSeconds;
     private ButtonGroup maintenanceGroup;
-// Thêm checkbox
+    // Thêm checkbox
     private JCheckBox maintenanceOption1;
     private JCheckBox maintenanceOption2;
     private JLabel info;
@@ -61,12 +61,12 @@ public class barcoll extends JFrame {
         JButton maintenanceButton2 = new JButton("Thay Exp");
         maintenanceButton2.addActionListener(e -> tnsm());
         panel.add(maintenanceButton2);
-        
+
         JButton maintenanceButton3 = new JButton("bật chống ddos");
         maintenanceButton3.addActionListener(e -> startAntiDDoS());
         panel.add(maintenanceButton3);
-        
-        
+
+
         JLabel jLabel2 = new JLabel("---QUẢN LÝ---");
         panel.add(jLabel2);
         info = new JLabel("");
@@ -141,14 +141,12 @@ public class barcoll extends JFrame {
             if (dialogResult == 0) {
                 Logger.error("Server tiến hành bảo trì");
                 Maintenance.gI().start(5);
-
             } else {
                 System.out.println("No Option");
             }
         } catch (Exception e) {
 
         }
-
     }
 
     private void kick() {
@@ -165,8 +163,8 @@ public class barcoll extends JFrame {
             Manager.RATE_EXP_SERVER = Byte.parseByte(exp);
             Logger.error("Exp hiện tại là: " + exp + "\n");
         }
-
     }
+
     public static void startAntiDDoS() {
         try {
             Runtime rt = Runtime.getRuntime();

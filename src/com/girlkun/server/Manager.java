@@ -67,6 +67,7 @@ import org.json.simple.JSONValue;
 
 public class Manager {
 
+    public static int[] idsGangThienSu = {1054, 1055, 1056};
     private static Manager i;
 
     public static byte SERVER = 1;
