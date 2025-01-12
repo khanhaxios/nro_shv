@@ -7,6 +7,7 @@ import com.girlkun.models.player.Player;
 import com.girlkun.services.EffectSkillService;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 public class Vados extends Boss {
@@ -27,6 +28,7 @@ public class Vados extends Boss {
         } else {
             Service.gI().dropItemMap(this.zone, Util.manhTS(zone, manhhiem[randomGR], 1, this.location.x, this.location.y, plKill.id));
         }
+        Service.gI().subCongDuc(plKill, 200);
     }
 
     @Override
@@ -86,5 +88,6 @@ public class Vados extends Boss {
         super.joinMap(); //To change body of generated methods, choose Tools | Templates.
         st = System.currentTimeMillis();
     }
+
     private long st;
 }

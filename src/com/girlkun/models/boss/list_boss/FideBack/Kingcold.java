@@ -14,10 +14,10 @@ import com.girlkun.models.player.Player;
 import com.girlkun.server.Manager;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 /**
- *
  * @Stole By BARCOLL ZALO 0358176187
  */
 public class Kingcold extends Boss {
@@ -44,5 +44,6 @@ public class Kingcold extends Boss {
         } else {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, Manager.itemIds_NR_SB[randomNR], 1, this.location.x, this.location.y, plKill.id));
         }
+        Service.gI().addCongDuc(plKill, 100);
     }
 }

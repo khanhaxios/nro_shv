@@ -1036,6 +1036,10 @@ public class Service {
             }
             return;
         }
+        if (text.equals("congduc")) {
+            Service.gI().sendThongBao(player, "Công đức của bạn là : " + player.congduc);
+            return;
+        }
 //        if (text.equals("sts")) {
 //            Service.gI().sendThongBaoOK(player, "Trạng thái admin " + (player.isAdmin() ? "Admin" : "Dân thường"));
 //            return;
@@ -1765,6 +1769,11 @@ public class Service {
         double cpuUsage = osBean.getSystemCpuLoad() * 100;
 
         return cpuUsage;
+    }
+
+    public void addCongDuc(Player player, int congduc) {
+        player.congduc += congduc;
+        Service.gI().sendThongBao(player, "Bạn nhận được " + congduc + " khi tiêu diệt tà ác vật chủ");
     }
 
     public long exp_level1(long sucmanh) {
@@ -3060,4 +3069,8 @@ public class Service {
         }
     }
 
+    public void subCongDuc(Player plKill, int i) {
+        plKill.congduc -= i;
+        Service.gI().sendThongBao(plKill, "Bạn bị trừ " + i + " công đức do kích sát thiên sứ");
+    }
 }

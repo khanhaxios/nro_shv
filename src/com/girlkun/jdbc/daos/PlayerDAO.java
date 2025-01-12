@@ -898,7 +898,7 @@ public class PlayerDAO {
                         player.id);
                 Logger.success("Total time save player " + player.name + " thành công! " + (System.currentTimeMillis() - st) + "\n");
             } catch (Exception e) {
-                Logger.logException(PlayerDAO.class, e, "Lỗi save player " + player.name);
+                Logger.logException(PlayerDAO.class, e, "Lỗi save player " + player.name + e.getMessage());
             }
         }
     }

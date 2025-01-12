@@ -170,7 +170,7 @@ public class CombineServiceNew {
      * Mở tab đập đồ
      *
      * @param player
-     * @param type kiểu đập đồ
+     * @param type   kiểu đập đồ
      */
     public void openTabCombine(Player player, int type) {
         player.combineNew.setTypeCombine(type);
@@ -297,7 +297,7 @@ public class CombineServiceNew {
                 }
                 if (player.combineNew.itemsCombine.size() == 2) {
                     if (player.combineNew.itemsCombine.stream().filter(
-                            item -> item.isNotNullItem() && (item.template.id == 1399))
+                                    item -> item.isNotNullItem() && (item.template.id == 1399))
                             .count() < 1) {
                         this.arale.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu cần câu", "Đóng");
                         return;
@@ -353,7 +353,7 @@ public class CombineServiceNew {
                 }
                 if (player.combineNew.itemsCombine.size() == 2) {
                     if (player.combineNew.itemsCombine.stream().filter(
-                            item -> item.isNotNullItem() && (item.template.id == 1399))
+                                    item -> item.isNotNullItem() && (item.template.id == 1399))
                             .count() < 1) {
                         this.arale.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu cần câu", "Đóng");
                         return;
@@ -1035,7 +1035,7 @@ public class CombineServiceNew {
                         String npcSay = "Con có muốn nâng cấp trang bị :\n" + item.template.name + " thành trang bị Thiên Sứ\n";
                         Item thoivang = InventoryServiceNew.gI().findItemBag(player, 457);
 //                        Item thoivang2 = InventoryServiceNew.gI().findItemBag(player, 987);
-                        if (thoivang != null && thoivang.quantity >= 20 ) {
+                        if (thoivang != null && thoivang.quantity >= 20) {
                             npcSay += "|1|Cần 5 Thỏi vàng và 5 Bảo thạch tím \nTỉ lệ thành công: 10%\n";
                             baHatMit.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay,
                                     "Nâng cấp");
@@ -1621,15 +1621,15 @@ public class CombineServiceNew {
                                     + (player.nPoint.hpg >= 600000 && player.nPoint.hpg < 620000
                                     && player.nPoint.mpg >= 600000 && player.nPoint.mpg < 620000
                                     && player.nPoint.dameg >= 32000 && player.nPoint.dameg < 34000 ? "50%"
-                                            : player.nPoint.hpg >= 620000 && player.nPoint.hpg < 640000
-                                            && player.nPoint.mpg >= 620000 && player.nPoint.mpg < 640000
-                                            && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? "30%" : "10%") + "\n";
+                                    : player.nPoint.hpg >= 620000 && player.nPoint.hpg < 640000
+                                    && player.nPoint.mpg >= 620000 && player.nPoint.mpg < 640000
+                                    && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? "30%" : "10%") + "\n";
                             this.lmht.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay,
                                     "Nâng X1\nCần 100\nHồng Ngọc", "Nâng X10\nCần 1.000\nHồng Ngọc", "Nâng X100\nCần 10.000\nHồng Ngọc");
                         } else {
                             this.lmht.createOtherMenu(player, ConstNpc.IGNORE_MENU,
                                     "|7|Ngươi chưa đạt đủ điều kiện để thức tỉnh\n"
-                                    + "Yêu cầu : Max chỉ số HP, KI, SD và sức mạnh đạt 80Tỷ trở lên", "Đóng");
+                                            + "Yêu cầu : Max chỉ số HP, KI, SD và sức mạnh đạt 80Tỷ trở lên", "Đóng");
                         }
                     } else if (ngocrong != null && ngocrong.quantity >= 3
                             && dathuctinh != null && dathuctinh.quantity >= 15
@@ -1639,34 +1639,34 @@ public class CombineServiceNew {
                             String tsSay = "|7|[ THỨC TỈNH ĐỆ TỬ ]\n" + player.pet.name.substring(1)
                                     + "\n|5|Cấp bậc : " + player.pet.getNameThuctinh(player.pet.thuctinh)
                                     + "\nHP: " + (player.pet.nPoint.hpg >= 680000 ? Util.format(player.pet.nPoint.hpg)
-                                            : Util.format(player.pet.nPoint.hpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.hpg + 200))
+                                    : Util.format(player.pet.nPoint.hpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.hpg + 200))
                                     + "\nKI: " + (player.pet.nPoint.mpg >= 680000 ? Util.format(player.pet.nPoint.mpg)
-                                            : Util.format(player.pet.nPoint.mpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.mpg + 200))
+                                    : Util.format(player.pet.nPoint.mpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.mpg + 200))
                                     + "\nSD: " + (player.pet.nPoint.dameg >= 38000 ? Util.format(player.pet.nPoint.dameg)
-                                            : Util.format(player.pet.nPoint.dameg) + " Cấp Sau: " + Util.format(player.pet.nPoint.dameg + 100))
+                                    : Util.format(player.pet.nPoint.dameg) + " Cấp Sau: " + Util.format(player.pet.nPoint.dameg + 100))
                                     + "\n|7|Tỉ lệ thành công: "
                                     + (player.pet.nPoint.hpg >= 600000 && player.pet.nPoint.hpg < 620000
                                     && player.pet.nPoint.mpg >= 600000 && player.pet.nPoint.mpg < 620000
                                     && player.pet.nPoint.dameg >= 32000 && player.pet.nPoint.dameg < 34000 ? "50%"
-                                            : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
-                                            && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
-                                            && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? "30%" : "10%") + "\n";
+                                    : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
+                                    && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
+                                    && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? "30%" : "10%") + "\n";
                             this.lmht.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, tsSay,
                                     "Nâng X1\nCần 100\nHồng Ngọc", "Nâng X10\nCần 1.000\nHồng Ngọc", "Nâng X100\nCần 10.000\nHồng Ngọc");
                         } else {
                             this.lmht.createOtherMenu(player, ConstNpc.IGNORE_MENU,
                                     "|7|Đệ tử ngươi chưa đạt đủ điều kiện để thức tỉnh\n"
-                                    + "Yêu cầu : Max chỉ số HP, KI, SD và sức mạnh đạt 80Tỷ trở lên", "Đóng");
+                                            + "Yêu cầu : Max chỉ số HP, KI, SD và sức mạnh đạt 80Tỷ trở lên", "Đóng");
                         }
                     } else {
                         this.lmht.createOtherMenu(player, ConstNpc.IGNORE_MENU,
                                 "Đối với đệ tử: Cần 30 Đá Thức Tỉnh, 3 viên ngọc rồng 3s và 1 thỏi vàng"
-                                + "\nĐối với sư phụ: Cần 50 Đá Thức Tỉnh, 3 viên ngọc rồng 1s và 3 thỏi vàng", "Đóng");
+                                        + "\nĐối với sư phụ: Cần 50 Đá Thức Tỉnh, 3 viên ngọc rồng 1s và 3 thỏi vàng", "Đóng");
                     }
                 } else {
                     this.lmht.createOtherMenu(player, ConstNpc.IGNORE_MENU,
                             "Đối với đệ tử: Cần 30 Đá Thức Tỉnh, 3 viên ngọc rồng 3s và 1 thỏi vàng"
-                            + "\nĐối với sư phụ: Cần 50 Đá Thức Tỉnh, 3 viên ngọc rồng 1s và 3 thỏi vàng", "Đóng");
+                                    + "\nĐối với sư phụ: Cần 50 Đá Thức Tỉnh, 3 viên ngọc rồng 1s và 3 thỏi vàng", "Đóng");
                 }
                 break;
 
@@ -1680,7 +1680,7 @@ public class CombineServiceNew {
 
                 if (player.combineNew.itemsCombine.size() == 2) {
                     if (player.combineNew.itemsCombine.stream().filter(
-                            item -> item.isNotNullItem() && (item.template.type == 5))
+                                    item -> item.isNotNullItem() && (item.template.type == 5))
                             .count() < 1) {
                         this.baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu cải trang", "Đóng");
                         return;
@@ -3091,7 +3091,7 @@ public class CombineServiceNew {
 
                 if (player.combineNew.itemsCombine.size() == 2) {
                     if (player.combineNew.itemsCombine.stream().filter(
-                            item -> item.isNotNullItem() && (item.template.id >= 1328 && item.template.id <= 1335))
+                                    item -> item.isNotNullItem() && (item.template.id >= 1328 && item.template.id <= 1335))
                             .count() < 1) {
                         this.baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu chân mệnh", "Đóng");
                         return;
@@ -3271,11 +3271,11 @@ public class CombineServiceNew {
     public void startCombine(Player player) {
         switch (player.combineNew.typeCombine) {
             case NANG_CAP_SKH:
-                    nangCapSKH(player);
-                    break;
+                nangCapSKH(player);
+                break;
             case DAP_SET_KICH_HOAT_CAO_CAP:
-                    dapDoKichHoatCaoCap(player);
-                    break;
+                dapDoKichHoatCaoCap(player);
+                break;
             case NANG_CAP_CAN_CAU:
                 nangCapCanCau(player);
                 break;
@@ -5307,25 +5307,25 @@ public class CombineServiceNew {
             if (isTrangBiHakai(item)) {
 
                 int idItemKichHoatTDop[][] = {{136, 137, 138, 139, 230, 231, 232, 233},
-                {140, 141, 142, 143, 242, 243, 244, 245},
-                {144, 145, 146, 147, 254, 255, 256, 257},
-                {148, 149, 150, 151, 266, 267, 268, 269},
-                {184, 185, 186, 187, 278, 279, 280, 281}};
+                        {140, 141, 142, 143, 242, 243, 244, 245},
+                        {144, 145, 146, 147, 254, 255, 256, 257},
+                        {148, 149, 150, 151, 266, 267, 268, 269},
+                        {184, 185, 186, 187, 278, 279, 280, 281}};
                 int idItemKichHoatXDop[][] = {{168, 169, 170, 171, 238, 239, 240, 241},
-                {172, 173, 174, 175, 250, 251, 252, 253},
-                {176, 177, 178, 179, 262, 263, 264, 265},
-                {180, 181, 182, 183, 274, 275, 276, 277},
-                {184, 185, 186, 187, 278, 279, 280, 281}};
+                        {172, 173, 174, 175, 250, 251, 252, 253},
+                        {176, 177, 178, 179, 262, 263, 264, 265},
+                        {180, 181, 182, 183, 274, 275, 276, 277},
+                        {184, 185, 186, 187, 278, 279, 280, 281}};
                 int idItemKichHoatNMop[][] = {{152, 153, 154, 155, 234, 235, 236, 237},
-                {156, 157, 158, 159, 246, 247, 248, 249},
-                {160, 161, 162, 163, 258, 259, 260, 261},
-                {164, 165, 166, 167, 270, 271, 272, 273},
-                {184, 185, 186, 187, 278, 279, 280, 281}};
+                        {156, 157, 158, 159, 246, 247, 248, 249},
+                        {160, 161, 162, 163, 258, 259, 260, 261},
+                        {164, 165, 166, 167, 270, 271, 272, 273},
+                        {184, 185, 186, 187, 278, 279, 280, 281}};
 
                 int optionItemKichHoat[][] = {
-                    {127, 128, 129, 213, 215, 139, 140, 141, 214, 216},
-                    {130, 131, 132, 213, 217, 142, 143, 144, 214, 218},
-                    {133, 134, 135, 213, 219, 136, 137, 138, 214, 220}};
+                        {127, 128, 129, 213, 215, 139, 140, 141, 214, 216},
+                        {130, 131, 132, 213, 217, 142, 143, 144, 214, 218},
+                        {133, 134, 135, 213, 219, 136, 137, 138, 214, 220}};
 
                 //int  type = item1.template.type;
                 //int   gender = item1.template.gender;
@@ -5952,20 +5952,20 @@ public class CombineServiceNew {
                 //if (isTrangBiThuong(item1) && isTrangBiGod1(item)) {
                 //if ( isTrangBiGod1(item))   
                 int idItemKichHoatTDop[][] = {{233, 233, 555},
-                {245, 245, 556},
-                {257, 257, 562},
-                {269, 269, 563},
-                {281, 281, 561}};
+                        {245, 245, 556},
+                        {257, 257, 562},
+                        {269, 269, 563},
+                        {281, 281, 561}};
                 int idItemKichHoatNMop[][] = {{237, 237, 559},
-                {249, 249, 560},
-                {261, 261, 566},
-                {273, 273, 567},
-                {281, 281, 561}};
+                        {249, 249, 560},
+                        {261, 261, 566},
+                        {273, 273, 567},
+                        {281, 281, 561}};
                 int idItemKichHoatXDop[][] = {{241, 241, 557},
-                {253, 253, 558},
-                {265, 265, 564},
-                {277, 277, 565},
-                {281, 281, 561}};
+                        {253, 253, 558},
+                        {265, 265, 564},
+                        {277, 277, 565},
+                        {281, 281, 561}};
                 int optionItemKichHoat[][] = {{127, 128, 129, 139, 140, 141}, {130, 131, 132, 142, 143, 144}, {133, 134, 135, 136, 137, 138}};
 
                 //int  type = item1.template.type;
@@ -6491,8 +6491,8 @@ public class CombineServiceNew {
                                 + "\n|7|Tỉ lệ thành công: "
                                 + (player.nPoint.getHpMpLimit() >= 600000 && player.nPoint.getHpMpLimit() < 620000
                                 && player.nPoint.dameg >= 32000 && player.nPoint.dameg < 34000 ? "50%"
-                                        : player.nPoint.getHpMpLimit() >= 620000 && player.nPoint.getHpMpLimit() < 640000
-                                        && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? "30%" : "10%")
+                                : player.nPoint.getHpMpLimit() >= 620000 && player.nPoint.getHpMpLimit() < 640000
+                                && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? "30%" : "10%")
                                 + "\nCount Đã Nâng: " + count + "\n|-1|Đá thức tỉnh: " + dathuctinh.quantity
                                 + "\nThỏi vàng: " + tv.quantity + "\nNgọc rồng: " + ngocrongsp.quantity + "\n";
                         this.lmht.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay,
@@ -6500,9 +6500,9 @@ public class CombineServiceNew {
                         if (Util.isTrue((player.nPoint.hpg >= 600000 && player.nPoint.hpg < 620000
                                 && player.nPoint.mpg >= 600000 && player.nPoint.mpg < 620000
                                 && player.nPoint.dameg >= 32000 && player.nPoint.dameg < 34000 ? 50
-                                        : player.nPoint.hpg >= 620000 && player.nPoint.hpg < 640000
-                                        && player.nPoint.mpg >= 620000 && player.nPoint.mpg < 640000
-                                        && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? 30 : 5), 100)) {
+                                : player.nPoint.hpg >= 620000 && player.nPoint.hpg < 640000
+                                && player.nPoint.mpg >= 620000 && player.nPoint.mpg < 640000
+                                && player.nPoint.dameg >= 34000 && player.nPoint.dameg < 36000 ? 30 : 5), 100)) {
                             int[][] randomcs = {{Util.nextInt(100, 500)}, {Util.nextInt(500, 1000)}};
                             InventoryServiceNew.gI().subQuantityItemsBag(player, ngocrongsp, (3));
                             InventoryServiceNew.gI().subQuantityItemsBag(player, dathuctinh, (30));
@@ -6544,18 +6544,18 @@ public class CombineServiceNew {
                         String tsSay = "|7|[ THỨC TỈNH ĐỆ TỬ ]\n" + player.pet.name.substring(1)
                                 + "\n|5|Cấp bậc : " + player.pet.getNameThuctinh(player.pet.thuctinh)
                                 + "\nHP: " + (player.pet.nPoint.hpg >= 680000 ? Util.format(player.pet.nPoint.hpg)
-                                        : Util.format(player.pet.nPoint.hpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.hpg + 200))
+                                : Util.format(player.pet.nPoint.hpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.hpg + 200))
                                 + "\nKI: " + (player.pet.nPoint.mpg >= 680000 ? Util.format(player.pet.nPoint.mpg)
-                                        : Util.format(player.pet.nPoint.mpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.mpg + 200))
+                                : Util.format(player.pet.nPoint.mpg) + " Cấp Sau: " + Util.format(player.pet.nPoint.mpg + 200))
                                 + "\nSD: " + (player.pet.nPoint.dameg >= 38000 ? Util.format(player.pet.nPoint.dameg)
-                                        : Util.format(player.pet.nPoint.dameg) + " Cấp Sau: " + Util.format(player.pet.nPoint.dameg + 100))
+                                : Util.format(player.pet.nPoint.dameg) + " Cấp Sau: " + Util.format(player.pet.nPoint.dameg + 100))
                                 + "\n|7|Tỉ lệ thành công: "
                                 + (player.pet.nPoint.hpg >= 600000 && player.pet.nPoint.hpg < 620000
                                 && player.pet.nPoint.mpg >= 600000 && player.pet.nPoint.mpg < 620000
                                 && player.pet.nPoint.dameg >= 32000 && player.pet.nPoint.dameg < 34000 ? "50%"
-                                        : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
-                                        && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
-                                        && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? "30%" : "10%")
+                                : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
+                                && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
+                                && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? "30%" : "10%")
                                 + "\nCount Đã Nâng: " + count + "\n|-1|Đá thức tỉnh: " + dathuctinh.quantity
                                 + "\nThỏi vàng: " + tv.quantity + "\nNgọc rồng: " + ngocrong.quantity + "\n";
                         this.lmht.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, tsSay,
@@ -6563,9 +6563,9 @@ public class CombineServiceNew {
                         if (Util.isTrue((player.pet.nPoint.hpg >= 600000 && player.pet.nPoint.hpg < 620000
                                 && player.pet.nPoint.mpg >= 600000 && player.pet.nPoint.mpg < 620000
                                 && player.pet.nPoint.dameg >= 32000 && player.pet.nPoint.dameg < 34000 ? 50
-                                        : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
-                                        && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
-                                        && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? 30 : 10), 100)) {
+                                : player.pet.nPoint.hpg >= 620000 && player.pet.nPoint.hpg < 640000
+                                && player.pet.nPoint.mpg >= 620000 && player.pet.nPoint.mpg < 640000
+                                && player.pet.nPoint.dameg >= 34000 && player.pet.nPoint.dameg < 36000 ? 30 : 10), 100)) {
                             InventoryServiceNew.gI().subQuantityItemsBag(player, ngocrong, 3);
                             InventoryServiceNew.gI().subQuantityItemsBag(player, dathuctinh, 15);
                             InventoryServiceNew.gI().subQuantityItemsBag(player, tv, 1);
@@ -7414,7 +7414,7 @@ public class CombineServiceNew {
                             player.sovangauto = 500000000;
                             player.autobv = true;
                             baHatMit.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay
-                                    + "\n|1|HẾT VÀNG, ĐANG TIẾN HÀNH AUTO BÁN THỎI VÀNG!",
+                                            + "\n|1|HẾT VÀNG, ĐANG TIẾN HÀNH AUTO BÁN THỎI VÀNG!",
                                     "Nâng cấp X1\ncần " + player.combineNew.gemCombine + " Ngọc",
                                     "Nâng cấp X10\ncần " + player.combineNew.gemCombine * 10 + " Ngọc", "Nâng cấp X100\ncần " + player.combineNew.gemCombine * 100 + " Ngọc");
                             Thread.sleep(2500);
@@ -7424,7 +7424,7 @@ public class CombineServiceNew {
                                 break;
                             }
                             baHatMit.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay
-                                    + "\n|1|BÁN XONG, ĐANG CHUẨN BỊ TIẾP TỤC NÂNG CẤP!",
+                                            + "\n|1|BÁN XONG, ĐANG CHUẨN BỊ TIẾP TỤC NÂNG CẤP!",
                                     "Nâng cấp X1\ncần " + player.combineNew.gemCombine + " Ngọc",
                                     "Nâng cấp X10\ncần " + player.combineNew.gemCombine * 10 + " Ngọc", "Nâng cấp X100\ncần " + player.combineNew.gemCombine * 100 + " Ngọc");
                             Thread.sleep(1000);
@@ -7665,7 +7665,7 @@ public class CombineServiceNew {
         }
     }
 
-//    if (InventoryServiceNew.gI().getCountEmptyBag(player) > 0) {
+    //    if (InventoryServiceNew.gI().getCountEmptyBag(player) > 0) {
 //            if (player.inventory.gold < COST) {
 //                Service.getInstance().sendThongBao(player, "Con cần thêm vàng để pháp sư hóa...");
 //                return;
@@ -8862,7 +8862,7 @@ public class CombineServiceNew {
             }
         }
     }
-    
+
     private void nangCapSKH(Player player) {
         if (player.combineNew.itemsCombine.size() == 3) {
 
@@ -8939,7 +8939,7 @@ public class CombineServiceNew {
             //End Combie//
         }
     }
-    
+
     private void dapDoKichHoatCaoCap(Player player) {
         if (player.combineNew.itemsCombine.size() == 3) {
             Item it = player.combineNew.itemsCombine.get(0), it1 = player.combineNew.itemsCombine.get(1),
@@ -9007,20 +9007,20 @@ public class CombineServiceNew {
 //            }
             if (isTrangBiHakai(item)) {
                 int idItemKichHoatTDop[][] = {{1048, 1048},
-                {1051, 1051},
-                {1054, 1054},
-                {1057, 1057},
-                {1060, 1060}};
+                        {1051, 1051},
+                        {1054, 1054},
+                        {1057, 1057},
+                        {1060, 1060}};
                 int idItemKichHoatNMop[][] = {{1049, 1049},
-                {1052, 1052},
-                {1055, 1055},
-                {1058, 1058},
-                {1061, 1061}};
+                        {1052, 1052},
+                        {1055, 1055},
+                        {1058, 1058},
+                        {1061, 1061}};
                 int idItemKichHoatXDop[][] = {{1050, 1050},
-                {1053, 1053},
-                {1056, 1056},
-                {1059, 1059},
-                {1062, 1062}};
+                        {1053, 1053},
+                        {1056, 1056},
+                        {1059, 1059},
+                        {1062, 1062}};
                 int type = item.template.type;
                 int gender = item.template.gender;
                 int random = Util.nextInt(0, 2);
@@ -9165,20 +9165,20 @@ public class CombineServiceNew {
             }
             if (isTrangBiGod1(item)) {
                 int idItemKichHoatTDop[][] = {{650, 650},
-                {651, 651},
-                {657, 657},
-                {658, 658},
-                {656, 656}};
+                        {651, 651},
+                        {657, 657},
+                        {658, 658},
+                        {656, 656}};
                 int idItemKichHoatNMop[][] = {{652, 652},
-                {653, 653},
-                {659, 659},
-                {660, 660},
-                {656, 656}};
+                        {653, 653},
+                        {659, 659},
+                        {660, 660},
+                        {656, 656}};
                 int idItemKichHoatXDop[][] = {{654, 654},
-                {655, 655},
-                {661, 661},
-                {662, 662},
-                {656, 656}};
+                        {655, 655},
+                        {661, 661},
+                        {662, 662},
+                        {656, 656}};
                 int type = item.template.type;
                 int gender = item.template.gender;
                 int random = Util.nextInt(0, 2);
@@ -10288,6 +10288,7 @@ public class CombineServiceNew {
     }
 
     //--------------------------------------------------------------------------
+
     /**
      * r
      * Hiệu ứng mở item
@@ -10787,7 +10788,7 @@ public class CombineServiceNew {
         }
         return 0;
     }
-    
+
     // --------------------------------------------------------------------------check
     public boolean isAngelClothes(int id) {
         if (id >= 1048 && id <= 1062) {
@@ -10795,7 +10796,7 @@ public class CombineServiceNew {
         }
         return false;
     }
-    
+
     public boolean isHuyDiet(Item item) {
         if (item.template == null) {
             return false;

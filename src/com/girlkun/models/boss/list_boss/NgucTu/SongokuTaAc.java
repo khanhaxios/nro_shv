@@ -14,10 +14,10 @@ import com.girlkun.models.player.Player;
 import com.girlkun.server.Manager;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 /**
- *
  * @Stole By BARCOLL ZALO 0358176187
  */
 public class SongokuTaAc extends Boss {
@@ -45,10 +45,11 @@ public class SongokuTaAc extends Boss {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, Manager.itemIds_NR_SB[randomNR], 1, this.location.x, this.location.y, plKill.id));
         }
         if (Util.isTrue(80, 100)) {
-        ItemMap it = new ItemMap(this.zone, 674, 5, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
-        this.location.y - 24), plKill.id);
-        Service.getInstance().dropItemMap(this.zone, it);
-    }
+            ItemMap it = new ItemMap(this.zone, 674, 5, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
+                    this.location.y - 24), plKill.id);
+            Service.getInstance().dropItemMap(this.zone, it);
+            Service.gI().addCongDuc(plKill, 250);
+        }
     }
 
     @Override
@@ -56,6 +57,7 @@ public class SongokuTaAc extends Boss {
         super.active(); //To change body of generated methods, choose Tools | Templates.
         this.SendLaiThongBao(5);
     }
+
     @Override
     public void leaveMap() {
         super.leaveMap();

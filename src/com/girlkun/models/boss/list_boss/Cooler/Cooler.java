@@ -36,6 +36,7 @@ public class Cooler extends Boss {
         } else {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, Manager.itemIds_NR_SB[randomNR], 1, this.location.x, this.location.y, plKill.id));
         }
+        Service.gI().addCongDuc(plKill, 200);
     }
 
     @Override

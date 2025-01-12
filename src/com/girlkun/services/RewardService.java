@@ -8,6 +8,7 @@ import com.girlkun.models.mob.Mob;
 import com.girlkun.models.player.Player;
 import com.girlkun.server.Manager;
 import com.girlkun.utils.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class RewardService {
 
     //id option set kich hoat (tên set, hiệu ứng set, tỉ lệ, type tỉ lệ)
     private static final int[][][] ACTIVATION_SET = {
-        {{129, 141, 1, 1000}, {127, 140, 1, 1000}, {128, 139, 1, 1000}}, //songoku - thien xin hang - kirin
-        {{131, 143, 1, 1000}, {132, 144, 1, 1000}, {130, 142, 1, 1000}}, //oc tieu - pikkoro daimao - picolo
-        {{135, 138, 1, 1000}, {133, 136, 1, 1000}, {134, 137, 1, 1000}} //kakarot - cadic - nappa
+            {{129, 141, 1, 1000}, {127, 140, 1, 1000}, {128, 139, 1, 1000}}, //songoku - thien xin hang - kirin
+            {{131, 143, 1, 1000}, {132, 144, 1, 1000}, {130, 142, 1, 1000}}, //oc tieu - pikkoro daimao - picolo
+            {{135, 138, 1, 1000}, {133, 136, 1, 1000}, {134, 137, 1, 1000}} //kakarot - cadic - nappa
     };
 
     private static RewardService I;
@@ -835,9 +836,9 @@ public class RewardService {
     public void initActivationOption(int gender, int type, List<Item.ItemOption> list) {
         if (type <= 4) {
             int[] idOption = ACTIVATION_SET[gender][Util.nextInt(0, 2)];
-            list.add(new Item.ItemOption(idOption[0], 1)); //tên set
-            list.add(new Item.ItemOption(idOption[1], 1)); //hiệu ứng set
-            list.add(new Item.ItemOption(30, 7)); //không thể giao dịch
+            list.add(new Item.ItemOption(idOption[0], 100)); //tên set
+            list.add(new Item.ItemOption(idOption[1], 100)); //hiệu ứng set
+            list.add(new Item.ItemOption(30, 100)); //không thể giao dịch
         }
     }
 
@@ -869,7 +870,7 @@ public class RewardService {
             case 265:
             case 276:
             case 277:
-            // đồ thần
+                // đồ thần
             case 555:
             case 556:
             case 562:

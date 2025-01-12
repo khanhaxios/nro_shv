@@ -47,6 +47,8 @@ public class BuiBui2 extends Boss {
         plKill.fightMabu.changePoint(10);
 
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        Service.gI().addCongDuc(plKill,100);
+
     }
 
     @Override

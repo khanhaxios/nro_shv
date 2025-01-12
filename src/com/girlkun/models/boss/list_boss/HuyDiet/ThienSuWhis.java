@@ -7,6 +7,7 @@ import com.girlkun.models.item.Item;
 import com.girlkun.models.map.ItemMap;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 public class ThienSuWhis extends Boss {
@@ -51,7 +52,9 @@ public class ThienSuWhis extends Boss {
             // Tỷ lệ rơi 10%
             Service.gI().dropItemMap(this.zone, items[12]); // 656
         }
+        Service.gI().subCongDuc(plKill, 200);
     }
+
 
     private ItemMap createItemMap(int itemId, Player player, int[] optIds, int[] optMin, int[] optMax) {
         ItemMap itemMap = new ItemMap(this.zone, itemId, 1, this.location.x,

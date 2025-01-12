@@ -31,15 +31,16 @@ public class Fide extends Boss {
         Service.getInstance().dropItemMap(this.zone, new ItemMap(zone, 76, Util.nextInt(1000000, 3000000), Util.nextInt(this.location.x - 20, this.location.x + 20), zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         Service.getInstance().dropItemMap(this.zone, new ItemMap(zone, 76, Util.nextInt(1000000, 3000000), Util.nextInt(this.location.x - 20, this.location.x + 20), zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        Service.gI().addCongDuc(plKill, 100);
     }
 
     @Override
     public void active() {
         super.active(); //To change body of generated methods, choose Tools | Templates.
-            if(Util.canDoWithTime(st,900000)){
-                this.changeStatus(BossStatus.LEAVE_MAP);
-                this.SendLaiThongBao(5);
-            }
+        if (Util.canDoWithTime(st, 900000)) {
+            this.changeStatus(BossStatus.LEAVE_MAP);
+            this.SendLaiThongBao(5);
+        }
     }
 
     @Override
@@ -47,6 +48,7 @@ public class Fide extends Boss {
         super.joinMap(); //To change body of generated methods, choose Tools | Templates.
         st = System.currentTimeMillis();
     }
+
     private long st;
 
     @Override

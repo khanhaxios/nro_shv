@@ -36,6 +36,7 @@ public class Drabura2 extends Boss {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, Manager.itemIds_NR_SB[randomNR], 1, this.location.x, this.location.y, plKill.id));
         }
         plKill.fightMabu.changePoint(10);
+        Service.gI().addCongDuc(plKill,150);
     }
 
     @Override

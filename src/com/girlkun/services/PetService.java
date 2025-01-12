@@ -9,6 +9,7 @@ import com.girlkun.models.player.Player;
 import com.girlkun.services.func.ChangeMapService;
 import com.girlkun.utils.SkillUtil;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 public class PetService {
@@ -190,7 +191,7 @@ public class PetService {
         }).start();
     }
 
-    public void createThienTuPetVip(Player player, boolean isChange, byte gender) {
+    public void createPetNguyetThan(Player player, boolean isChange, byte gender) {
         byte limitPower;
         if (isChange) {
             limitPower = player.pet.nPoint.limitPower;
@@ -206,7 +207,7 @@ public class PetService {
         new Thread(() -> {
             try {
                 Pet pet = new Pet(player);
-                pet.name = "$Đệ Thiên Tử";
+                pet.name = "$Đệ Nguyện Thần";
                 pet.gender = gender;
                 pet.id = -player.id;
                 pet.nPoint.power = 1500000;
@@ -236,7 +237,7 @@ public class PetService {
         }).start();
     }
 
-    public void createBlackGokuPetVip(Player player, boolean isChange, byte gender) {
+    public void createPetNhatThan(Player player, boolean isChange, byte gender) {
         byte limitPower;
         if (isChange) {
             limitPower = player.pet.nPoint.limitPower;
@@ -252,7 +253,7 @@ public class PetService {
         new Thread(() -> {
             try {
                 Pet pet = new Pet(player);
-                pet.name = "$Đệ Black Goku";
+                pet.name = "$Đệ Nhật Thần";
                 pet.gender = gender;
                 pet.id = -player.id;
                 pet.nPoint.power = 1500000;
@@ -365,7 +366,6 @@ public class PetService {
                 }
                 pet.nPoint.setFullHpMp();
                 player.pet = pet;
-                ;
                 player.pet.nPoint.limitPower = limitPower;
                 Thread.sleep(1000);
                 Service.getInstance().chatJustForMe(player, player.pet, "Đệ tử vip vãi nồi đây...");
@@ -390,7 +390,7 @@ public class PetService {
         new Thread(() -> {
             try {
                 Pet pet = new Pet(player);
-                pet.name = "$Đệ Ngộ Không";
+                pet.name = "$Đệ Berus";
                 pet.gender = gender;
                 pet.id = -player.id;
                 pet.nPoint.power = 1500000;
@@ -436,7 +436,7 @@ public class PetService {
         new Thread(() -> {
             try {
                 Pet pet = new Pet(player);
-                pet.name = "$Đệ Uub";
+                pet.name = "$Đệ Bát Giới";
                 pet.gender = gender;
                 pet.id = -player.id;
                 pet.nPoint.power = 1500000;
@@ -557,6 +557,7 @@ public class PetService {
             }
         }).start();
     }
+
     public void createpazuzu(Player player, boolean isChange, byte gender) {
         byte limitPower;
         if (isChange) {
@@ -602,6 +603,7 @@ public class PetService {
             }
         }).start();
     }
+
     public void createkaie(Player player, boolean isChange, byte gender) {
         byte limitPower;
         if (isChange) {

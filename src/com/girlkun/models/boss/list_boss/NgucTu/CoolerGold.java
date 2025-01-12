@@ -45,11 +45,13 @@ public class CoolerGold extends Boss {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, Manager.itemIds_NR_SB[randomNR], 1, this.location.x, this.location.y, plKill.id));
         }
         if (Util.isTrue(80, 100)) {
-        ItemMap it = new ItemMap(this.zone, 674, 5, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
-        this.location.y - 24), plKill.id);
-        Service.getInstance().dropItemMap(this.zone, it);
+            ItemMap it = new ItemMap(this.zone, 674, 5, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
+                    this.location.y - 24), plKill.id);
+            Service.getInstance().dropItemMap(this.zone, it);
+            Service.gI().addCongDuc(plKill, 200);
+        }
     }
-    }
+
     @Override
     public void active() {
         super.active(); //To change body of generated methods, choose Tools | Templates.

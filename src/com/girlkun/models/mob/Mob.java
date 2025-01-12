@@ -189,12 +189,7 @@ public class Mob {
         }
 //        tiemNang /= (100.0 / this.pTiemNang);
         tiemNang = Util.TamkjllGH(pl.nPoint.calSucManhTiemNang(tiemNang));
-        if (pl.zone.map.mapId == 122
-                || pl.zone.map.mapId == 123
-                || pl.zone.map.mapId == 124
-                || pl.zone.map.mapId == 141
-                || pl.zone.map.mapId == 142
-                || pl.zone.map.mapId == 146) {
+        if (pl.zone.map.mapId == 122 || pl.zone.map.mapId == 123 || pl.zone.map.mapId == 124 || pl.zone.map.mapId == 141 || pl.zone.map.mapId == 142 || pl.zone.map.mapId == 146) {
 
             tiemNang *= 10;
         }
@@ -249,11 +244,9 @@ public class Mob {
                     phai = 0;
                 }
 
-                ItemMap itemMap = new ItemMap(zone, 76, Util.nextInt(20000, 35000),
-                        location.x + X + Util.nextInt(10, 20), location.y, -1);
+                ItemMap itemMap = new ItemMap(zone, 76, Util.nextInt(20000, 35000), location.x + X + Util.nextInt(10, 20), location.y, -1);
                 Service.getInstance().dropItemMap(zone, itemMap);
-                ItemMap itemMap1866 = new ItemMap(zone, 1866, Util.nextInt(50, 100),
-                        location.x + X + Util.nextInt(10, 100), location.y, -1);
+                ItemMap itemMap1866 = new ItemMap(zone, 1866, Util.nextInt(50, 100), location.x + X + Util.nextInt(10, 100), location.y, -1);
                 Service.getInstance().dropItemMap(zone, itemMap1866);
             }
             if (Util.isTrue(40, 100)) {
@@ -265,8 +258,7 @@ public class Mob {
                 if (Util.isTrue(30, 100)) {
                     for (int i = 0; i < Util.nextInt(3, 6); i++) {
                         byte randomItemIndexDoTl = (byte) random.nextInt(Manager.itemIds_TL.length);
-                        ItemMap itemMap3 = Util.ratiItem(zone, Manager.itemIds_TL[randomItemIndexDoTl], 1,
-                                location.x + Util.nextInt(-100, 100), location.y, -1);
+                        ItemMap itemMap3 = Util.ratiItem(zone, Manager.itemIds_TL[randomItemIndexDoTl], 1, location.x + Util.nextInt(-100, 100), location.y, -1);
                         Service.getInstance().dropItemMap(zone, itemMap3);
                     }
                 }
@@ -653,7 +645,6 @@ public class Mob {
 
     private List<ItemMap> mobReward(Player player, ItemMap itemTask, Message msg) {
         int mapid = player.zone.map.mapId;
-        player.congduc += 1;
 //        nplayer
         List<ItemMap> itemReward = new ArrayList<>();
         try {
@@ -673,20 +664,28 @@ public class Mob {
             if (!player.isPet && player.getSession().actived) {
                 List<Integer> maps = Arrays.asList(122, 123, 124);
                 if (maps.contains(this.zone.map.mapId)) {
+                    if (Util.isTrue(20, 20)) {
+                        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 541, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
+                    }
                     if (Util.isTrue(5, 10)) {
+                        player.congduc += 2;
                         // roi long de chau
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2066, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
-                    }
-                }
-                if (this.zone.map.mapId == 218) {
-                    if (Util.isTrue(5, 10)) {
-                        // roi hoang tuyen hoa
-                        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2067, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
+                    } else {
+                        if (Util.isTrue(5, 10)) {
+                            player.congduc += 2;
+                            // roi hoang tuyen hoa
+                            Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2067, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
+                        }
                     }
                 }
             }
-            if (Util.isTrue(50, 1000)) {
-                ItemMap itemMap = new ItemMap(this.zone, 457, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+            if (Util.isTrue(50, 400)) {
+                int quan = 1;
+                if (Util.isTrue(50, 100)) {
+                    quan = Util.nextInt(1, 3);
+                }
+                ItemMap itemMap = new ItemMap(this.zone, 457, quan, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
             if (Util.isTrue(2, 10)) {
@@ -701,15 +700,31 @@ public class Mob {
                 ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
+            List<Integer> tlMapIds = Arrays.asList(92, 93, 94, 95, 96, 97, 98, 99, 100);
+            if (tlMapIds.contains(player.zone.map.mapId)) {
+                if (Util.isTrue(5, 50)) {
+                    int[] idspl = {381, 382, 383, 384, 385};
+                    int rd = Util.nextInt(0, idspl.length - 1);
+                    ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                    Service.gI().dropItemMap(this.zone, itemMap);
+                }
+                if (Util.isTrue(1, 50)) {
+                    int[] ItemSc = {1099, 1100, 1101, 1102};
+                    int rd = Util.nextInt(0, ItemSc.length - 1);
+                    ItemMap itemMap = new ItemMap(this.zone, ItemSc[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                    Service.gI().dropItemMap(this.zone, itemMap);
+                }
+            }
             if (Util.isTrue(5, 50)) {
-                int[] idspl = {361, 382, 383, 384, 385};
-                int rd = Util.nextInt(0, idspl.length - 1);
-                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                int[] idsNro = {17, 18, 19, 20};
+                int rd = Util.nextInt(0, idsNro.length - 1);
+                ItemMap itemMap = new ItemMap(this.zone, idsNro[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
+
             if (Util.isTrue(10, 50)) {
-                player.inventory.ruby += 2;
-                Service.gI().sendThongBao(player, "Bạn vừa nhặt được 2 hồng ngọc ngon!");
+                player.inventory.ruby += 1000;
+                Service.gI().sendThongBao(player, "Bạn vừa nhặt được 1000 hồng ngọc ngon!");
                 Service.gI().sendMoney(player);
             }
             if (!player.isBoss && (mapid == 189)) {
@@ -724,8 +739,7 @@ public class Mob {
                 }
             }
 
-            itemReward = this.getItemMobReward(player, this.location.x + Util.nextInt(-10, 10),
-                    this.zone.map.yPhysicInTop(this.location.x, this.location.y));
+            itemReward = this.getItemMobReward(player, this.location.x + Util.nextInt(-10, 10), this.zone.map.yPhysicInTop(this.location.x, this.location.y));
             if (itemTask != null) {
                 itemReward.add(itemTask);
             }
@@ -998,9 +1012,7 @@ public class Mob {
             }
         }
         if (this.zone.map.mapId >= 135 && this.zone.map.mapId <= 138 // các map hoạt động sự kiện hè
-                || this.zone.map.mapId >= 146 && this.zone.map.mapId <= 148
-                || this.zone.map.mapId >= 53 && this.zone.map.mapId <= 62
-                || this.zone.map.mapId >= 141 && this.zone.map.mapId <= 144) {
+                || this.zone.map.mapId >= 146 && this.zone.map.mapId <= 148 || this.zone.map.mapId >= 53 && this.zone.map.mapId <= 62 || this.zone.map.mapId >= 141 && this.zone.map.mapId <= 144) {
             if (item.isNotNullItem()) {
                 if (item.template.id == 692) {
                     if (Util.isTrue(10, 100)) {    //up bí kíp
@@ -1218,8 +1230,7 @@ public class Mob {
     public static int TIME_START_HIRU = 23;
 
     private boolean isHaveEffectSkill() {
-        return effectSkill.isAnTroi || effectSkill.isBlindDCTT || effectSkill.isStun || effectSkill.isThoiMien
-                || effectSkill.isSocola || effectSkill.isHoaLanh;
+        return effectSkill.isAnTroi || effectSkill.isBlindDCTT || effectSkill.isStun || effectSkill.isThoiMien || effectSkill.isSocola || effectSkill.isHoaLanh;
     }
 
     private void BigbossAttack() {
@@ -1272,8 +1283,7 @@ public class Mob {
                                 msg.writer().writeByte(zone.getHumanoids().size());
                                 for (int i = 0; i < zone.getHumanoids().size(); i++) {
                                     Player pl = zone.getHumanoids().get(i);
-                                    int dame = (int) player.injured(player, (int) this.point.getDameAttack(), false,
-                                            true);
+                                    int dame = (int) player.injured(player, (int) this.point.getDameAttack(), false, true);
                                     if (dame <= 0) {
                                         dame = 1;
                                     }
@@ -1305,8 +1315,7 @@ public class Mob {
                         if (action >= 0 && action <= 5) {
                             if (action != 5) {
                                 msg.writer().writeByte(1);
-                                int dame = (int) player2.injured(player2, (int) this.point.getDameAttack(), false,
-                                        true);
+                                int dame = (int) player2.injured(player2, (int) this.point.getDameAttack(), false, true);
                                 if (dame <= 0) {
                                     dame = 1;
                                 }

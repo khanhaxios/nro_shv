@@ -20,8 +20,9 @@ public class MabuBoss extends Boss {
         ItemMap it = new ItemMap(this.zone, 568, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                 this.location.y - 24), plKill.id);
         Service.gI().dropItemMap(this.zone, it);
-         plKill.fightMabu.changePoint(10);
+        plKill.fightMabu.changePoint(10);
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
+        Service.gI().addCongDuc(plKill, 150);
     }
 
     @Override
@@ -29,8 +30,8 @@ public class MabuBoss extends Boss {
         if (Util.isTrue(50, 100) && plAtt != null) {//tỉ lệ hụt của thiên sứ
             Util.isTrue(this.nPoint.tlNeDon, 100000);
             if (this != null) {
-            this.nPoint.isMabu = true;
-        }
+                this.nPoint.isMabu = true;
+            }
             if (Util.isTrue(10, 100)) {
                 this.chat("Hãy để bản năng tự vận động");
                 this.chat("Tránh các động tác thừa");

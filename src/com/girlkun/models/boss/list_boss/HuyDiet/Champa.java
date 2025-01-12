@@ -11,6 +11,7 @@ import com.girlkun.services.EffectSkillService;
 import com.girlkun.services.PlayerService;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
+
 import java.util.Random;
 
 public class Champa extends Boss {
@@ -38,6 +39,7 @@ public class Champa extends Boss {
         }
         itemMap.options.add(new Item.ItemOption(30, 1));
         Service.gI().dropItemMap(this.zone, itemMap);
+        Service.gI().addCongDuc(plKill, 200);
     }
 
     @Override
@@ -79,7 +81,7 @@ public class Champa extends Boss {
 //            this.changeStatus(BossStatus.LEAVE_MAP);
     }
 
-//    @Override
+    //    @Override
 //    public void joinMap() {
 //        super.joinMap(); //To change body of generated methods, choose Tools | Templates.
 //        st = System.currentTimeMillis();
