@@ -85,7 +85,6 @@ public class SkillService {
         switch (player.playerSkill.skillSelect.template.type) {
             case 1:
                 useSkillAttack(player, plTarget, mobTarget);
-//                Service.getInstance().releaseCooldownSkill(player);
                 break;
             case 3:
                 useSkillAlone(player);
@@ -1106,13 +1105,9 @@ public class SkillService {
                     }
                     //nổ
                     player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
-                    int rangeBom = SkillUtil.getRangeBom(player.playerSkill.skillSelect.point);
                     long dame = player.nPoint.hpMax;
                     for (Mob mob : player.zone.mobs) {
                         mob.injured(player, dame, true);
-//                        if (Util.getDistance(player, mob) <= rangeBom) { //khoảng cách có tác dụng bom
-//                            mob.injured(player, dame, true);
-//                        }
                     }
                     List<Player> playersMap = null;
                     if (player.isBoss) {
@@ -1264,7 +1259,6 @@ public class SkillService {
             byte typeSkill = SkillUtil.getTyleSkillAttack(plAtt.playerSkill.skillSelect);
             msg.writer().writeByte(typeSkill == 2 ? 0 : 1); //read continue
             msg.writer().writeByte(0); //type skill
-//            if (dameHit > 2123456789) {
 //                if (plAtt.isPl()) {
 //                    plAtt.Hppl = "\n|8|Name Boss:\b|4|" + plInjure.name;
 //                    plAtt.Hppl += "\n|8|Hp Boss:\b|7|" + Util.powerToString(plInjure.nPoint.hp);
@@ -1310,12 +1304,13 @@ public class SkillService {
 //                    }
 //                }
 //                msg.writer().writeInt(Util.TamkjllGH(dameHit)); //dame ăn
-//            }
+//            }//            if (dameHit > 2123456789) {
+
             msg.writer().writeBoolean(plInjure.isDie()); //is die
             msg.writer().writeBoolean(plAtt.nPoint.isCrit); //crit
             if (typeSkill != 1) {
-                Service.getInstance().sendMessAllPlayerInMap(plAtt, msg);
-                msg.cleanup();
+//                Service.getInstance().sendMessAllPlayerInMap(plAtt, msg);
+//                msg.cleanup();
             } else {
                 plInjure.sendMessage(msg);
                 msg.cleanup();
@@ -1347,7 +1342,6 @@ public class SkillService {
             if (plInjure.isDie() && !plAtt.isBoss) {
                 plAtt.fightMabu.changePoint((byte) 5);
             }
-
         } catch (Exception e) {
             Logger.logException(SkillService.class, e);
         }
@@ -1358,7 +1352,7 @@ public class SkillService {
                 msg.writer().writeInt((int) plInjure.id);
                 //             msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) +"\nTLPST: " + plInjure.nPoint.tlPST);
                 phanSatThuong(plAtt, plInjure, dameHit);
-                Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
+//                Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
                 msg.cleanup();
             } catch (Exception e) {
                 Logger.logException(Service.class, e);
