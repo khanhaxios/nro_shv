@@ -687,13 +687,13 @@ public class Mob {
                 ItemMap itemMap = new ItemMap(this.zone, 457, quan, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
-            if (Util.isTrue(2, 10)) {
-                int[] idspl = {441, 442, 443, 444, 445, 446, 447};
-                int rd = Util.nextInt(0, idspl.length - 1);
-                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
-                itemMap.itemTemplate = ItemService.gI().getTemplate(idspl[rd]);
-                Service.gI().dropItemMap(this.zone, itemMap);
-            }
+//            if (Util.isTrue(2, 10)) {
+//                int[] idspl = {441, 442, 443, 444, 445, 446, 447};
+//                int rd = Util.nextInt(0, idspl.length - 1);
+//                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+//                itemMap.itemTemplate = ItemService.gI().getTemplate(idspl[rd]);
+//                Service.gI().dropItemMap(this.zone, itemMap);
+//            }
             if (Util.isTrue(5, 10)) {
                 int[] idspl = {220, 221, 222, 223, 224, 225, 226};
                 int rd = Util.nextInt(0, idspl.length - 1);
