@@ -679,7 +679,7 @@ public class Mob {
                     }
                 }
             }
-            if (Util.isTrue(50, 400)) {
+            if (Util.isTrue(50, 150)) {
                 int quan = 1;
                 if (Util.isTrue(50, 100)) {
                     quan = Util.nextInt(1, 3);

@@ -15,6 +15,7 @@ import com.girlkun.services.Service;
 import com.girlkun.services.TaskService;
 import com.girlkun.utils.Util;
 import com.girlkun.services.PlayerService;
+
 import java.util.Random;
 
 /**
@@ -50,7 +51,7 @@ public class Xencon extends Boss {
             this.changeToTypePK();
             this.SendLaiThongBao(4);
         }
-        this.hapThu();
+//        this.hapThu();
         this.attack();
     }
 

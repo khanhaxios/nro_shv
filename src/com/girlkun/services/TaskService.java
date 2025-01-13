@@ -1004,8 +1004,8 @@ public class TaskService {
                         item.itemOptions.add(new Item.ItemOption(104, 15));
                         item.itemOptions.add(new Item.ItemOption(105, 15));
                         item.itemOptions.add(new Item.ItemOption(108, Util.nextInt(20, 50)));
-                        item.itemOptions.add(new Item.ItemOption(idSet, 1));
-                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
+//                        item.itemOptions.add(new Item.ItemOption(idSet, 1));
+//                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
                         item.itemOptions.add(new Item.ItemOption(30, 1));
 
                         InventoryServiceNew.gI().addItemBag(player, item);

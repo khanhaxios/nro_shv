@@ -682,7 +682,7 @@ public class BossesData {
                     {Skill.KAMEJOKO, 7, 1000},
                     {Skill.QUA_CAU_KENH_KHI, 7, 100000},
                     {Skill.DICH_CHUYEN_TUC_THOI, 7, 10000},
-                    {Skill.KHIEN_NANG_LUONG, 7, 1000},
+//                    {Skill.KHIEN_NANG_LUONG, 7, 1000},
                     {Skill.THOI_MIEN, 7, 10000}},
             //skill
             new String[]{"|-2|Tại sao!? Sao ngươi vẫn còn sống vậy!?",

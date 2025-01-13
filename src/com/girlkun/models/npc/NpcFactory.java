@@ -5599,7 +5599,7 @@ public class NpcFactory {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
                                 case 0:
-                                    createOtherMenu(player, ConstNpc.BUY_DE_TU_VIP, "Xin chào, ta có một số bé Đệ VIP nè!\n|1|Số công đức của bạn còn : " + player.congduc + "\n|7|Đệ Super Bư: 30k công đức, Hợp thể tăng 30% chỉ số" + "\n|7|Đệ Berus: 40k công đức, Hợp thể tăng 40% chỉ số" + "\n|7|Đệ Bát Giới: 50k công đức, Hợp thể tăng 50% chỉ số" + "\n|7|Đệ Bumusic: 70k công đức, Hợp thể tăng 60% chỉ số" + "\n|7|Đệ Ngộ Không: 150k công đức, Hợp thể tăng 70% chỉ số" + "\n|7|Đệ Pazuzu: 200k công đức, Hợp thể tăng 80% chỉ số" + "\n|7|Đệ Kaie: 250k công đức, Hợp thể tăng 90% chỉ số" + "\n|7| Lưu Ý Phải Có Đệ Thường Mới Mua Được Đệ Vip", "Đệ\nSuper Bư", "Đệ\nBerus", "Đệ \nBát Giới", "Đệ \nBumusic", "Đệ \nNgộ Không", "Đệ \nPazuzu", "Đệ \nKaie", "Từ chối");
+                                    createOtherMenu(player, ConstNpc.BUY_DE_TU_VIP, "Xin chào, ta có một số bé Đệ VIP nè!\n|1|Số công đức của bạn còn : " + player.congduc + "\n|7|Đệ Super Bư: 30k công đức, Hợp thể tăng 30% chỉ số" + "\n|7|Đệ Berus: 40k công đức, Hợp thể tăng 40% chỉ số" + "\n|7|Đệ Bát Giới: 50k công đức, Hợp thể tăng 50% chỉ số" + "\n|7|Đệ Bumusic: 70k công đức, Hợp thể tăng 60% chỉ số" + "\n|7|Đệ Ngộ Không: 150k công đức, Hợp thể tăng 70% chỉ số" + "\n|7|Đệ Pazuzu: 200k công đức, Hợp thể tăng 80% chỉ số"  + "\n|7| Lưu Ý Phải Có Đệ Thường Mới Mua Được Đệ Vip", "Đệ\nSuper Bư", "Đệ\nBerus", "Đệ \nBát Giới", "Đệ \nBumusic", "Đệ \nNgộ Không", "Đệ \nPazuzu", "Đệ \nKaie", "Từ chối");
                                     break;
                                 case 1:
                                     createOtherMenu(player, ConstNpc.DOI_SKILL, "Đổi Skill Đệ Tử\n" + "|2|Chào bạn : " + player.name + "\nSố Dư : " + player.congduc + " công đức\n" + "|7|Bạn muốn đổi skill nào?", "SKILL 2,3\n10.000 công đức", "SKILL 3,4\n20.000 công đức");
@@ -5903,19 +5903,19 @@ public class NpcFactory {
                                         player.congduc -= 200000;
                                         PetService.gI().createpazuzu(player, player.pet != null, player.pet.gender);
                                         break;
-                                    case 6: //kaie
-                                        if (player.congduc < 250000) {
-                                            Service.gI().sendThongBao(player, "Bạn không có đủ 250k công đức");
-                                            return;
-                                        }
-                                        if (player.pet == null) {
-                                            Service.gI().sendThongBao(player, "Bạn cần phải có đệ tử thường trước");
-                                            return;
-                                        }
-
-                                        player.congduc -= 250000;
-                                        PetService.gI().createkaie(player, player.pet != null, player.pet.gender);
-                                        break;
+//                                    case 6: //kaie
+//                                        if (player.congduc < 250000) {
+//                                            Service.gI().sendThongBao(player, "Bạn không có đủ 250k công đức");
+//                                            return;
+//                                        }
+//                                        if (player.pet == null) {
+//                                            Service.gI().sendThongBao(player, "Bạn cần phải có đệ tử thường trước");
+//                                            return;
+//                                        }
+//
+//                                        player.congduc -= 250000;
+//                                        PetService.gI().createkaie(player, player.pet != null, player.pet.gender);
+//                                        break;
                                 }
 //                                PlayerDAO.updatePlayer(player);
                             } catch (Exception e) {

@@ -96,39 +96,38 @@ public class ServerManager {
         TaiXiu.gI().lastTimeEnd = System.currentTimeMillis() + 50000;
         activeCommandLine();
 //        NgocRongNamecService.gI().initNgocRongNamec((byte) 0);
-
-        new Thread(() -> {
-            while (true) {
-                try {
-                    SieuHangManager.gI().update();
-                    Thread.sleep(50);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        new Thread(DaiHoiVoThuat.gI(), "Thread DHVT").start();
+//        new Thread(() -> {
+//            while (true) {
+//                try {
+//                    SieuHangManager.gI().update();
+//                    Thread.sleep(50);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//        new Thread(DaiHoiVoThuat.gI(), "Thread DHVT").start();
 //        new Thread(ChonAiDay.gI(), "Thread CAD").start();
 //        new Thread(NgocRongNamecService.gI(), "Thread NRNM").start();
-        new Thread(NauBanh.gI(), "Thread NauBanh").start();
+//        new Thread(NauBanh.gI(), "Thread NauBanh").start();
         new Thread(TopService.gI(), "Thread TOP").start();
         new Thread(TaiXiu.gI(), "Thread TaiXiu").start();
-        new Thread(() -> {
-            while (isRunning) {
-                try {
-                    long start = System.currentTimeMillis();
-                    MartialCongressManager.gI().update();
-                    MartialCongressManagere.gI().update();
-                    ShopKyGuiManager.gI().save();
-                    long timeUpdate = System.currentTimeMillis() - start;
-                    if (timeUpdate < delay) {
-                        Thread.sleep(delay - timeUpdate);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, "Update dai hoi vo thuat").start();
+//        new Thread(() -> {
+//            while (isRunning) {
+//                try {
+//                    long start = System.currentTimeMillis();
+//                    MartialCongressManager.gI().update();
+//                    MartialCongressManagere.gI().update();
+//                    ShopKyGuiManager.gI().save();
+//                    long timeUpdate = System.currentTimeMillis() - start;
+//                    if (timeUpdate < delay) {
+//                        Thread.sleep(delay - timeUpdate);
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, "Update dai hoi vo thuat").start();
         try {
             BossManager.gI().loadBoss();
             Manager.MAPS.forEach(com.girlkun.models.map.Map::initBoss);

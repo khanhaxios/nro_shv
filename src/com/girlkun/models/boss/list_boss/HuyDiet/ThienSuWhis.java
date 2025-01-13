@@ -2,55 +2,64 @@ package com.girlkun.models.boss.list_boss.HuyDiet;
 
 import com.girlkun.models.boss.Boss;
 import com.girlkun.models.boss.BossesData;
+import com.girlkun.models.mob.Mob;
 import com.girlkun.models.player.Player;
 import com.girlkun.models.item.Item;
 import com.girlkun.models.map.ItemMap;
+import com.girlkun.services.ItemMapService;
+import com.girlkun.services.ItemService;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ThienSuWhis extends Boss {
+
+    private long timeToOneHit;
+    private long lastTimeOneHit;
 
     public ThienSuWhis() throws Exception {
         super(Util.randomBossId(), BossesData.THIEN_SU_WHIS);
     }
 
     public void reward(Player plKill) {
-        ItemMap[] items = new ItemMap[14];
-        items[0] = createItemMap(650, plKill, new int[]{47, 86, 21, 30}, new int[]{1800, 1, 80, 1}, new int[]{2800, 1, 80, 1});
-        items[1] = createItemMap(652, plKill, new int[]{47, 86, 21, 30}, new int[]{1800, 1, 80, 1}, new int[]{2800, 1, 80, 1});
-        items[2] = createItemMap(654, plKill, new int[]{47, 86, 21, 30}, new int[]{1800, 1, 80, 1}, new int[]{2800, 1, 80, 1});
-        items[3] = createItemMap(651, plKill, new int[]{22, 86, 21, 30}, new int[]{85, 1, 80, 1}, new int[]{100, 1, 80, 1});
-        items[4] = createItemMap(653, plKill, new int[]{22, 86, 21, 30}, new int[]{85, 1, 80, 1}, new int[]{100, 1, 80, 1});
-        items[5] = createItemMap(655, plKill, new int[]{22, 86, 21, 30}, new int[]{85, 1, 80, 1}, new int[]{100, 1, 80, 1});
-        items[6] = createItemMap(657, plKill, new int[]{0, 86, 21, 30}, new int[]{8500, 1, 80, 1}, new int[]{10000, 1, 80, 1});
-        items[7] = createItemMap(659, plKill, new int[]{0, 86, 21, 30}, new int[]{8500, 1, 80, 1}, new int[]{10000, 1, 80, 1});
-        items[8] = createItemMap(661, plKill, new int[]{0, 86, 21, 30}, new int[]{8500, 1, 80, 1}, new int[]{10000, 1, 80, 1});
-        items[9] = createItemMap(658, plKill, new int[]{23, 86, 21, 30}, new int[]{80, 1, 80, 1}, new int[]{90, 1, 80, 1});
-        items[10] = createItemMap(660, plKill, new int[]{23, 86, 21, 30}, new int[]{80, 1, 80, 1}, new int[]{90, 1, 80, 1});
-        items[11] = createItemMap(662, plKill, new int[]{23, 86, 21, 30}, new int[]{80, 1, 80, 1}, new int[]{90, 1, 80, 1});
-        items[12] = createItemMap(656, plKill, new int[]{14, 86, 21, 30}, new int[]{17, 1, 80, 1}, new int[]{19, 1, 80, 1});
-        items[13] = createItemMap(2009, plKill, new int[]{50, 77, 103, 93, 30}, new int[]{20, 25, 25, 3, 1}, new int[]{40, 45, 45, 7, 1});
+        int[][] idDoThienSu = {
+                {1048, 1051, 1054, 1057, 1060},
+                {1049, 1052, 1055, 1058, 1061},
+                {1050, 1053, 1056, 1059, 1062}// trai dat
+        };
 
-        Random rand = new Random();
-
-        // Tính toán xác suất
-        double randomValue = rand.nextDouble() * 100;
-
-        if (randomValue <= 100) {
-            // Tỷ lệ rơi 100%
-            int[] ids100 = {650, 652, 654, 651, 653, 655, 658, 660, 662, 2009};
-            int randomIndex = rand.nextInt(ids100.length);
-            Service.gI().dropItemMap(this.zone, items[randomIndex]);
-        } else if (randomValue <= 20) {
-            // Tỷ lệ rơi 20%
-            int[] ids20 = {657, 659, 661};
-            int randomIndex = rand.nextInt(ids20.length);
-            Service.gI().dropItemMap(this.zone, items[6 + randomIndex]); // 657, 659, 661
-        } else if (randomValue <= 10) {
-            // Tỷ lệ rơi 10%
-            Service.gI().dropItemMap(this.zone, items[12]); // 656
+        if (Util.isTrue(20, 100)) {
+            Service.gI().dropItemMap(this.zone, createItemMap(2009, plKill, new int[]{0, 50, 77, 103, 108, 209, 93}, new int[]{40000, 20, 200, 200, 99, 1, 1}, new int[]{60000, 1000, 2000, 2000, 99, 1, 1}));
+        }
+        if (Util.isTrue(10, 100)) {
+            int[] itemsFromGender = idDoThienSu[plKill.gender];
+            int randomDoTs = Util.nextInt(0, itemsFromGender.length - 1);
+            Item doTs = ItemService.gI().DoThienSu(itemsFromGender[randomDoTs], plKill.gender);
+            if (itemsFromGender[randomDoTs] >= 1055 && itemsFromGender[randomDoTs] <= 1057) {
+                if (Util.isTrue(10, 50)) {
+                    if (plKill.gender == 0) {
+                        doTs.itemOptions.add(new Item.ItemOption(129, 1));
+                        doTs.itemOptions.add(new Item.ItemOption(141, 100));
+                    }
+                    if (plKill.gender == 1) {
+                        doTs.itemOptions.add(new Item.ItemOption(131, 1));
+                        doTs.itemOptions.add(new Item.ItemOption(143, 100));
+                    }
+                    if (plKill.gender == 2) {
+                        int[] options = new int[]{133, 135};
+                        int rad = Util.nextInt(0, options.length - 1);
+                        doTs.itemOptions.add(new Item.ItemOption(options[rad], 0));
+                        doTs.itemOptions.add(new Item.ItemOption(rad == 0 ? 136 : 138, rad == 0 ? 50 : 100));
+                    }
+                }
+            }
+            Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, doTs, plKill));
+        }
+        if (Util.isTrue(100, 100)) {
+            Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
         }
         Service.gI().subCongDuc(plKill, 2000);
     }
@@ -66,6 +75,21 @@ public class ThienSuWhis extends Boss {
         return itemMap;
     }
 
+    private void oneHit() {
+        if (!Util.canDoWithTime(this.lastTimeOneHit, timeToOneHit)) {
+            return;
+        }
+        this.chat("Chuẩn bị đón nhận cơn thịnh nộ của thiên sứ đi!!!!!");
+        List<Player> players = this.zone.getNotBosses();
+        for (Player player : players) {
+            player.injured(this, player.nPoint.hpMax, true, false);
+        }
+        this.chat("A aaaa chết hết đi......");
+        this.chat("Biết sự lợi hại của ta chưa?");
+        this.lastTimeOneHit = System.currentTimeMillis();
+        this.timeToOneHit = Util.nextInt(30000, 40000);
+    }
+
     @Override
     public void doneChatE() {
         if (this.parentBoss == null || this.parentBoss.bossAppearTogether == null
@@ -76,6 +100,7 @@ public class ThienSuWhis extends Boss {
     @Override
     public void active() {
         super.active();
+        this.oneHit();
         this.SendLaiThongBao(3);
     }
 

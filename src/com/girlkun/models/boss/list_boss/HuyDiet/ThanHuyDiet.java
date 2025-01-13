@@ -36,28 +36,25 @@ public class ThanHuyDiet extends Boss {
         items[11] = createItemMap(662, plKill, new int[]{23, 86, 21, 30}, new int[]{80, 1, 80, 1}, new int[]{90, 1, 80, 1});
         items[12] = createItemMap(656, plKill, new int[]{14, 86, 21, 30}, new int[]{17, 1, 80, 1}, new int[]{19, 1, 80, 1});
         items[13] = createItemMap(2010, plKill, new int[]{50, 77, 103, 93, 30}, new int[]{20, 25, 25, 3, 1}, new int[]{40, 45, 45, 7, 1});
-
         Random rand = new Random();
 
         // Tính toán xác suất
-        double randomValue = rand.nextDouble() * 100;
-
-        if (randomValue <= 100) {
-            // Tỷ lệ rơi 100%
-            int[] ids100 = {650, 652, 654, 651, 653, 655, 658, 660, 662, 2010};
-            int randomIndex = rand.nextInt(ids100.length);
-            Service.gI().dropItemMap(this.zone, items[randomIndex]);
+        double randomValue = Util.nextInt(100);
+        if (randomValue <= 10) {
+            // Tỷ lệ rơi 10%
+            Service.gI().dropItemMap(this.zone, items[12]); // 656
         } else if (randomValue <= 20) {
             // Tỷ lệ rơi 20%
             int[] ids20 = {657, 659, 661};
             int randomIndex = rand.nextInt(ids20.length);
             Service.gI().dropItemMap(this.zone, items[6 + randomIndex]); // 657, 659, 661
-        } else if (randomValue <= 10) {
-            // Tỷ lệ rơi 10%
-            Service.gI().dropItemMap(this.zone, items[12]); // 656
+        } else if (randomValue <= 100) {
+            // Tỷ lệ rơi 100%
+            int[] ids100 = {650, 652, 654, 651, 653, 655, 658, 660, 662, 2010};
+            int randomIndex = rand.nextInt(ids100.length);
+            Service.gI().dropItemMap(this.zone, items[randomIndex]);
         }
         Service.gI().addCongDuc(plKill, 3000);
-
     }
 
     private ItemMap createItemMap(int itemId, Player player, int[] optIds, int[] optMin, int[] optMax) {
