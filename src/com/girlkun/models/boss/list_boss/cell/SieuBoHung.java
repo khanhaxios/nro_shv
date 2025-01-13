@@ -10,6 +10,7 @@ import com.girlkun.services.Service;
 import com.girlkun.services.TaskService;
 import com.girlkun.utils.Util;
 import com.girlkun.services.PlayerService;
+
 import java.util.Random;
 
 public class SieuBoHung extends Boss {
@@ -19,22 +20,22 @@ public class SieuBoHung extends Boss {
     }
 
     @Override
-   public void reward(Player plKill) {
-    int[] itemDos = new int[]{674};
-    int[] NRs = new int[]{77};
-    int randomDo = new Random().nextInt(itemDos.length);
-    int randomNR = new Random().nextInt(NRs.length);
-    if (Util.isTrue(10, 100)) {
-        if (Util.isTrue(1, 30)) {
-            Service.gI().dropItemMap(this.zone, Util.ratiItem(zone, 16, 1, this.location.x, this.location.y, plKill.id));
-            return;
+    public void reward(Player plKill) {
+        int[] itemDos = new int[]{674};
+        int[] NRs = new int[]{77};
+        int randomDo = new Random().nextInt(itemDos.length);
+        int randomNR = new Random().nextInt(NRs.length);
+        if (Util.isTrue(10, 100)) {
+            if (Util.isTrue(1, 30)) {
+                Service.gI().dropItemMap(this.zone, Util.ratiItem(zone, 16, 1, this.location.x, this.location.y, plKill.id));
+                return;
+            }
+            Service.gI().dropItemMap(this.zone, Util.ratiItem(zone, itemDos[randomDo], 1, this.location.x, this.location.y, plKill.id));
+        } else if (Util.isTrue(50, 100)) {
+            Service.gI().dropItemMap(this.zone, new ItemMap(zone, NRs[randomNR], 1, this.location.x, zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         }
-        Service.gI().dropItemMap(this.zone, Util.ratiItem(zone, itemDos[randomDo], 1, this.location.x, this.location.y, plKill.id));
-    } else  if (Util.isTrue(50, 100)){
-        Service.gI().dropItemMap(this.zone, new ItemMap(zone, NRs[randomNR], 1, this.location.x, zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
+        TaskService.gI().checkDoneTaskKillBoss(plKill, this);
     }
-    TaskService.gI().checkDoneTaskKillBoss(plKill, this);
-}
 
     @Override
     public void active() {

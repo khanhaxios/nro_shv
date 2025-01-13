@@ -604,7 +604,7 @@ public class BossesData {
             "Siêu Xên Bọ Hung 1",
             ConstPlayer.XAYDA,
             new short[]{234, 235, 236, -1, -1, -1},
-            100000,
+            80000,
             new long[]{1300000000L},
             new int[]{103},
             new int[][]{
@@ -639,7 +639,7 @@ public class BossesData {
             "Siêu Xên Bọ Hung 2",
             ConstPlayer.XAYDA,
             new short[]{234, 235, 236, -1, -1, -1},
-            110000,
+            90000,
             new long[]{1500000000L},
             new int[]{103},
             new int[][]{
@@ -671,7 +671,7 @@ public class BossesData {
             "Siêu Xên Hoàn Thiện",
             ConstPlayer.XAYDA,
             new short[]{234, 235, 236, -1, -1, -1},
-            120000,
+            100000,
             new long[]{1800000000L},
             new int[]{103},
             new int[][]{

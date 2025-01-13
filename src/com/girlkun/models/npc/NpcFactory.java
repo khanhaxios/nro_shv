@@ -10739,23 +10739,20 @@ public class NpcFactory {
             public void confirmMenu(Player player, int select) {
                 switch (player.iDMark.getIndexMenu()) {
                     case ConstNpc.IGNORE_MENU:
-
                         break;
                     case ConstNpc.MENU_CONFIRM_POWER_UP:
                         if (select == 0) {
                             // dot pha
-                            int ratio = 20 * (player.nPoint.limitPower - 5);
+                            int ratio = 20;
                             if (Util.isTrue(5, ratio)) {
-                                player.nPoint.limitPower += 1;
-                                if (player.nPoint.limitPower >= NPoint.MAX_LIMIT) {
-                                    player.nPoint.limitPower += NPoint.MAX_LIMIT;
+                                if (OpenPowerService.gI().openPowerSpeed(player)) {
+                                    Service.gI().sendThongBao(player, "Đột phá thành công");
+                                    // tylle
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2066), 99);
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2067), 99);
+                                    InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2068), player.nPoint.getNumberItemRequiredNextByLevel(1));
+                                    InventoryServiceNew.gI().sendItemBags(player);
                                 }
-                                Service.gI().sendThongBao(player, "Đột phá thành công");
-                                // tylle
-                                InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2066), 99);
-                                InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2067), 99);
-                                InventoryServiceNew.gI().subQuantityItemsBag(player, InventoryServiceNew.gI().findItemBag(player, 2068), player.nPoint.getNumberItemRequiredNextByLevel(1));
-                                InventoryServiceNew.gI().sendItemBags(player);
                             } else {
                                 Service.gI().sendThongBao(player, "Đột phá thất bại huhuhu");
                             }
