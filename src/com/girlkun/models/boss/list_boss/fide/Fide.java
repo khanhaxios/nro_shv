@@ -31,7 +31,7 @@ public class Fide extends Boss {
         Service.getInstance().dropItemMap(this.zone, new ItemMap(zone, 76, Util.nextInt(1000000, 3000000), Util.nextInt(this.location.x - 20, this.location.x + 20), zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         Service.getInstance().dropItemMap(this.zone, new ItemMap(zone, 76, Util.nextInt(1000000, 3000000), Util.nextInt(this.location.x - 20, this.location.x + 20), zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
-        Service.gI().addCongDuc(plKill, 100);
+        Service.gI().addCongDuc(plKill, 1000);
     }
 
     @Override

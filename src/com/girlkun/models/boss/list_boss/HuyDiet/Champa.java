@@ -39,7 +39,7 @@ public class Champa extends Boss {
         }
         itemMap.options.add(new Item.ItemOption(30, 1));
         Service.gI().dropItemMap(this.zone, itemMap);
-        Service.gI().addCongDuc(plKill, 200);
+        Service.gI().addCongDuc(plKill, 2000);
     }
 
     @Override

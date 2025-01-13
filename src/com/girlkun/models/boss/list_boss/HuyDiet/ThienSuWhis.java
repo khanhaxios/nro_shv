@@ -52,7 +52,7 @@ public class ThienSuWhis extends Boss {
             // Tỷ lệ rơi 10%
             Service.gI().dropItemMap(this.zone, items[12]); // 656
         }
-        Service.gI().subCongDuc(plKill, 200);
+        Service.gI().subCongDuc(plKill, 2000);
     }
 
 

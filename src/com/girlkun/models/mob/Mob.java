@@ -664,16 +664,15 @@ public class Mob {
             if (!player.isPet && player.getSession().actived) {
                 List<Integer> maps = Arrays.asList(122, 123, 124);
                 if (maps.contains(this.zone.map.mapId)) {
-                    if (Util.isTrue(20, 20)) {
+                    if (Util.isTrue(10, 20)) {
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 541, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                     }
+                    player.congduc += Util.nextInt(15, 50);
                     if (Util.isTrue(5, 10)) {
-                        player.congduc += 2;
                         // roi long de chau
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2066, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                     } else {
                         if (Util.isTrue(5, 10)) {
-                            player.congduc += 2;
                             // roi hoang tuyen hoa
                             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2067, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                         }
@@ -692,6 +691,7 @@ public class Mob {
                 int[] idspl = {441, 442, 443, 444, 445, 446, 447};
                 int rd = Util.nextInt(0, idspl.length - 1);
                 ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                itemMap.itemTemplate = ItemService.gI().getTemplate(idspl[rd]);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
             if (Util.isTrue(5, 10)) {
@@ -715,7 +715,7 @@ public class Mob {
                     Service.gI().dropItemMap(this.zone, itemMap);
                 }
             }
-            if (Util.isTrue(5, 50)) {
+            if (Util.isTrue(25, 50)) {
                 int[] idsNro = {17, 18, 19, 20};
                 int rd = Util.nextInt(0, idsNro.length - 1);
                 ItemMap itemMap = new ItemMap(this.zone, idsNro[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
@@ -773,6 +773,49 @@ public class Mob {
                 }
             }
         }
+        //drop da thuc tinh
+        int idMapNgucTu = 155;
+        int idaThucTinh = 1421;
+        if (player.zone.map.mapId == idMapNgucTu) {
+            if (Util.isTrue(5, 50)) {
+                Item item = ItemService.gI().createItemNull();
+                item.template = ItemService.gI().getTemplate(idaThucTinh);
+                item.quantity = 1;
+                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+            }
+            if (Util.isTrue(10, 50)) {
+                Item item = ItemService.gI().createItemNull();
+                item.template = ItemService.gI().getTemplate(987);
+                item.quantity = 1;
+                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+            }
+            if (Util.isTrue(5, 50)) {
+                Item item = ItemService.gI().createItemNull();
+                item.template = ItemService.gI().getTemplate(Util.nextInt(1074, 1078));
+                item.quantity = Util.nextInt(1, 6);
+                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+            }
+            if (Util.isTrue(5, 100)) {
+                Item item = ItemService.gI().createItemNull();
+                item.template = ItemService.gI().getTemplate(Util.nextInt(1097, 1083));
+                item.quantity = Util.nextInt(1, 6);
+                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+            }
+            if (Util.isTrue(5, 100)) {
+                if (Util.isTrue(5, 50)) {
+                    Item item = ItemService.gI().createItemNull();
+                    item.template = ItemService.gI().getTemplate(Util.nextInt(1084, 1086));
+                    item.quantity = 1;
+                    Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+                } else {
+                    Item item = ItemService.gI().createItemNull();
+                    item.template = ItemService.gI().getTemplate(Util.nextInt(1071, 1073));
+                    item.quantity = 1;
+                    Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
+                }
+            }
+        }
+
         //
         if (player.itemTime.isUseMayDo && Util.isTrue(21, 100) && this.tempId > 57 && this.tempId < 66) {
             list.add(new ItemMap(zone, 380, 1, x, player.location.y, player.id));
@@ -979,8 +1022,8 @@ public class Mob {
                 list.add(new ItemMap(zone, Util.nextInt(663, 667), 1, x, player.location.y, player.id));
             }
         }
-        if (player.setClothes.setGod14() && this.zone.map.mapId == 155) {
-            if (Util.isTrue(10, 100)) {
+        if (player.setClothes.setGod() && this.zone.map.mapId == 155) {
+            if (Util.isTrue(20, 100)) {
                 list.add(new ItemMap(zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), x, player.location.y, player.id));
             }
         }
@@ -1038,11 +1081,6 @@ public class Mob {
                 }
             }
         }
-//        if (this.zone.map.mapId >= 0) {
-//            if (Util.isTrue(1, 150)) {
-//                list.add(new ItemMap(zone, 2000 + player.gender, 1, x, player.location.y, player.id));
-//            }
-//        }
         //Roi Do Than Cold
         if (this.zone.map.mapId >= 105 && this.zone.map.mapId <= 110) {
             if (Util.isTrue(5, 50000)) {

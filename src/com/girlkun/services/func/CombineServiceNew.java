@@ -7790,13 +7790,10 @@ public class CombineServiceNew {
             int tileLucky = 20;
             if (daNC != null) {
                 tilemacdinh += (daNC.template.id - 1073) * 10;
-            } else {
-                tilemacdinh = tilemacdinh;
             }
+
             if (daMM != null) {
                 tileLucky += tileLucky * (daMM.template.id - 1078) * 10 / 100;
-            } else {
-                tileLucky = tileLucky;
             }
 
             if (Util.nextInt(0, 100) < tilemacdinh) {
@@ -7853,15 +7850,10 @@ public class CombineServiceNew {
                 } else if (tilemacdinh <= 1) {
                     tilemacdinh = 0;
                 }
-                {
-                    tilemacdinh = 0;
-                }
                 short[][] itemIds = {{1048, 1051, 1054, 1057, 1060}, {1049, 1052, 1055, 1058, 1061}, {1050, 1053, 1056, 1059, 1062}}; // thứ tự td - 0,nm - 1, xd - 2
 
                 Item itemTS = ItemService.gI().DoThienSu(itemIds[itemCtVip.template.gender > 2 ? player.gender : itemCtVip.template.gender][itemManh.typeIdManh()], itemCtVip.template.gender);
-
                 tilemacdinh += 10;
-
                 if (tilemacdinh > 0) {
                     for (byte i = 0; i < itemTS.itemOptions.size(); i++) {
                         if (itemTS.itemOptions.get(i).optionTemplate.id != 21 && itemTS.itemOptions.get(i).optionTemplate.id != 30) {
@@ -7890,7 +7882,7 @@ public class CombineServiceNew {
 
                     for (int i = 0; i < tileLucky; i++) {
                         tilemacdinh = Util.nextInt(0, listOptionBonus.size());
-                        itemTS.itemOptions.add(new ItemOption(listOptionBonus.get(tilemacdinh), Util.nextInt(5, 20)));
+                        itemTS.itemOptions.add(new ItemOption(listOptionBonus.get(tilemacdinh), Util.nextInt(15, 30)));
                         listOptionBonus.remove(tilemacdinh);
                     }
                 }

@@ -28,7 +28,7 @@ public class Vados extends Boss {
         } else {
             Service.gI().dropItemMap(this.zone, Util.manhTS(zone, manhhiem[randomGR], 1, this.location.x, this.location.y, plKill.id));
         }
-        Service.gI().subCongDuc(plKill, 200);
+        Service.gI().subCongDuc(plKill, 2000);
     }
 
     @Override

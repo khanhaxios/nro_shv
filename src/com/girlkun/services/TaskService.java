@@ -964,13 +964,13 @@ public class TaskService {
                         int idEffect = player.gender == 0 ? 141 : player.gender == 1 ? 143 : 136;
 
                         item = ItemService.gI().createNewItem((short) idTem);
-                        item.itemOptions.add(new Item.ItemOption(50, 20));
                         item.itemOptions.add(new Item.ItemOption(0, Util.nextInt(20000, 30000)));
-                        item.itemOptions.add(new Item.ItemOption(30, 0));
-                        item.itemOptions.add(new Item.ItemOption(idSet, 0));
+                        item.itemOptions.add(new Item.ItemOption(50, 20));
                         item.itemOptions.add(new Item.ItemOption(104, 5));
                         item.itemOptions.add(new Item.ItemOption(108, 12));
-                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
+//                        item.itemOptions.add(new Item.ItemOption(idSet, 0));
+//                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
+                        item.itemOptions.add(new Item.ItemOption(30, 0));
                         InventoryServiceNew.gI().addItemBag(player, item);
                         InventoryServiceNew.gI().sendItemBags(player);
                         Service.gI().sendThongBao(player, "Bạn bú được đồ ngon check hành trang đi nhé");
@@ -996,16 +996,17 @@ public class TaskService {
                         int idEffect = player.gender == 0 ? 141 : player.gender == 1 ? 143 : 136;
                         int effectPST = player.gender == 0 ? 50 : player.gender == 1 ? 50 : 80;
                         item = ItemService.gI().createNewItem((short) idTem);
-                        item.itemOptions.add(new Item.ItemOption(50, 20));
                         item.itemOptions.add(new Item.ItemOption(0, Util.nextInt(20000, 30000)));
+                        item.itemOptions.add(new Item.ItemOption(50, 20));
+                        item.itemOptions.add(new Item.ItemOption(14, 30));
                         item.itemOptions.add(new Item.ItemOption(77, Util.nextInt(100, 200)));
-                        item.itemOptions.add(new Item.ItemOption(30, 0));
-                        item.itemOptions.add(new Item.ItemOption(idSet, 0));
-                        item.itemOptions.add(new Item.ItemOption(104, 15));
-                        item.itemOptions.add(new Item.ItemOption(104, 15));
-                        item.itemOptions.add(new Item.ItemOption(108, 12));
-                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
                         item.itemOptions.add(new Item.ItemOption(97, effectPST));
+                        item.itemOptions.add(new Item.ItemOption(104, 15));
+                        item.itemOptions.add(new Item.ItemOption(105, 15));
+                        item.itemOptions.add(new Item.ItemOption(108, Util.nextInt(20, 50)));
+                        item.itemOptions.add(new Item.ItemOption(idSet, 1));
+                        item.itemOptions.add(new Item.ItemOption(idEffect, 100));
+                        item.itemOptions.add(new Item.ItemOption(30, 1));
 
                         InventoryServiceNew.gI().addItemBag(player, item);
                         InventoryServiceNew.gI().sendItemBags(player);

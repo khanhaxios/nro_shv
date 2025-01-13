@@ -48,7 +48,7 @@ public class SongokuTaAc extends Boss {
             ItemMap it = new ItemMap(this.zone, 674, 5, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                     this.location.y - 24), plKill.id);
             Service.getInstance().dropItemMap(this.zone, it);
-            Service.gI().addCongDuc(plKill, 250);
+            Service.gI().addCongDuc(plKill, 500);
         }
     }
 

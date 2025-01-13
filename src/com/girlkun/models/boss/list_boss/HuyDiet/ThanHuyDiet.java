@@ -56,7 +56,7 @@ public class ThanHuyDiet extends Boss {
             // Tỷ lệ rơi 10%
             Service.gI().dropItemMap(this.zone, items[12]); // 656
         }
-        Service.gI().addCongDuc(plKill, 300);
+        Service.gI().addCongDuc(plKill, 3000);
 
     }
 

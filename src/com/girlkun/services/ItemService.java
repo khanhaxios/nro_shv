@@ -1621,7 +1621,7 @@ public class ItemService {
             if (Util.isTrue(5, 50)) {
                 param = 65;
             }
-            if (Util.isTrue(5, 100)) {
+            if (Util.isTrue(5, 60)) {
                 param = 100;
             }
             if (item != null) {
@@ -1902,26 +1902,30 @@ public class ItemService {
         //găng
         if (Util.isTrue(80, 100)) {
             if (gang.contains(itemId)) {
-                dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(651) + 9350))); // 9350-10000
+                dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(651) + 20000))); // 9350-10000
             }
         } else {
             if (gang.contains(itemId)) {
-                dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(1001) + 10000))); // gang 15% 10-11k -xayda 12k1
+                if (Util.isTrue(10, 100)) {
+                    dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(1001) + 40000))); // gang bug% 10-11k -xayda 12k1
+                } else {
+                    dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(1001) + 22000))); // gang 15% 10-11k -xayda 12k1
+                }
             }
         }
         //giày
         if (Util.isTrue(80, 100)) {
             if (giay.contains(itemId)) {
-                dots.itemOptions.add(new Item.ItemOption(23, Util.highlightsItem(gender == 1, new Random().nextInt(21) + 90))); // ki 90-110k
+                dots.itemOptions.add(new Item.ItemOption(23, Util.highlightsItem(gender == 1, new Random().nextInt(21) + 200))); // ki 90-110k
             }
         } else {
             if (giay.contains(itemId)) {
-                dots.itemOptions.add(new Item.ItemOption(23, Util.highlightsItem(gender == 1, new Random().nextInt(21) + 110))); // ki 110-130k
+                dots.itemOptions.add(new Item.ItemOption(23, Util.highlightsItem(gender == 1, new Random().nextInt(21) + 220))); // ki 110-130k
             }
         }
 
         if (nhan.contains(itemId)) {
-            dots.itemOptions.add(new Item.ItemOption(14, Util.highlightsItem(gender == 1, new Random().nextInt(3) + 18))); // nhẫn 18-20%
+            dots.itemOptions.add(new Item.ItemOption(14, Util.highlightsItem(gender == 1, new Random().nextInt(3) + 40))); // nhẫn 18-20%
         }
         dots.itemOptions.add(new Item.ItemOption(21, 120));
         dots.itemOptions.add(new Item.ItemOption(30, 1));

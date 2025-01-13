@@ -3826,7 +3826,7 @@ public class NpcFactory {
                                 Service.getInstance().sendThongBao(player, "Bạn vừa nhận được 2 triệu ngọc xanh");
                                 break;
                             case 1:
-                                if (player.playerTask.taskMain.id > 0) {
+                                if (player.playerTask.taskMain.id > 0 && player.playerTask.taskMain.id < 21) {
                                     player.playerTask.taskMain.id = 21;
                                     TaskService.gI().sendNextTaskMain(player);
                                     Service.gI().sendThongBao(player, "Đã next nhiệm vụ");
@@ -9065,234 +9065,134 @@ public class NpcFactory {
                 if (this.mapId == 154) {
                     this.createOtherMenu(player, ConstNpc.BASE_MENU, "Thử đánh với ta xem nào.\nNgươi còn 1 lượt cơ mà.", "Nói chuyện", "Học tuyệt kỹ", "Thách Đấu Whis", "Top Thách Đấu", "Từ chối");
                 } else if (this.mapId == 48) {
-                    this.createOtherMenu(player, ConstNpc.BASE_MENU, "Ngươi tìm ta có việc gì?", "Đóng");
-//                        "Hiến tế\nThần linh", "Hướng\ndẫn", "Đóng");
+                    this.createOtherMenu(player, ConstNpc.BASE_MENU, "Ngươi tìm ta có việc gì?",
+                            "Hiến tế\nThần linh", "Hướng\ndẫn", "Đóng");
                 }
             }
 
             @Override
             public void confirmMenu(Player player, int select) {
                 if (canOpenNpc(player)) {
-                    if (player.iDMark.isBaseMenu() && this.mapId == 154) {
-                        switch (select) {
-                            case 0:
-                                this.createOtherMenu(player, 5, "Ta sẽ giúp ngươi chế tạo trang bị thiên sứ", "Chế tạo", "Từ chối");
-                                break;
-                            case 1:
-                                Item BiKiepTuyetKy = InventoryServiceNew.gI().findItem(player.inventory.itemsBag, 1320);
-                                if (BiKiepTuyetKy != null) {
-                                    switch (player.gender) {
-                                        case 0:
-                                            this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ Super kamejoko\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
-                                            break;
-                                        case 1:
-                                            this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ Ma phông ba\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
-                                            break;
-                                        case 2:
-                                            this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ đíc chưởng liên hoàn\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
-                                            break;
+                    if (this.mapId == 154) {
+                        if (player.iDMark.isBaseMenu()) {
+                            switch (select) {
+                                case 0:
+                                    this.createOtherMenu(player, ConstNpc.CREATE_DO_TS, "Ta sẽ giúp ngươi chế tạo trang bị thiên sứ", "Chế tạo", "Từ chối");
+                                    break;
+                                case 1:
+                                    Item BiKiepTuyetKy = InventoryServiceNew.gI().findItem(player.inventory.itemsBag, 1320);
+                                    if (BiKiepTuyetKy != null) {
+                                        switch (player.gender) {
+                                            case 0:
+                                                this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ Super kamejoko\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
+                                                break;
+                                            case 1:
+                                                this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ Ma phông ba\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
+                                                break;
+                                            case 2:
+                                                this.createOtherMenu(player, 6, "|1|Ta sẽ dạy ngươi tuyệt kỹ đíc chưởng liên hoàn\n" + "|7|Bí kiếp tuyệt kỹ: " + BiKiepTuyetKy.quantity + "/9999\n" + "|2|Giá kim tệ: 10.000.000\n" + "|2|Giá ngọc: 99", "Đồng ý", "Từ chối");
+                                                break;
+                                        }
+                                    } else {
+                                        this.npcChat(player, "Hãy tìm bí kíp rồi quay lại gặp ta!");
                                     }
-                                } else {
-                                    this.npcChat(player, "Hãy tìm bí kíp rồi quay lại gặp ta!");
-                                }
-                                break;
-                            case 2:
-                                if (player.inventory.gem < 5) {
-                                    this.npcChat(player, "Cần 5 ngọc xanh");
-                                    return;
-                                }
-                                if (player.nPoint.hpMax + player.nPoint.dame < 20000) {
-                                    this.npcChat(player, "Bạn còn quá yếu vui lòng quay lại sau");
-                                    return;
-                                }
-                                Boss oldBossClone = BossManager.gI().getBossById(Util.createIdBossLV(player.id));
-                                if (oldBossClone != null) {
-                                    oldBossClone.setDieLv(oldBossClone);
-                                    this.npcChat(player, "Ấn thách đấu lại xem!");
-                                } else {
-                                    int hp = 0;
-                                    int dk = (player.thachdauwhis + 1) * 2;
-                                    long hptong = (player.nPoint.hpMax + hp) * dk * (player.thachdauwhis >= 5 ? 2 * dk : 1);
-                                    BossData bossDataClone = new BossData("Whis [Lv: " + player.thachdauwhis + "]", ConstPlayer.NAMEC, new short[]{505, 506, 507, -1, -1, -1}, 10_000 * dk, new long[]{10_000_000 * dk}, new int[]{174}, new int[][]{{Skill.LIEN_HOAN, 7, 500}, {Skill.KAMEJOKO, 7, 3000}, {Skill.DICH_CHUYEN_TUC_THOI, 7, 60000}}, new String[]{"|-2|Ta sẽ tiêu diệt ngươi"}, // text chat 1
-                                            new String[]{"|-1|Ta Sẽ đập nát đầu ngươi!"}, // text chat 2
-                                            new String[]{"|-1|Hẹn người lần sau"}, // text chat 3
-                                            1);
-                                    try {
-                                        new ThachDauWhis(Util.createIdBossLV(player.id), bossDataClone, player.zone, player.name, player.thachdauwhis, player);
-                                    } catch (Exception e) {
-                                        Logger.logException(NpcFactory.class, e);
+                                    break;
+                                case 2:
+                                    if (player.inventory.gem < 5) {
+                                        this.npcChat(player, "Cần 5 ngọc xanh");
+                                        return;
                                     }
-                                    player.inventory.gem -= 5;
-                                    Service.gI().sendMoney(player);
-                                }
-                                break;
-                            case 3:
-                                Service.gI().showListTop(player, Manager.TopThachDau);
-                                break;
+                                    if (player.nPoint.hpMax + player.nPoint.dame < 20000) {
+                                        this.npcChat(player, "Bạn còn quá yếu vui lòng quay lại sau");
+                                        return;
+                                    }
+                                    Boss oldBossClone = BossManager.gI().getBossById(Util.createIdBossLV(player.id));
+                                    if (oldBossClone != null) {
+                                        oldBossClone.setDieLv(oldBossClone);
+                                        this.npcChat(player, "Ấn thách đấu lại xem!");
+                                    } else {
+                                        int hp = 0;
+                                        int dk = (player.thachdauwhis + 1) * 2;
+                                        long hptong = (player.nPoint.hpMax + hp) * dk * (player.thachdauwhis >= 5 ? 2 * dk : 1);
+                                        BossData bossDataClone = new BossData("Whis [Lv: " + player.thachdauwhis + "]", ConstPlayer.NAMEC, new short[]{505, 506, 507, -1, -1, -1}, 10_000 * dk, new long[]{10_000_000 * dk}, new int[]{174}, new int[][]{{Skill.LIEN_HOAN, 7, 500}, {Skill.KAMEJOKO, 7, 3000}, {Skill.DICH_CHUYEN_TUC_THOI, 7, 60000}}, new String[]{"|-2|Ta sẽ tiêu diệt ngươi"}, // text chat 1
+                                                new String[]{"|-1|Ta Sẽ đập nát đầu ngươi!"}, // text chat 2
+                                                new String[]{"|-1|Hẹn người lần sau"}, // text chat 3
+                                                1);
+                                        try {
+                                            new ThachDauWhis(Util.createIdBossLV(player.id), bossDataClone, player.zone, player.name, player.thachdauwhis, player);
+                                        } catch (Exception e) {
+                                            Logger.logException(NpcFactory.class, e);
+                                        }
+                                        player.inventory.gem -= 5;
+                                        Service.gI().sendMoney(player);
+                                    }
+                                    break;
+                                case 3:
+                                    Service.gI().showListTop(player, Manager.TopThachDau);
+                                    break;
+                            }
+                        } else if (player.iDMark.getIndexMenu() == 6) {
+                            switch (select) {
+                                case 0:
+                                    Item sach = InventoryServiceNew.gI().findItemBag(player, 1320);
+                                    if (sach != null && sach.quantity >= 9999 && player.inventory.gold >= 10000000 && player.inventory.gem > 99 && player.nPoint.power >= 1000000000L) {
+
+                                        switch (player.gender) {
+                                            case 2:
+                                                SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
+                                                break;
+                                            case 0:
+                                                SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
+                                                break;
+                                            case 1:
+                                                SkillService.gI().learSkillSpecial(player, Skill.MA_PHONG_BA);
+                                                break;
+                                        }
+                                        InventoryServiceNew.gI().subQuantityItem(player.inventory.itemsBag, sach, 9999);
+                                        player.inventory.gold -= 10000000;
+                                        player.inventory.gem -= 99;
+                                        InventoryServiceNew.gI().sendItemBags(player);
+                                    } else if (player.nPoint.power < 1000000000L) {
+                                        Service.getInstance().sendThongBao(player, "Ngươi không đủ sức mạnh để học tuyệt kỹ");
+                                    } else if (sach == null || sach.quantity < 9999) {
+                                        int sosach = sach == null ? 9999 : 9999 - sach.quantity;
+                                        Service.getInstance().sendThongBao(player, "Ngươi còn thiếu " + sosach + " bí kíp nữa.\nHãy tìm đủ rồi đến gặp ta.");
+                                    } else if (player.inventory.gold < 10000000) {
+                                        Service.getInstance().sendThongBao(player, "Hãy có đủ kim tệ thì quay lại gặp ta.");
+                                    } else if (player.inventory.gem < 99) {
+                                        Service.getInstance().sendThongBao(player, "Hãy có đủ ngọc xanh thì quay lại gặp ta.");
+                                    }
+                                    break;
+                            }
+                        } else if (player.iDMark.getIndexMenu() == ConstNpc.CREATE_DO_TS) {
+                            switch (select) {
+                                case 0:
+                                    CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.CHE_TAO_TRANG_BI_TS);
+                                    break;
+                            }
                         }
                     } else if (this.mapId == 48) {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
-//                            case 0:
-//                                createOtherMenu(player, 799455479, "Ngươi muốn hiến tế cho Bản thân hay Đệ tử", "Cho\nBản thân", "Cho\nĐệ tử", "Đóng");
-//                                break;
+                                case 0:
+                                    createOtherMenu(player, ConstNpc.HIEN_TE_THAN_LINH, "Ngươi muốn hiến tế cho Bản thân hay Đệ tử", "Cho\nBản thân", "Cho\nĐệ tử", "Đóng");
+                                    break;
                                 case 1:
                                     NpcService.gI().createTutorial(player, avartar, "Ta là Whis được Đại thiên sứ cử xuống Trái đất để thu thập lại trang bị Thần linh bị kẻ xấu đánh cắp\n" + "Hãy đi tiêu diệt kẻ xấu để giành lại trang bị Thần linh bị đánh cắp\n" + "Hiến tế cho ta trang bị Thần linh, Ta sẽ ban cho ngươi trang bị kích hoạt tương ứng trong truyền thuyết\n" + "Yêu cầu khi hiến tế:\n- Bản thân đang sử dụng trang bị Thần linh\n- Kim tệ trong hành trang: 2 Tỷ kim tệ\n(không giới hạn số trang bị Thần linh trong 1 lần hiến tế)");
                                     break;
                             }
-                        }
-                    } else if (player.iDMark.getIndexMenu() == 799455479) {
-                        switch (select) {
-                            case 0:
-                                if (!player.getSession().actived) {
-                                    NpcService.gI().createTutorial(player, avartar, "Truy cập Trang chủ để mở Thành viên");
-                                    break;
-                                }
-                                int gender = player.gender;
-                                List<Integer> ao = Arrays.asList(555, 557, 559);
-                                List<Integer> quan = Arrays.asList(556, 558, 560);
-                                List<Integer> gang = Arrays.asList(562, 564, 566);
-                                List<Integer> giay = Arrays.asList(563, 565, 567);
-                                int nhan = 561;
-
-                                boolean dieuKien1 = player.inventory.itemsBody.get(0).isNotNullItem();
-                                boolean dieuKien2 = player.inventory.itemsBody.get(1).isNotNullItem();
-                                boolean dieuKien3 = player.inventory.itemsBody.get(2).isNotNullItem();
-                                boolean dieuKien4 = player.inventory.itemsBody.get(3).isNotNullItem();
-                                boolean dieuKien5 = player.inventory.itemsBody.get(4).isNotNullItem();
-
-                                boolean dieuKien1_1 = dieuKien1 && (player.inventory.itemsBody.get(0).template.id == ao.get(gender));
-                                boolean dieuKien2_1 = dieuKien2 && (player.inventory.itemsBody.get(1).template.id == quan.get(gender));
-                                boolean dieuKien3_1 = dieuKien3 && (player.inventory.itemsBody.get(2).template.id == gang.get(gender));
-                                boolean dieuKien4_1 = dieuKien4 && (player.inventory.itemsBody.get(3).template.id == giay.get(gender));
-                                boolean dieuKien5_1 = dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan);
-
-                                boolean condition1 = dieuKien1_1;
-                                boolean condition2 = dieuKien2_1;
-                                boolean condition3 = dieuKien3_1;
-                                boolean condition4 = dieuKien4_1;
-                                boolean condition5 = dieuKien5_1;
-
-                                if (condition1 || condition2 || condition3 || condition4 || condition5) {
-                                    StringBuilder npcsay = new StringBuilder("Danh sách hiến tế cho Whis:\n");
-                                    int i = 1;
-                                    if (condition1) {
-                                        npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(0).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition2) {
-                                        npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(1).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition3) {
-                                        npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(2).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition4) {
-                                        npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(3).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition5) {
-                                        npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(4).template.name).append("\n");
-                                        i++;
-                                    }
-
-                                    npcsay.append("Ngươi sẽ nhận lại một trang bị kích hoạt tương ứng trong truyền thuyết.");
-
-                                    createOtherMenu(player, ConstNpc.HIEN_TE_SU_PHU, npcsay.toString(), "Hiến tế\n(2 Tỷ kim tệ)", "Đóng");
-                                } else {
-                                    NpcService.gI().createTutorial(player, avartar, "Khi nào ngươi mặc trang bị thần linh thì tới đây ta nói chuyện tiếp");
-                                }
-                                break;
-                            case 1:
-                                if (!player.getSession().actived) {
-                                    NpcService.gI().createTutorial(player, avartar, "Truy cập Trang chủ NgocRongKakarot.Com để mở Thành viên");
-                                    break;
-                                }
-                                if (player.pet == null) {
-                                    NpcService.gI().createTutorial(player, avartar, "Ngươi cần phải có Đệ tử trước khi thực hiện");
-                                    break;
-                                }
-
-                                int gender_detu = player.pet.gender;
-
-                                List<Integer> ao2 = Arrays.asList(555, 557, 559);
-                                List<Integer> quan2 = Arrays.asList(556, 558, 560);
-                                List<Integer> gang2 = Arrays.asList(562, 564, 566);
-                                List<Integer> giay2 = Arrays.asList(563, 565, 567);
-                                int nhan2 = 561;
-
-                                boolean dieuKien12 = player.pet.inventory.itemsBody.get(0).isNotNullItem();
-                                boolean dieuKien22 = player.pet.inventory.itemsBody.get(1).isNotNullItem();
-                                boolean dieuKien32 = player.pet.inventory.itemsBody.get(2).isNotNullItem();
-                                boolean dieuKien42 = player.pet.inventory.itemsBody.get(3).isNotNullItem();
-                                boolean dieuKien52 = player.pet.inventory.itemsBody.get(4).isNotNullItem();
-
-                                boolean dieuKien1_12 = dieuKien12 && (player.pet.inventory.itemsBody.get(0).template.id == ao2.get(gender_detu));
-                                boolean dieuKien2_12 = dieuKien22 && (player.pet.inventory.itemsBody.get(1).template.id == quan2.get(gender_detu));
-                                boolean dieuKien3_12 = dieuKien32 && (player.pet.inventory.itemsBody.get(2).template.id == gang2.get(gender_detu));
-                                boolean dieuKien4_12 = dieuKien42 && (player.pet.inventory.itemsBody.get(3).template.id == giay2.get(gender_detu));
-                                boolean dieuKien5_12 = dieuKien52 && (player.pet.inventory.itemsBody.get(4).template.id == nhan2);
-
-                                boolean condition12 = dieuKien1_12;
-                                boolean condition22 = dieuKien2_12;
-                                boolean condition32 = dieuKien3_12;
-                                boolean condition42 = dieuKien4_12;
-                                boolean condition52 = dieuKien5_12;
-
-                                if (condition12 || condition22 || condition32 || condition42 || condition52) {
-                                    StringBuilder npcsay = new StringBuilder("Danh sách hiến tế cho Whis:\n");
-                                    int i = 1;
-                                    if (condition12) {
-                                        npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(0).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition22) {
-                                        npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(1).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition32) {
-                                        npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(2).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition42) {
-                                        npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(3).template.name).append("\n");
-                                        i++;
-                                    }
-                                    if (condition52) {
-                                        npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(4).template.name).append("\n");
-                                        i++;
-                                    }
-
-                                    npcsay.append("Ngươi sẽ nhận lại một trang bị kích hoạt tương ứng trong truyền thuyết.");
-
-                                    createOtherMenu(player, ConstNpc.HIEN_TE_DE_TU, npcsay.toString(), "OK");
-                                } else {
-                                    NpcService.gI().createTutorial(player, avartar, "Khi nào đệ tử ngươi mặc trang bị thần linh thì tới đây ta nói chuyện tiếp");
-                                }
-                                break;
-                        }
-                    } else if (player.iDMark.getIndexMenu() == ConstNpc.HIEN_TE_SU_PHU) {
-                        if (player.iDMark.isBaseMenu()) {
+                        } else if (player.iDMark.getIndexMenu() == ConstNpc.HIEN_TE_THAN_LINH) {
                             switch (select) {
                                 case 0:
-                                    int i = 0;
+                                    if (!player.getSession().actived) {
+                                        NpcService.gI().createTutorial(player, avartar, "Truy cập Trang chủ để mở Thành viên");
+                                        break;
+                                    }
                                     int gender = player.gender;
                                     List<Integer> ao = Arrays.asList(555, 557, 559);
                                     List<Integer> quan = Arrays.asList(556, 558, 560);
                                     List<Integer> gang = Arrays.asList(562, 564, 566);
                                     List<Integer> giay = Arrays.asList(563, 565, 567);
-
-                                    List<Integer> aoSKH = Arrays.asList(555, 557, 559);
-                                    List<Integer> quanSKH = Arrays.asList(556, 558, 560);
-                                    List<Integer> gangSKH = Arrays.asList(562, 564, 566);
-                                    List<Integer> giaySKH = Arrays.asList(563, 565, 567);
-                                    int rada = 12;
-
-                                    int[][] options = {{128, 129, 127}, {130, 131, 132}, {133, 135, 134}};
-
-                                    short itemId;
-
                                     int nhan = 561;
 
                                     boolean dieuKien1 = player.inventory.itemsBody.get(0).isNotNullItem();
@@ -9305,312 +9205,398 @@ public class NpcFactory {
                                     boolean dieuKien2_1 = dieuKien2 && (player.inventory.itemsBody.get(1).template.id == quan.get(gender));
                                     boolean dieuKien3_1 = dieuKien3 && (player.inventory.itemsBody.get(2).template.id == gang.get(gender));
                                     boolean dieuKien4_1 = dieuKien4 && (player.inventory.itemsBody.get(3).template.id == giay.get(gender));
-                                    boolean dieuKien5_1 = dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan);
 
-                                    boolean condition1 = dieuKien1_1;
-                                    boolean condition2 = dieuKien2_1;
-                                    boolean condition3 = dieuKien3_1;
-                                    boolean condition4 = dieuKien4_1;
-                                    boolean condition5 = dieuKien5_1;
-
-                                    if (condition1 || condition2 || condition3 || condition4 || condition5) {
-
-                                        if (player.inventory.gold < 2_000_000_000) {
-                                            NpcService.gI().createTutorial(player, avartar, "Ngươi còn thiếu " + Util.numberToMoney(2_000_000_000 - player.inventory.gold) + " kim tệ");
-                                            return;
+                                    if (dieuKien1_1 || dieuKien2_1 || dieuKien3_1 || dieuKien4_1 || dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan)) {
+                                        StringBuilder npcsay = new StringBuilder("Danh sách hiến tế cho Whis:\n");
+                                        int i = 1;
+                                        if (dieuKien1_1) {
+                                            npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(0).template.name).append("\n");
+                                            i++;
                                         }
-
-                                        player.inventory.gold -= 2000000000;
-                                        Service.getInstance().sendMoney(player);
-
-                                        if (condition1) { // ÁO
-                                            Item ao2 = ItemService.gI().createNewItem((short) gender);
-
-                                            InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 0);
-
-                                            Random random = new Random();
-                                            int tyle = random.nextInt(100);
-                                            ao2.itemOptions.add(new ItemOption(47, 3));
-
-                                            if (tyle < 30) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(129, 1));
-                                                    ao2.itemOptions.add(new ItemOption(141, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(131, 1));
-                                                    ao2.itemOptions.add(new ItemOption(143, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(135, 1));
-                                                    ao2.itemOptions.add(new ItemOption(138, 1));
-                                                }
-                                            } else if (tyle < 60) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(128, 1));
-                                                    ao2.itemOptions.add(new ItemOption(140, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(130, 1));
-                                                    ao2.itemOptions.add(new ItemOption(142, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(133, 1));
-                                                    ao2.itemOptions.add(new ItemOption(136, 1));
-                                                }
-
-                                            } else {
-                                                ao2.itemOptions.add(new ItemOption(134, 1));
-                                                ao2.itemOptions.add(new ItemOption(137, 1));
-                                            }
-                                            InventoryServiceNew.gI().addItemBody(player, ao2);
-                                            InventoryServiceNew.gI().sendItemBody(player);
+                                        if (dieuKien2_1) {
+                                            npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(1).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien3_1) {
+                                            npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(2).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien4_1) {
+                                            npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(3).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan)) {
+                                            npcsay.append(i).append(". ").append(player.inventory.itemsBody.get(4).template.name).append("\n");
                                             i++;
                                         }
 
-                                        if (condition2) { // QUẦN
-                                            Item ao2 = ItemService.gI().createNewItem((short) (gender + 6));
-                                            InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 1);
+                                        npcsay.append("Ngươi sẽ nhận lại một trang bị kích hoạt tương ứng trong truyền thuyết.");
 
-                                            List<ItemOption> optionsToRemove = new ArrayList<>();
-                                            for (ItemOption itopt : ao2.itemOptions) {
-                                                int optionId = itopt.optionTemplate.id;
-                                                if (optionId >= 0 && optionId <= 233) {
-                                                    optionsToRemove.add(itopt);
-                                                }
-                                            }
-
-                                            Random random = new Random();
-                                            int tyle = random.nextInt(100);
-
-                                            ao2.itemOptions.removeAll(optionsToRemove);
-                                            ao2.itemOptions.add(new ItemOption(6, 20));
-
-                                            if (tyle < 30) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(129, 1));
-                                                    ao2.itemOptions.add(new ItemOption(141, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(131, 1));
-                                                    ao2.itemOptions.add(new ItemOption(143, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(135, 1));
-                                                    ao2.itemOptions.add(new ItemOption(138, 1));
-                                                }
-                                            } else if (tyle < 60) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(128, 1));
-                                                    ao2.itemOptions.add(new ItemOption(140, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(130, 1));
-                                                    ao2.itemOptions.add(new ItemOption(142, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(133, 1));
-                                                    ao2.itemOptions.add(new ItemOption(136, 1));
-                                                }
-
-                                            } else {
-                                                ao2.itemOptions.add(new ItemOption(134, 1));
-                                                ao2.itemOptions.add(new ItemOption(137, 1));
-                                            }
-                                            InventoryServiceNew.gI().addItemBody(player, ao2);
-                                            InventoryServiceNew.gI().sendItemBody(player);
-                                            Service.getInstance().Send_Caitrang(player);
-                                            Service.getInstance().Send_Info_NV(player);
-                                            i++;
-                                        }
-                                        if (condition3) { // GĂNG
-
-                                            Item ao2 = ItemService.gI().createNewItem((short) (gender + 21));
-                                            InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 2);
-
-                                            List<ItemOption> optionsToRemove = new ArrayList<>();
-                                            for (ItemOption itopt : ao2.itemOptions) {
-                                                int optionId = itopt.optionTemplate.id;
-                                                if (optionId >= 0 && optionId <= 233) {
-                                                    optionsToRemove.add(itopt);
-                                                }
-                                            }
-
-                                            Random random = new Random();
-                                            int tyle = random.nextInt(100);
-
-                                            ao2.itemOptions.removeAll(optionsToRemove);
-                                            ao2.itemOptions.add(new ItemOption(0, 5));
-
-                                            if (tyle < 30) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(129, 1));
-                                                    ao2.itemOptions.add(new ItemOption(141, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(131, 1));
-                                                    ao2.itemOptions.add(new ItemOption(143, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(135, 1));
-                                                    ao2.itemOptions.add(new ItemOption(138, 1));
-                                                }
-                                            } else if (tyle < 60) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(128, 1));
-                                                    ao2.itemOptions.add(new ItemOption(140, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(130, 1));
-                                                    ao2.itemOptions.add(new ItemOption(142, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(133, 1));
-                                                    ao2.itemOptions.add(new ItemOption(136, 1));
-                                                }
-
-                                            } else {
-                                                ao2.itemOptions.add(new ItemOption(134, 1));
-                                                ao2.itemOptions.add(new ItemOption(137, 1));
-                                            }
-                                            InventoryServiceNew.gI().addItemBody(player, ao2);
-                                            InventoryServiceNew.gI().sendItemBody(player);
-                                            Service.getInstance().Send_Caitrang(player);
-                                            Service.getInstance().Send_Info_NV(player);
-                                            i++;
-                                        }
-                                        if (condition4) { // GIẦY
-
-                                            Item ao2 = ItemService.gI().createNewItem((short) (gender + 27));
-                                            InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 3);
-
-                                            List<ItemOption> optionsToRemove = new ArrayList<>();
-                                            for (ItemOption itopt : ao2.itemOptions) {
-                                                int optionId = itopt.optionTemplate.id;
-                                                if (optionId >= 0 && optionId <= 233) {
-                                                    optionsToRemove.add(itopt);
-                                                }
-                                            }
-
-                                            Random random = new Random();
-                                            int tyle = random.nextInt(100);
-
-                                            ao2.itemOptions.removeAll(optionsToRemove);
-                                            ao2.itemOptions.add(new ItemOption(7, 10));
-
-                                            if (tyle < 30) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(129, 1));
-                                                    ao2.itemOptions.add(new ItemOption(141, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(131, 1));
-                                                    ao2.itemOptions.add(new ItemOption(143, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(135, 1));
-                                                    ao2.itemOptions.add(new ItemOption(138, 1));
-                                                }
-                                            } else if (tyle < 60) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(128, 1));
-                                                    ao2.itemOptions.add(new ItemOption(140, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(130, 1));
-                                                    ao2.itemOptions.add(new ItemOption(142, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(133, 1));
-                                                    ao2.itemOptions.add(new ItemOption(136, 1));
-                                                }
-
-                                            } else {
-                                                ao2.itemOptions.add(new ItemOption(134, 1));
-                                                ao2.itemOptions.add(new ItemOption(137, 1));
-                                            }
-                                            InventoryServiceNew.gI().addItemBody(player, ao2);
-                                            InventoryServiceNew.gI().sendItemBody(player);
-                                            Service.getInstance().Send_Caitrang(player);
-                                            Service.getInstance().Send_Info_NV(player);
-                                            i++;
-                                        }
-                                        if (condition5) { // RADA
-                                            Item ao2 = ItemService.gI().createNewItem((short) 12);
-                                            InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 4);
-
-                                            List<ItemOption> optionsToRemove = new ArrayList<>();
-                                            for (ItemOption itopt : ao2.itemOptions) {
-                                                int optionId = itopt.optionTemplate.id;
-                                                if (optionId >= 0 && optionId <= 233) {
-                                                    optionsToRemove.add(itopt);
-                                                }
-                                            }
-
-                                            Random random = new Random();
-                                            int tyle = random.nextInt(100);
-
-                                            ao2.itemOptions.removeAll(optionsToRemove);
-                                            ao2.itemOptions.add(new ItemOption(14, 1));
-
-                                            if (tyle < 30) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(129, 1));
-                                                    ao2.itemOptions.add(new ItemOption(141, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(131, 1));
-                                                    ao2.itemOptions.add(new ItemOption(143, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(135, 1));
-                                                    ao2.itemOptions.add(new ItemOption(138, 1));
-                                                }
-                                            } else if (tyle < 60) {
-                                                if (gender == 0) {
-                                                    ao2.itemOptions.add(new ItemOption(128, 1));
-                                                    ao2.itemOptions.add(new ItemOption(140, 1));
-                                                } else if (gender == 1) {
-                                                    ao2.itemOptions.add(new ItemOption(130, 1));
-                                                    ao2.itemOptions.add(new ItemOption(142, 1));
-                                                } else {
-                                                    ao2.itemOptions.add(new ItemOption(133, 1));
-                                                    ao2.itemOptions.add(new ItemOption(136, 1));
-                                                }
-
-                                            } else {
-                                                ao2.itemOptions.add(new ItemOption(134, 1));
-                                                ao2.itemOptions.add(new ItemOption(137, 1));
-                                            }
-                                            InventoryServiceNew.gI().addItemBody(player, ao2);
-                                            InventoryServiceNew.gI().sendItemBody(player);
-                                            Service.getInstance().Send_Caitrang(player);
-                                            Service.getInstance().Send_Info_NV(player);
-                                            i++;
-                                        }
-                                        NpcService.gI().createTutorial(player, avartar, "Ba la ca ... ca ca ca... Um ba mi xa ki... ca ca...\n" + "Na na ca ca... la la... sa da ma ta ro bu ki....\n" + "....................\n" + "Bạn vừa hiến tế thành công cho Whis " + i + " trang bị Thần linh và nhận được " + i + " trang bị kích hoạt trong truyền thuyết.");
-                                        InventoryServiceNew.gI().sendItemBody(player);
-                                        Service.getInstance().Send_Caitrang(player);
-                                        Service.getInstance().Send_Info_NV(player);
+                                        createOtherMenu(player, ConstNpc.HIEN_TE_SU_PHU, npcsay.toString(), "Hiến tế\n(2 Tỷ kim tệ)", "Đóng");
+                                    } else {
+                                        NpcService.gI().createTutorial(player, avartar, "Khi nào ngươi mặc trang bị thần linh thì tới đây ta nói chuyện tiếp");
+                                    }
+                                    break;
+                                case 1:
+                                    if (!player.getSession().actived) {
+                                        NpcService.gI().createTutorial(player, avartar, "Truy cập Trang chủ NgocRongKakarot.Com để mở Thành viên");
                                         break;
+                                    }
+                                    if (player.pet == null) {
+                                        NpcService.gI().createTutorial(player, avartar, "Ngươi cần phải có Đệ tử trước khi thực hiện");
+                                        break;
+                                    }
+
+                                    int gender_detu = player.pet.gender;
+                                    List<Integer> ao2 = Arrays.asList(555, 557, 559);
+                                    List<Integer> quan2 = Arrays.asList(556, 558, 560);
+                                    List<Integer> gang2 = Arrays.asList(562, 564, 566);
+                                    List<Integer> giay2 = Arrays.asList(563, 565, 567);
+                                    int nhan2 = 561;
+
+                                    boolean dieuKien12 = player.pet.inventory.itemsBody.get(0).isNotNullItem();
+                                    boolean dieuKien22 = player.pet.inventory.itemsBody.get(1).isNotNullItem();
+                                    boolean dieuKien32 = player.pet.inventory.itemsBody.get(2).isNotNullItem();
+                                    boolean dieuKien42 = player.pet.inventory.itemsBody.get(3).isNotNullItem();
+                                    boolean dieuKien52 = player.pet.inventory.itemsBody.get(4).isNotNullItem();
+
+                                    boolean dieuKien1_12 = dieuKien12 && (player.pet.inventory.itemsBody.get(0).template.id == ao2.get(gender_detu));
+                                    boolean dieuKien2_12 = dieuKien22 && (player.pet.inventory.itemsBody.get(1).template.id == quan2.get(gender_detu));
+                                    boolean dieuKien3_12 = dieuKien32 && (player.pet.inventory.itemsBody.get(2).template.id == gang2.get(gender_detu));
+                                    boolean dieuKien4_12 = dieuKien42 && (player.pet.inventory.itemsBody.get(3).template.id == giay2.get(gender_detu));
+
+                                    if (dieuKien1_12 || dieuKien2_12 || dieuKien3_12 || dieuKien4_12 || dieuKien52 && (player.pet.inventory.itemsBody.get(4).template.id == nhan2)) {
+                                        StringBuilder npcsay = new StringBuilder("Danh sách hiến tế cho Whis:\n");
+                                        int i = 1;
+                                        if (dieuKien1_12) {
+                                            npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(0).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien2_12) {
+                                            npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(1).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien3_12) {
+                                            npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(2).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien4_12) {
+                                            npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(3).template.name).append("\n");
+                                            i++;
+                                        }
+                                        if (dieuKien52 && (player.pet.inventory.itemsBody.get(4).template.id == nhan2)) {
+                                            npcsay.append(i).append(". ").append(player.pet.inventory.itemsBody.get(4).template.name).append("\n");
+                                            i++;
+                                        }
+
+                                        npcsay.append("Ngươi sẽ nhận lại một trang bị kích hoạt tương ứng trong truyền thuyết.");
+
+                                        createOtherMenu(player, ConstNpc.HIEN_TE_DE_TU, npcsay.toString(), "OK");
+                                    } else {
+                                        NpcService.gI().createTutorial(player, avartar, "Khi nào đệ tử ngươi mặc trang bị thần linh thì tới đây ta nói chuyện tiếp");
                                     }
                                     break;
                             }
-                        }
-                    } else if (player.iDMark.getIndexMenu() == 6) {
-                        switch (select) {
-                            case 0:
-                                Item sach = InventoryServiceNew.gI().findItemBag(player, 1320);
-                                if (sach != null && sach.quantity >= 9999 && player.inventory.gold >= 10000000 && player.inventory.gem > 99 && player.nPoint.power >= 1000000000L) {
+                        } else if (player.iDMark.getIndexMenu() == ConstNpc.HIEN_TE_SU_PHU) {
+                            if (player.iDMark.isBaseMenu()) {
+                                switch (select) {
+                                    case 0:
+                                        int i = 0;
+                                        int gender = player.gender;
+                                        List<Integer> ao = Arrays.asList(555, 557, 559);
+                                        List<Integer> quan = Arrays.asList(556, 558, 560);
+                                        List<Integer> gang = Arrays.asList(562, 564, 566);
+                                        List<Integer> giay = Arrays.asList(563, 565, 567);
 
-                                    switch (player.gender) {
-                                        case 2:
-                                            SkillService.gI().learSkillSpecial(player, Skill.LIEN_HOAN_CHUONG);
+//                                    List<Integer> aoSKH = Arrays.asList(555, 557, 559);
+//                                    List<Integer> quanSKH = Arrays.asList(556, 558, 560);
+//                                    List<Integer> gangSKH = Arrays.asList(562, 564, 566);
+//                                    List<Integer> giaySKH = Arrays.asList(563, 565, 567);
+//                                    int rada = 12;
+//
+//                                    int[][] options = {{128, 129, 127}, {130, 131, 132}, {133, 135, 134}};
+//
+//                                    short itemId;
+
+                                        int nhan = 561;
+
+                                        boolean dieuKien1 = player.inventory.itemsBody.get(0).isNotNullItem();
+                                        boolean dieuKien2 = player.inventory.itemsBody.get(1).isNotNullItem();
+                                        boolean dieuKien3 = player.inventory.itemsBody.get(2).isNotNullItem();
+                                        boolean dieuKien4 = player.inventory.itemsBody.get(3).isNotNullItem();
+                                        boolean dieuKien5 = player.inventory.itemsBody.get(4).isNotNullItem();
+
+                                        boolean dieuKien1_1 = dieuKien1 && (player.inventory.itemsBody.get(0).template.id == ao.get(gender));
+                                        boolean dieuKien2_1 = dieuKien2 && (player.inventory.itemsBody.get(1).template.id == quan.get(gender));
+                                        boolean dieuKien3_1 = dieuKien3 && (player.inventory.itemsBody.get(2).template.id == gang.get(gender));
+                                        boolean dieuKien4_1 = dieuKien4 && (player.inventory.itemsBody.get(3).template.id == giay.get(gender));
+
+                                        if (dieuKien1_1 || dieuKien2_1 || dieuKien3_1 || dieuKien4_1 || dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan)) {
+
+                                            if (player.inventory.gold < 2_000_000_000) {
+                                                NpcService.gI().createTutorial(player, avartar, "Ngươi còn thiếu " + Util.numberToMoney(2_000_000_000 - player.inventory.gold) + " kim tệ");
+                                                return;
+                                            }
+
+                                            player.inventory.gold -= 2000000000;
+                                            Service.getInstance().sendMoney(player);
+
+                                            if (dieuKien1_1) { // ÁO
+                                                Item ao2 = ItemService.gI().createNewItem((short) gender);
+
+                                                InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 0);
+
+                                                Random random = new Random();
+                                                int tyle = random.nextInt(100);
+                                                ao2.itemOptions.add(new ItemOption(47, 3));
+
+                                                if (tyle < 30) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(129, 1));
+                                                        ao2.itemOptions.add(new ItemOption(141, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(131, 1));
+                                                        ao2.itemOptions.add(new ItemOption(143, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(135, 1));
+                                                        ao2.itemOptions.add(new ItemOption(138, 1));
+                                                    }
+                                                } else if (tyle < 60) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(128, 1));
+                                                        ao2.itemOptions.add(new ItemOption(140, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(130, 1));
+                                                        ao2.itemOptions.add(new ItemOption(142, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(133, 1));
+                                                        ao2.itemOptions.add(new ItemOption(136, 1));
+                                                    }
+
+                                                } else {
+                                                    ao2.itemOptions.add(new ItemOption(134, 1));
+                                                    ao2.itemOptions.add(new ItemOption(137, 1));
+                                                }
+                                                InventoryServiceNew.gI().addItemBody(player, ao2);
+                                                InventoryServiceNew.gI().sendItemBody(player);
+                                                i++;
+                                            }
+
+                                            if (dieuKien2_1) { // QUẦN
+                                                Item ao2 = ItemService.gI().createNewItem((short) (gender + 6));
+                                                InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 1);
+
+                                                List<ItemOption> optionsToRemove = new ArrayList<>();
+                                                for (ItemOption itopt : ao2.itemOptions) {
+                                                    int optionId = itopt.optionTemplate.id;
+                                                    if (optionId >= 0 && optionId <= 233) {
+                                                        optionsToRemove.add(itopt);
+                                                    }
+                                                }
+
+                                                Random random = new Random();
+                                                int tyle = random.nextInt(100);
+
+                                                ao2.itemOptions.removeAll(optionsToRemove);
+                                                ao2.itemOptions.add(new ItemOption(6, 20));
+
+                                                if (tyle < 30) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(129, 1));
+                                                        ao2.itemOptions.add(new ItemOption(141, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(131, 1));
+                                                        ao2.itemOptions.add(new ItemOption(143, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(135, 1));
+                                                        ao2.itemOptions.add(new ItemOption(138, 1));
+                                                    }
+                                                } else if (tyle < 60) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(128, 1));
+                                                        ao2.itemOptions.add(new ItemOption(140, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(130, 1));
+                                                        ao2.itemOptions.add(new ItemOption(142, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(133, 1));
+                                                        ao2.itemOptions.add(new ItemOption(136, 1));
+                                                    }
+
+                                                } else {
+                                                    ao2.itemOptions.add(new ItemOption(134, 1));
+                                                    ao2.itemOptions.add(new ItemOption(137, 1));
+                                                }
+                                                InventoryServiceNew.gI().addItemBody(player, ao2);
+                                                InventoryServiceNew.gI().sendItemBody(player);
+                                                Service.getInstance().Send_Caitrang(player);
+                                                Service.getInstance().Send_Info_NV(player);
+                                                i++;
+                                            }
+                                            if (dieuKien3_1) { // GĂNG
+
+                                                Item ao2 = ItemService.gI().createNewItem((short) (gender + 21));
+                                                InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 2);
+
+                                                List<ItemOption> optionsToRemove = new ArrayList<>();
+                                                for (ItemOption itopt : ao2.itemOptions) {
+                                                    int optionId = itopt.optionTemplate.id;
+                                                    if (optionId >= 0 && optionId <= 233) {
+                                                        optionsToRemove.add(itopt);
+                                                    }
+                                                }
+
+                                                Random random = new Random();
+                                                int tyle = random.nextInt(100);
+
+                                                ao2.itemOptions.removeAll(optionsToRemove);
+                                                ao2.itemOptions.add(new ItemOption(0, 5));
+
+                                                if (tyle < 30) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(129, 1));
+                                                        ao2.itemOptions.add(new ItemOption(141, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(131, 1));
+                                                        ao2.itemOptions.add(new ItemOption(143, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(135, 1));
+                                                        ao2.itemOptions.add(new ItemOption(138, 1));
+                                                    }
+                                                } else if (tyle < 60) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(128, 1));
+                                                        ao2.itemOptions.add(new ItemOption(140, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(130, 1));
+                                                        ao2.itemOptions.add(new ItemOption(142, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(133, 1));
+                                                        ao2.itemOptions.add(new ItemOption(136, 1));
+                                                    }
+
+                                                } else {
+                                                    ao2.itemOptions.add(new ItemOption(134, 1));
+                                                    ao2.itemOptions.add(new ItemOption(137, 1));
+                                                }
+                                                InventoryServiceNew.gI().addItemBody(player, ao2);
+                                                InventoryServiceNew.gI().sendItemBody(player);
+                                                Service.getInstance().Send_Caitrang(player);
+                                                Service.getInstance().Send_Info_NV(player);
+                                                i++;
+                                            }
+                                            if (dieuKien4_1) { // GIẦY
+
+                                                Item ao2 = ItemService.gI().createNewItem((short) (gender + 27));
+                                                InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 3);
+
+                                                List<ItemOption> optionsToRemove = new ArrayList<>();
+                                                for (ItemOption itopt : ao2.itemOptions) {
+                                                    int optionId = itopt.optionTemplate.id;
+                                                    if (optionId >= 0 && optionId <= 233) {
+                                                        optionsToRemove.add(itopt);
+                                                    }
+                                                }
+
+                                                Random random = new Random();
+                                                int tyle = random.nextInt(100);
+
+                                                ao2.itemOptions.removeAll(optionsToRemove);
+                                                ao2.itemOptions.add(new ItemOption(7, 10));
+
+                                                if (tyle < 30) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(129, 1));
+                                                        ao2.itemOptions.add(new ItemOption(141, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(131, 1));
+                                                        ao2.itemOptions.add(new ItemOption(143, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(135, 1));
+                                                        ao2.itemOptions.add(new ItemOption(138, 1));
+                                                    }
+                                                } else if (tyle < 60) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(128, 1));
+                                                        ao2.itemOptions.add(new ItemOption(140, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(130, 1));
+                                                        ao2.itemOptions.add(new ItemOption(142, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(133, 1));
+                                                        ao2.itemOptions.add(new ItemOption(136, 1));
+                                                    }
+
+                                                } else {
+                                                    ao2.itemOptions.add(new ItemOption(134, 1));
+                                                    ao2.itemOptions.add(new ItemOption(137, 1));
+                                                }
+                                                InventoryServiceNew.gI().addItemBody(player, ao2);
+                                                InventoryServiceNew.gI().sendItemBody(player);
+                                                Service.getInstance().Send_Caitrang(player);
+                                                Service.getInstance().Send_Info_NV(player);
+                                                i++;
+                                            }
+                                            if (dieuKien5 && (player.inventory.itemsBody.get(4).template.id == nhan)) { // RADA
+                                                Item ao2 = ItemService.gI().createNewItem((short) 12);
+                                                InventoryServiceNew.gI().removeItem(player.inventory.itemsBody, 4);
+
+                                                List<ItemOption> optionsToRemove = new ArrayList<>();
+                                                for (ItemOption itopt : ao2.itemOptions) {
+                                                    int optionId = itopt.optionTemplate.id;
+                                                    if (optionId >= 0 && optionId <= 233) {
+                                                        optionsToRemove.add(itopt);
+                                                    }
+                                                }
+
+                                                Random random = new Random();
+                                                int tyle = random.nextInt(100);
+
+                                                ao2.itemOptions.removeAll(optionsToRemove);
+                                                ao2.itemOptions.add(new ItemOption(14, 1));
+
+                                                if (tyle < 30) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(129, 1));
+                                                        ao2.itemOptions.add(new ItemOption(141, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(131, 1));
+                                                        ao2.itemOptions.add(new ItemOption(143, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(135, 1));
+                                                        ao2.itemOptions.add(new ItemOption(138, 1));
+                                                    }
+                                                } else if (tyle < 60) {
+                                                    if (gender == 0) {
+                                                        ao2.itemOptions.add(new ItemOption(128, 1));
+                                                        ao2.itemOptions.add(new ItemOption(140, 1));
+                                                    } else if (gender == 1) {
+                                                        ao2.itemOptions.add(new ItemOption(130, 1));
+                                                        ao2.itemOptions.add(new ItemOption(142, 1));
+                                                    } else {
+                                                        ao2.itemOptions.add(new ItemOption(133, 1));
+                                                        ao2.itemOptions.add(new ItemOption(136, 1));
+                                                    }
+
+                                                } else {
+                                                    ao2.itemOptions.add(new ItemOption(134, 1));
+                                                    ao2.itemOptions.add(new ItemOption(137, 1));
+                                                }
+                                                InventoryServiceNew.gI().addItemBody(player, ao2);
+                                                InventoryServiceNew.gI().sendItemBody(player);
+                                                Service.getInstance().Send_Caitrang(player);
+                                                Service.getInstance().Send_Info_NV(player);
+                                                i++;
+                                            }
+                                            NpcService.gI().createTutorial(player, avartar, "Ba la ca ... ca ca ca... Um ba mi xa ki... ca ca...\n" + "Na na ca ca... la la... sa da ma ta ro bu ki....\n" + "....................\n" + "Bạn vừa hiến tế thành công cho Whis " + i + " trang bị Thần linh và nhận được " + i + " trang bị kích hoạt trong truyền thuyết.");
+                                            InventoryServiceNew.gI().sendItemBody(player);
+                                            Service.getInstance().Send_Caitrang(player);
+                                            Service.getInstance().Send_Info_NV(player);
                                             break;
-                                        case 0:
-                                            SkillService.gI().learSkillSpecial(player, Skill.SUPER_KAME);
-                                            break;
-                                        case 1:
-                                            SkillService.gI().learSkillSpecial(player, Skill.MA_PHONG_BA);
-                                            break;
-                                    }
-                                    InventoryServiceNew.gI().subQuantityItem(player.inventory.itemsBag, sach, 9999);
-                                    player.inventory.gold -= 10000000;
-                                    player.inventory.gem -= 99;
-                                    InventoryServiceNew.gI().sendItemBags(player);
-                                } else if (player.nPoint.power < 1000000000L) {
-                                    Service.getInstance().sendThongBao(player, "Ngươi không đủ sức mạnh để học tuyệt kỹ");
-                                } else if (sach == null || sach.quantity < 9999) {
-                                    int sosach = sach == null ? 9999 : 9999 - sach.quantity;
-                                    Service.getInstance().sendThongBao(player, "Ngươi còn thiếu " + sosach + " bí kíp nữa.\nHãy tìm đủ rồi đến gặp ta.");
-                                } else if (player.inventory.gold < 10000000) {
-                                    Service.getInstance().sendThongBao(player, "Hãy có đủ kim tệ thì quay lại gặp ta.");
-                                } else if (player.inventory.gem < 99) {
-                                    Service.getInstance().sendThongBao(player, "Hãy có đủ ngọc xanh thì quay lại gặp ta.");
+                                        }
+                                        break;
                                 }
-                                break;
+                            }
                         }
                     }
                 }
