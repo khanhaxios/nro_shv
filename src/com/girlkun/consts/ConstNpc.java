@@ -499,6 +499,7 @@ public class ConstNpc {
     public static final int MENU_CONFIRM_POWER_UP = 133231;
     public static final int CREATE_DO_TS = 111144;
     public static final int HIEN_TE_THAN_LINH = 341313;
+    public static final int DOI_CAI_TRANG_CONG_DUC = -98424;
     public static int MENU_DHVT = 560;
     public static final int RUONG_PHU = 9999;
     public static final int BUY_DE_TU_VIP = 5841;
@@ -531,7 +532,7 @@ public class ConstNpc {
     public static final int CHON_AI_DAY_NGOC = 507;
     public static final int CHON_AI_DAY_HONG_NGOC = 508;
     public static final int UPDATE_CHON_AI_DAY_NGOC = 509;
-    
+
     public static final int MENU_HOP_TL = 1573;
     public static final int menutltd = 5555;
     public static final int menutlnm = 5556;

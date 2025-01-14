@@ -121,6 +121,7 @@ public class Item {
         public Template.ItemOptionTemplate optionTemplate;
 
         public ItemOption() {
+
         }
 
         public ItemOption(ItemOption io) {

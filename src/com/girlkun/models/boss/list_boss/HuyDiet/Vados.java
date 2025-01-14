@@ -19,6 +19,7 @@ public class Vados extends Boss {
 
     private long timeToOneHit;
     private long lastTimeOneHit;
+
     public Vados() throws Exception {
         super(Util.randomBossId(), BossesData.THIEN_SU_VADOS);
     }
@@ -95,22 +96,22 @@ public class Vados extends Boss {
                 this.chat("Xí hụt");
                 return 0;
             }
-            damage = this.nPoint.subDameInjureWithDeff(damage);
-            if (!piercing && effectSkill.isShielding) {
-                if (damage > nPoint.hpMax) {
-                    EffectSkillService.gI().breakShield(this);
-                }
-                damage = 1;
-            }
-            if (damage >= 1) {
-                damage = 1;
-            }
-            this.nPoint.subHP(damage);
-            if (isDie()) {
-                this.setDie(plAtt);
-                die(plAtt);
-            }
-            return damage;
+//            damage = this.nPoint.subDameInjureWithDeff(damage);
+//            if (!piercing && effectSkill.isShielding) {
+//                if (damage > nPoint.hpMax) {
+//                    EffectSkillService.gI().breakShield(this);
+//                }
+//                damage = 1;
+//            }
+//            if (damage >= 1) {
+//                damage = 1;
+//            }
+//            this.nPoint.subHP(damage);
+//            if (isDie()) {
+//                this.setDie(plAtt);
+//                die(plAtt);
+//            }
+            return 1;
         } else {
             return 0;
         }
@@ -130,6 +131,7 @@ public class Vados extends Boss {
         this.lastTimeOneHit = System.currentTimeMillis();
         this.timeToOneHit = Util.nextInt(30000, 40000);
     }
+
     @Override
     public void active() {
         super.active();

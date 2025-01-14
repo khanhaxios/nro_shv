@@ -28,6 +28,8 @@ public class Cumber extends Boss {
 
     @Override
     public void reward(Player plKill) {
+        Service.gI().dropItemMap(this.zone, new ItemMap(zone, 674, 1, this.location.x, this.location.y, plKill.id));
+
         byte randomDo = (byte) new Random().nextInt(Manager.itemDC12.length);
         byte randomNR = (byte) new Random().nextInt(Manager.itemIds_NR_SB.length);
         int[] itemDos = new int[]{233, 237, 241, 245, 249, 253, 257, 261, 265, 269, 273, 277, 281};

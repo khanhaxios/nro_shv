@@ -4678,8 +4678,8 @@ public class NpcFactory {
             @Override
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
-//                    createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Quy đổi\nVNĐ", "Mở\nThẻ tháng", "Mở thành viên", "Nhận Quà\nTích Lũy");
-                    createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Mở thành viên");
+                    createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Quy đổi\n công đức", "Cửa hàng \n công đức", "Mở thành viên");
+//                    createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Mở thành viên");
                 }
             }
 
@@ -4692,23 +4692,24 @@ public class NpcFactory {
                                 case 0: //shop
                                     ShopServiceNew.gI().opendShop(player, "SANTA", false);
                                     break;
-//                                case 1:
-//                                    this.createOtherMenu(player, ConstNpc.QUY_DOI, "|7|Số tiền của con còn : " + Util.format(player.getSession().vnd) + " VNĐ" + "\n" + "|1|Con Muốn quy đổi không", "Quy đổi\nThỏi kim tệ", "Quy đổi\nHồng ngọc");
-//                                    break;
-//                                case 2:
-//                                    this.createOtherMenu(player, 6, "|7|Số tiền của bạn còn : " + Util.format(player.getSession().vnd) + " VNĐ\n" + "\n|1|Mở thẻ tháng, trong tháng đó mỗi ngày lại đây điểm danh nhận 2000 hồng ngọc và 10 thỏi kim tệ", "Kích hoạt\n thẻ tháng", "Điểm danh\n thẻ tháng");
-//                                    break;
                                 case 1:
-                                    this.createOtherMenu(player, 7, "|7|Con có muốn mở bàn tay vàng ? \n Sau khi mở bàn tay vàng con sẽ được nhận 50 Thỏi Kim tệ và nhiều quà khác" + "\b|7|Con có chắc chắn mở chứ chứ?", "Mở bàn tay vàng", "Từ chối");
+                                    this.createOtherMenu(player, ConstNpc.QUY_DOI, "|7|Số công đức của con còn : " + player.congduc + " công đức" + "\n" + "|1|Con Muốn quy đổi không", "Quy đổi\nThỏi kim tệ", "Quy đổi\nHồng ngọc");
                                     break;
-//                                case 2:
-//                                    this.createOtherMenu(player, 3, "\b|1|Mốc nạp càng cao giá trị quà càng lớn!" + "\b|5|LƯU Ý:Hãy chừa ô trống để nhận quà!!!" + "\b|7|Bạn đã nạp tích lũy được: " + Util.format(player.tongtien) + " VND", "Mốc ", "Đóng");
-//                                    break;
+                                case 2:
+                                    this.createOtherMenu(player, ConstNpc.DOI_CAI_TRANG_CONG_DUC, "|7|Số công đúc của bạn còn : " + player.congduc + " công đức\n" + "\n|1|Cải trang 500-2000% chỉ số = 5M công đức (HSD vĩnh viễn)", "\n|2|Trang bị công đức chỉ số từ 60-150k(Có tỷ lệ) = 1M công đức", "\n|3|Linh thú công đức chỉ số từ 100-400% (Có tỷ lệ) = 1M công đức", "\n|4|Cánh công đức chỉ số từ 100-200%(Có tỷ lệ) = 1M công đức", "Đổi \n cải trang", "Đổi \ntrang bị", "Đổi \nLinh thú", "Đổi cánh");
+                                    break;
+                                case 3:
+                                    if (player.getSession().actived) {
+                                        Service.gI().sendThongBao(player, "Bạn đã mở rồi");
+                                    } else {
+                                        player.getSession().actived = true;
+                                        Service.gI().sendThongBao(player, "Mở thành viên thành công");
+                                    }
                             }
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.QUY_DOI) {
                             switch (select) {
                                 case 0:
-                                    this.createOtherMenu(player, ConstNpc.QUY_DOI_VANG, "|1|Con Muốn đổi thỏi kim tệ à?\n" + "|7|Con đang có :" + Util.format(player.congduc) + " Công đức\n", "20k\n20 thỏi kim tệ", "50k\n50 thỏi kim tệ", "100k\n105 thỏi kim tệ", "200k\n210 thỏi kim tệ", "500k\n530 thỏi kim tệ", "1000k\n1100 thỏi kim tệ");
+                                    this.createOtherMenu(player, ConstNpc.QUY_DOI_VANG, "|1|Con Muốn đổi thỏi kim tệ à?\n" + "|7|Con đang có :" + Util.format(player.congduc) + " Công đức\n", "20k\n200 thỏi kim tệ", "50k\n500 thỏi kim tệ", "100k\n1050 thỏi kim tệ", "200k\n2100 thỏi kim tệ", "500k\n5300 thỏi kim tệ", "1000k\n11000 thỏi kim tệ");
                                     break;
                                 case 1:
                                     this.createOtherMenu(player, ConstNpc.QUY_DOI_NGOC, "|1|Con Muốn đổi hồng ngọc à?\n" + "|7|Con đang có " + Util.format(player.congduc) + " Công đức\n", "20k\n20000 ngọc", "50k\n50000 ngọc", "100k\n100000 ngọc", "200k\n200000 ngọc");
@@ -4718,120 +4719,114 @@ public class NpcFactory {
                             switch (select) {
                                 case 0:
                                     if (player.congduc < 20000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 20k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 20k Công đức");
                                         return;
                                     }
                                     try {
-                                        int sum = player.congduc - 20000;
-                                        PlayerDAO.subvnd(player, 20000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 20000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 20000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i = ItemService.gI().createNewItem((short) 457, (short) 20);
+                                    Item i = ItemService.gI().createNewItem((short) 457, (short) 200);
                                     InventoryServiceNew.gI().addItemBag(player, i);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 20 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 200 thỏi kim tệ");
                                     break;
 
                                 case 1:
                                     if (player.congduc < 50000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 50k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 50k công đức");
                                         return;
                                     }
                                     try {
-                                        int sum = player.congduc - 50000;
-                                        PlayerDAO.subvnd(player, 50000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 50000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 50000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i2 = ItemService.gI().createNewItem((short) 457, (short) 50);
+                                    Item i2 = ItemService.gI().createNewItem((short) 457, (short) 500);
                                     InventoryServiceNew.gI().addItemBag(player, i2);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 50 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 500 thỏi kim tệ");
                                     break;
                                 case 2:
                                     if (player.congduc < 100000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 100k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 100k Công đức");
                                         return;
                                     }
 
                                     try {
-                                        int sum = player.congduc - 100000;
-                                        PlayerDAO.subvnd(player, 100000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 100000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 100000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i3 = ItemService.gI().createNewItem((short) 457, (short) 105);
+                                    Item i3 = ItemService.gI().createNewItem((short) 457, (short) 1050);
                                     InventoryServiceNew.gI().addItemBag(player, i3);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 100 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 1000 thỏi kim tệ");
                                     break;
                                 case 3:
                                     if (player.congduc < 200000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 200k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 200k Công đức");
                                         return;
                                     }
                                     try {
-                                        int sum = player.congduc - 200000;
-                                        PlayerDAO.subvnd(player, 200000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 200000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 200000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i4 = ItemService.gI().createNewItem((short) 457, (short) 210);
+                                    Item i4 = ItemService.gI().createNewItem((short) 457, (short) 4000);
                                     InventoryServiceNew.gI().addItemBag(player, i4);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 200 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 4000 thỏi kim tệ");
                                     break;
                                 case 4:
                                     if (player.congduc < 500000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 500k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 500k công đức");
                                         return;
                                     }
                                     try {
-                                        int sum = player.congduc - 500000;
-                                        PlayerDAO.subvnd(player, 500000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 500000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 500000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i5 = ItemService.gI().createNewItem((short) 457, (short) 520);
+                                    Item i5 = ItemService.gI().createNewItem((short) 457, (short) 8000);
                                     InventoryServiceNew.gI().addItemBag(player, i5);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 200 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 8000 thỏi kim tệ");
                                     break;
                                 case 5:
                                     if (player.congduc < 1000000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 1000k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 1000k công đức");
                                         return;
                                     }
                                     try {
-                                        int sum = player.congduc - 1000000;
-                                        PlayerDAO.subvnd(player, 1000000);
-                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
-                                        player.congduc = sum;
+                                        //                                        PlayerDAO.subvnd(player, 1000000);
+//                                        GirlkunDB.executeUpdate("update account set vnd = ? where id = ?", sum, player.account_id);
+                                        player.congduc = player.congduc - 1000000;
                                     } catch (Exception e) {
                                         this.npcChat(player, "Đã có lỗi xảy ra!" + e);
                                     }
-                                    Item i6 = ItemService.gI().createNewItem((short) 457, (short) 1200);
+                                    Item i6 = ItemService.gI().createNewItem((short) 457, (short) 20000);
                                     InventoryServiceNew.gI().addItemBag(player, i6);
                                     InventoryServiceNew.gI().sendItemBags(player);
-                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 200 thỏi kim tệ");
+                                    Service.gI().sendThongBao(player, "Bạn đã nhận được 20000 thỏi kim tệ");
                                     break;
                             }
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.QUY_DOI_NGOC) {
                             switch (select) {
                                 case 0:
                                     if (player.congduc < 20000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 20k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 20k Công đức");
                                         return;
                                     }
 
@@ -4844,7 +4839,7 @@ public class NpcFactory {
 
                                 case 1:
                                     if (player.congduc < 50000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 50k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 50k Công đức");
                                         return;
                                     }
 
@@ -4857,7 +4852,7 @@ public class NpcFactory {
                                     break;
                                 case 2:
                                     if (player.congduc < 100000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 100k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 100k Công đức");
                                         return;
                                     }
 
@@ -4870,7 +4865,7 @@ public class NpcFactory {
                                     break;
                                 case 3:
                                     if (player.congduc < 200000) {
-                                        Service.gI().sendThongBao(player, "Bạn không đủ 200k VND");
+                                        Service.gI().sendThongBao(player, "Bạn không đủ 200k Công đức");
                                         return;
                                     }
 
@@ -5254,6 +5249,90 @@ public class NpcFactory {
                                             Service.gI().sendThongBao(player, "Bạn đã nhận quà mốc 1000k rồi!");
                                         }
                                     }
+                                    break;
+                            }
+                        } else if (player.iDMark.getIndexMenu() == ConstNpc.DOI_CAI_TRANG_CONG_DUC) {
+                            switch (select) {
+                                case 0:
+                                    int sum = player.congduc -= 5000000;
+                                    if (sum < 0) {
+                                        Service.gI().sendThongBao(player, "Bạn không đủ công đức");
+                                        return;
+                                    }
+                                    if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        Service.gI().sendThongBao(player, "Cần ít nhất 1 ô hành trang trống");
+                                        return;
+                                    }
+                                    int[] idsCt = new int[]{904, 905, 1093, 2009, 2011, 2012, 1783, 1782, 1781, 629};
+                                    int rand = Util.nextInt(0, idsCt.length - 1);
+                                    Item item = new Item();
+                                    item.template = ItemService.gI().getTemplate(idsCt[rand]);
+                                    item.quantity = 1;
+                                    item.itemOptions.add(new ItemOption(50, Util.nextInt(800, 1200)));
+                                    item.itemOptions.add(new ItemOption(77, Util.nextInt(1000, 2000)));
+                                    item.itemOptions.add(new ItemOption(103, Util.nextInt(1000, 2000)));
+                                    item.itemOptions.add(new ItemOption(95, 25));
+                                    item.itemOptions.add(new ItemOption(96, 25));
+                                    item.itemOptions.add(new ItemOption(101, Util.nextInt(500, 1000)));
+                                    item.itemOptions.add(new ItemOption(219, Util.nextInt(200, 600)));
+                                    item.itemOptions.add(new ItemOption(221, Util.nextInt(200, 400)));
+                                    item.itemOptions.add(new ItemOption(223, 1));
+                                    InventoryServiceNew.gI().addItemBag(player, item);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    Service.gI().sendThongBao(player, "Bạn nhận được cải trang công đức cực VIP");
+                                    player.congduc = sum;
+                                    break;
+                                case 1:
+                                    int sum2 = player.congduc -= 1000000;
+                                    if (sum2 < 0) {
+                                        Service.gI().sendThongBao(player, "Bạn không đủ công đức");
+                                        return;
+                                    }
+                                    if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        Service.gI().sendThongBao(player, "Cần ít nhất 1 ô hành trang trống");
+                                        return;
+                                    }
+                                    Item gangCongDuc = ItemService.gI().createGangCongDuc(player.gender);
+                                    InventoryServiceNew.gI().addItemBag(player, gangCongDuc);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    Service.gI().sendThongBao(player, "Bạn vừa nhận được một trang bị công đức VIP");
+                                    // process here
+                                    player.congduc = sum2;
+                                    break;
+                                case 2:
+                                    int sum3 = player.congduc -= 1000000;
+                                    if (sum3 < 0) {
+                                        Service.gI().sendThongBao(player, "Bạn không đủ công đức");
+                                        return;
+                                    }
+                                    if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        Service.gI().sendThongBao(player, "Cần ít nhất 1 ô hành trang trống");
+                                        return;
+                                    }
+                                    // process here
+                                    Item linhthu = ItemService.gI().createLinhThuCongDuc(player);
+                                    InventoryServiceNew.gI().addItemBag(player, linhthu);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    Service.gI().sendThongBao(player, "Bạn vừa nhận được một linh thú công đức VIP");
+                                    player.congduc = sum3;
+
+                                    break;
+                                case 3:
+                                    int sum4 = player.congduc -= 1000000;
+                                    if (sum4 < 0) {
+                                        Service.gI().sendThongBao(player, "Bạn không đủ công đức");
+                                        return;
+                                    }
+                                    if (InventoryServiceNew.gI().getCountEmptyBag(player) == 0) {
+                                        Service.gI().sendThongBao(player, "Cần ít nhất 1 ô hành trang trống");
+                                        return;
+                                    }
+                                    // process here
+                                    Item deolung = ItemService.gI().createDeoLungCongDuc();
+                                    InventoryServiceNew.gI().addItemBag(player, deolung);
+                                    InventoryServiceNew.gI().sendItemBags(player);
+                                    Service.gI().sendThongBao(player, "Bạn vừa nhận được một cánh công đức VIP");
+                                    player.congduc = sum4;
                                     break;
                             }
                         }
@@ -6011,19 +6090,22 @@ public class NpcFactory {
                                     createOtherMenu(player, ConstNpc.NANG_CAP_TRANG_BI, "Ngươi tìm ta có việc gì?\n", "Hiến tế\n THẦN LINH", "Hiến tế\nHỦY DIỆT", "Chuyển hóa\nHỦY DIỆT", "Hướng dẫn");
                                     break;
                                 case 5:
-                                    CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.GIA_HAN_VAT_PHAM);
+                                    Service.gI().sendThongBao(player, "Chức năng hiện không hỗ trợ");
+//                                    CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.GIA_HAN_VAT_PHAM);
                                     break;
                                 case 6:
                                     createOtherMenu(player, ConstNpc.TINH_AN_TRANG_BI, "Ngươi tìm ta có việc gì?\n", "Ấn trang bị", "Hướng dẫn");
                                     break;
                                 case 7:
-                                    createOtherMenu(player, ConstNpc.SKH, "Ngươi tìm ta có việc gì?\n", "NÂNG CẤP\n(1)", "NÂNG CẤP\n(2)", "Từ Chối");
+                                    Service.gI().sendThongBao(player, "Chức năng tạm đóng");
+//                                    createOtherMenu(player, ConstNpc.SKH, "Ngươi tìm ta có việc gì?\n", "NÂNG CẤP\n(1)", "NÂNG CẤP\n(2)", "Từ Chối");
                                     break;
                                 case 8:
                                     CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.NANG_CAP_CHAN_MENH);
                                     break;
                                 case 9:
-                                    createOtherMenu(player, ConstNpc.KHAM_DA, "Ngươi tìm ta có việc gì?\n", "Khảm HP", "Khảm Ki", "Khảm Dame", "Từ Chối");
+                                    Service.gI().sendThongBao(player, "Chức năng tạm đóng");
+//                                    createOtherMenu(player, ConstNpc.KHAM_DA, "Ngươi tìm ta có việc gì?\n", "Khảm HP", "Khảm Ki", "Khảm Dame", "Từ Chối");
                                     break;
                                 case 10:
                                     createOtherMenu(player, ConstNpc.LUYEN_HOA, "Ngươi tìm ta có việc gì?\n", "Luyện\nLinh Thú", "Luyện\nPhụ Kiện", "Từ Chối");
@@ -6035,7 +6117,7 @@ public class NpcFactory {
                                     CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.OPEN_SKH_MA_SU);
                                     break;
                                 case 13:
-                                    createOtherMenu(player, ConstNpc.NANG_SKH, "Ngươi tìm ta có việc gì?\n", "Nâng cấp\nSKH", "Nâng Level", "Từ Chối");
+                                    createOtherMenu(player, ConstNpc.NANG_SKH, "Ngươi tìm ta có việc gì?\n", "Nâng cấp\nSKH", "Nâng Level", "Kích hoạt thiên sứ", "Từ Chối");
                                     break;
                             }
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.MENU_START_COMBINE) {
@@ -6099,6 +6181,8 @@ public class NpcFactory {
                                 case 1:
                                     CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.NANG_CAP_SKH);
                                     break;
+                                case 2:
+                                    CombineServiceNew.gI().openTabCombine(player, CombineServiceNew.DAP_SET_KICH_HOAT_TS);
                             }
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.MENU_THANG_HOA_NGOC_BOI) {
                             switch (select) {
@@ -9060,8 +9144,7 @@ public class NpcFactory {
                 if (this.mapId == 154) {
                     this.createOtherMenu(player, ConstNpc.BASE_MENU, "Thử đánh với ta xem nào.\nNgươi còn 1 lượt cơ mà.", "Nói chuyện", "Học tuyệt kỹ", "Thách Đấu Whis", "Top Thách Đấu", "Từ chối");
                 } else if (this.mapId == 48) {
-                    this.createOtherMenu(player, ConstNpc.BASE_MENU, "Ngươi tìm ta có việc gì?",
-                            "Hiến tế\nThần linh", "Hướng\ndẫn", "Đóng");
+                    this.createOtherMenu(player, ConstNpc.BASE_MENU, "Ngươi tìm ta có việc gì?", "Hiến tế\nThần linh", "Hướng\ndẫn", "Đóng");
                 }
             }
 
@@ -9072,7 +9155,7 @@ public class NpcFactory {
                         if (player.iDMark.isBaseMenu()) {
                             switch (select) {
                                 case 0:
-                                    this.createOtherMenu(player, ConstNpc.CREATE_DO_TS, "Ta sẽ giúp ngươi chế tạo trang bị thiên sứ", "Chế tạo", "Từ chối");
+//                                    this.createOtherMenu(player, ConstNpc.CREATE_DO_TS, "Ta sẽ giúp ngươi chế tạo trang bị thiên sứ", "Chế tạo", "Từ chối");
                                     break;
                                 case 1:
                                     Item BiKiepTuyetKy = InventoryServiceNew.gI().findItem(player.inventory.itemsBag, 1320);

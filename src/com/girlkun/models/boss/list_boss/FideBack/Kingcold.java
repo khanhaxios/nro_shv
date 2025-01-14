@@ -22,8 +22,24 @@ import java.util.Random;
  */
 public class Kingcold extends Boss {
 
+    private byte timeHoiSinh = 4;
+
     public Kingcold() throws Exception {
         super(BossID.VUA_COLD, BossesData.VUA_COLD);
+    }
+
+    @Override
+    public double injured(Player plAtt, double damage, boolean piercing, boolean isMobAttack) {
+        if (this.isDie()) {
+            if (timeHoiSinh > 0) {
+                this.nPoint.setFullHpMp();
+                this.chat("Haah ta trở lại rồi đây");
+                this.nPoint.dame += this.nPoint.dame * 0.2;
+                this.nPoint.hpMax += this.nPoint.hpMax * 0.5;
+                timeHoiSinh--;
+            }
+        }
+        return super.injured(plAtt, damage, piercing, isMobAttack);
     }
 
     @Override

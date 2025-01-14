@@ -895,7 +895,7 @@ public class BossesData {
             ConstPlayer.XAYDA,
             new short[]{712, 713, 714, -1, -1, -1},
             3000000,
-            new long[]{2000000000L},
+            new long[]{500000000},
             new int[]{131, 132, 133},
             (int[][]) Util.addArray(FULL_KAMEJOKO, FULL_LIENHOAN), //skill
             new String[]{"|-2|Hắn ta là ai vậy?"}, //text chat 1
@@ -1231,7 +1231,7 @@ public class BossesData {
             ConstPlayer.TRAI_DAT, //gender
             new short[]{508, 509, 510, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             160000, //dame
-            new long[]{1000000000L}, //hp
+            new long[]{2000000000L}, //hp
             new int[]{193, 194, 195}, //map join
             (int[][]) Util.addArray(FULL_KAMEJOKO, FULL_TAI_TAO_NANG_LUONG, FULL_ANTOMIC, FULL_GALICK, FULL_MASENKO), //skill
             new String[]{}, //text chat 1
@@ -1248,7 +1248,7 @@ public class BossesData {
             ConstPlayer.NAMEC, //gender
             new short[]{530, 531, 532, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             100000000, //dame
-            new long[]{150L}, //hp
+            new long[]{500}, //hp
             new int[]{177}, //map join
             new int[][]{
                     {Skill.KHIEN_NANG_LUONG, 7, 100000},
@@ -1292,11 +1292,6 @@ public class BossesData {
             new String[]{"|-1|Chết tiệt!"}, //text chat 3
             TypeAppear.APPEAR_WITH_ANOTHER
     );
-    //**************************************************************************
-    //************************************************************************** Boss goku
-
-
-    //************************************************************************** Boss nrd
     public static final BossData Rong_1Sao = new BossData(
             "Rồng Syn 1 Sao", //name
             ConstPlayer.XAYDA, //gender

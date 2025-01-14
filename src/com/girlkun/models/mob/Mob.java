@@ -776,6 +776,7 @@ public class Mob {
         //drop da thuc tinh
         int idMapNgucTu = 155;
         int idaThucTinh = 1421;
+        int idDaNgocBao = 1651;
         if (player.zone.map.mapId == idMapNgucTu) {
             if (Util.isTrue(5, 50)) {
                 Item item = ItemService.gI().createItemNull();
@@ -783,36 +784,11 @@ public class Mob {
                 item.quantity = 1;
                 Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
             }
-            if (Util.isTrue(10, 50)) {
+            if (Util.isTrue(1, 50)) {
                 Item item = ItemService.gI().createItemNull();
-                item.template = ItemService.gI().getTemplate(987);
+                item.template = ItemService.gI().getTemplate(idDaNgocBao);
                 item.quantity = 1;
                 Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
-            }
-            if (Util.isTrue(5, 50)) {
-                Item item = ItemService.gI().createItemNull();
-                item.template = ItemService.gI().getTemplate(Util.nextInt(1074, 1078));
-                item.quantity = Util.nextInt(1, 6);
-                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
-            }
-            if (Util.isTrue(5, 100)) {
-                Item item = ItemService.gI().createItemNull();
-                item.template = ItemService.gI().getTemplate(Util.nextInt(1097, 1083));
-                item.quantity = Util.nextInt(1, 6);
-                Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
-            }
-            if (Util.isTrue(5, 100)) {
-                if (Util.isTrue(5, 50)) {
-                    Item item = ItemService.gI().createItemNull();
-                    item.template = ItemService.gI().getTemplate(Util.nextInt(1084, 1086));
-                    item.quantity = 1;
-                    Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
-                } else {
-                    Item item = ItemService.gI().createItemNull();
-                    item.template = ItemService.gI().getTemplate(Util.nextInt(1071, 1073));
-                    item.quantity = 1;
-                    Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, item, player));
-                }
             }
         }
 

@@ -1928,7 +1928,7 @@ public class ItemService {
             dots.itemOptions.add(new Item.ItemOption(14, Util.highlightsItem(gender == 1, new Random().nextInt(3) + 40))); // nhẫn 18-20%
         }
         dots.itemOptions.add(new Item.ItemOption(21, 120));
-        dots.itemOptions.add(new Item.ItemOption(30, 1));
+//        dots.itemOptions.add(new Item.ItemOption(30, 1));
         return dots;
     }
 
@@ -1945,6 +1945,77 @@ public class ItemService {
     public Item createPercentItem(short tempId, int param) {
         Item item = createNewItem(tempId, 1);
         item.itemOptions.add(new ItemOption(244, param));
+        return item;
+    }
+
+    public Item createGangCongDuc(byte gender) {
+        short[][] itemIds = {{1048, 1051, 1054, 1057, 1060}, {1049, 1052, 1055, 1058, 1061}, {1050, 1053, 1056, 1059, 1062}}; // thứ tự td - 0,nm - 1, xd - 2
+        short[] itemByGender = itemIds[gender];
+        int rand = Util.nextInt(0, itemByGender.length - 1);
+        Item item = DoThienSu(itemByGender[rand], gender);
+        if (item.id >= 1054 && item.id <= 1056) {
+            item.itemOptions.remove(item.getOptionById(0));
+            item.itemOptions.add(new ItemOption(0, Util.nextInt(60000, 150000)));
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.id >= 1051 && item.id <= 1053) {
+            item.itemOptions.remove(item.getOptionById(6));
+            item.itemOptions.add(new ItemOption(6, Util.nextInt(150000, 250000)));
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(50, 200)));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.id >= 1057 && item.id <= 1060) {
+            item.itemOptions.remove(item.getOptionById(7));
+            item.itemOptions.add(new ItemOption(7, Util.nextInt(150000, 250000)));
+            item.itemOptions.add(new ItemOption(103, Util.nextInt(50, 200)));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.id >= 1060 && item.id <= 1062) {
+            item.itemOptions.remove(item.getOptionById(0));
+            item.itemOptions.add(new ItemOption(0, Util.nextInt(60000, 150000)));
+            item.itemOptions.add(new ItemOption(14, 20));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 40));
+        }
+        return item;
+    }
+
+    public Item createLinhThuCongDuc(Player player) {
+        int[] ids = new int[]{1500, 1501, 1502, 1503, 1504, 1505, 1506, 1507};
+        int rand = Util.nextInt(0, ids.length - 1);
+        int ranGen = Util.nextInt(0, 2);
+        Item item = new Item();
+        item.template = ItemService.gI().getTemplate(ids[rand]);
+        item.quantity = 1;
+        if (ranGen == 0) {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 400)));
+        } else if (ranGen == 1) {
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 400)));
+        } else if (rand == 2) {
+            item.itemOptions.add(new ItemOption(5, Util.nextInt(100, 200)));
+        }
+        return item;
+    }
+
+    public Item createDeoLungCongDuc() {
+        int[] ids = new int[]{1752, 1753, 1754, 1755, 1756, 1757, 1758, 1687};
+        int rand = Util.nextInt(0, ids.length - 1);
+        int ranGen = Util.nextInt(0, 2);
+        Item item = new Item();
+        item.template = ItemService.gI().getTemplate(ids[rand]);
+        item.quantity = 1;
+        if (ranGen == 0) {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 200)));
+        } else if (ranGen == 1) {
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 200)));
+        } else if (rand == 2) {
+            item.itemOptions.add(new ItemOption(5, Util.nextInt(50, 100)));
+        }
         return item;
     }
 }

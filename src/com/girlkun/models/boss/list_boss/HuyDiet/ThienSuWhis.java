@@ -34,7 +34,7 @@ public class ThienSuWhis extends Boss {
         if (Util.isTrue(20, 100)) {
             Service.gI().dropItemMap(this.zone, createItemMap(2009, plKill, new int[]{0, 50, 77, 103, 108, 209, 93}, new int[]{40000, 20, 200, 200, 99, 1, 1}, new int[]{60000, 1000, 2000, 2000, 99, 1, 1}));
         }
-        if (Util.isTrue(10, 100)) {
+        if (Util.isTrue(10, 1000)) {
             int[] itemsFromGender = idDoThienSu[plKill.gender];
             int randomDoTs = Util.nextInt(0, itemsFromGender.length - 1);
             Item doTs = ItemService.gI().DoThienSu(itemsFromGender[randomDoTs], plKill.gender);
@@ -112,7 +112,3 @@ public class ThienSuWhis extends Boss {
 
 }
 
-/**
- * Vui lòng không sao chép mã nguồn này dưới mọi hình thức. Hãy tôn trọng tác
- * giả của mã nguồn này. Xin cảm ơn! - GirlBeo
- */
