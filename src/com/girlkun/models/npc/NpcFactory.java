@@ -4696,7 +4696,7 @@ public class NpcFactory {
                                     this.createOtherMenu(player, ConstNpc.QUY_DOI, "|7|Số công đức của con còn : " + player.congduc + " công đức" + "\n" + "|1|Con Muốn quy đổi không", "Quy đổi\nThỏi kim tệ", "Quy đổi\nHồng ngọc");
                                     break;
                                 case 2:
-                                    this.createOtherMenu(player, ConstNpc.DOI_CAI_TRANG_CONG_DUC, "|7|Số công đúc của bạn còn : " + player.congduc + " công đức\n" + "\n|1|Cải trang 500-2000% chỉ số = 5M công đức (HSD vĩnh viễn)", "\n|2|Trang bị công đức chỉ số từ 60-150k(Có tỷ lệ) = 1M công đức", "\n|3|Linh thú công đức chỉ số từ 100-400% (Có tỷ lệ) = 1M công đức", "\n|4|Cánh công đức chỉ số từ 100-200%(Có tỷ lệ) = 1M công đức", "Đổi \n cải trang", "Đổi \ntrang bị", "Đổi \nLinh thú", "Đổi cánh");
+                                    this.createOtherMenu(player, ConstNpc.DOI_CAI_TRANG_CONG_DUC, "|7|Số công đúc của bạn còn : " + player.congduc + " công đức\n" + "\n|1|Cải trang 500-2000% chỉ số = 5M công đức (HSD vĩnh viễn)" + "\n|2|Trang bị công đức chỉ số từ 60-150k(Có tỷ lệ) = 1M công đức" + "\n|3|Linh thú công đức chỉ số từ 100-400% (Có tỷ lệ) = 1M công đức" + "\n|4|Cánh công đức chỉ số từ 100-200%(Có tỷ lệ) = 1M công đức", "Đổi \n cải trang", "Đổi \ntrang bị", "Đổi \nLinh thú", "Đổi cánh");
                                     break;
                                 case 3:
                                     if (player.getSession().actived) {

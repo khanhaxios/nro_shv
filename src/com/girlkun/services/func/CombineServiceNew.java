@@ -1636,7 +1636,7 @@ public class CombineServiceNew {
                     Item dhd = null, dtl = null;
                     for (Item item : player.combineNew.itemsCombine) {
                         if (item.isNotNullItem()) {
-                            if (item.template.id == 674) {
+                                if (item.template.id == 674) {
                                 dtl = item;
                             } else if (item.template.id >= 1048 && item.template.id <= 1062) {
                                 dhd = item;

@@ -625,11 +625,9 @@ public class Mob {
 
     private void hutItem(Player player, List<ItemMap> items) {
         if (!player.isPet && !player.isNewPet) {
-            if (player.charms.tdThuHut > System.currentTimeMillis()) {
-                for (ItemMap item : items) {
-                    if (item.itemTemplate.id != 590) {
-                        ItemMapService.gI().pickItem(player, item.itemMapId, true);
-                    }
+            for (ItemMap item : items) {
+                if (item.itemTemplate.id != 590) {
+                    ItemMapService.gI().pickItem(player, item.itemMapId, true);
                 }
             }
         } else {
