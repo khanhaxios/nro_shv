@@ -23,7 +23,7 @@ import java.util.Random;
 public class SongokuTaAc extends Boss {
 
     public SongokuTaAc() throws Exception {
-        super(BossID.SONGOKU_TA_AC, BossesData.CUMBER);
+        super(BossID.SONGOKU_TA_AC, BossesData.SONGOKU_TA_AC);
     }
 
     @Override

@@ -737,7 +737,7 @@ public class BossesData {
                     "|-1|trạng thái Goldend Meta Cooler sẽ thiêu rụi mày"
             }, //text chat 2
             new String[]{"|-2|Đêm qua em đẹp lắm!"}, //text chat 3
-            REST_5_M //second rest
+            REST_1_M //second rest
     );
 
 
@@ -789,7 +789,7 @@ public class BossesData {
                     "|-2|Phải cố hết sức thôi"
             }, //text chat 2
             new String[]{"|-2|Mau nghỉ ngơi nào chú Goku"}, //text chat 3
-            TypeAppear.ANOTHER_LEVEL
+            REST_1_M
     );
     //**************************************************************************
     public static final BossData XEN_CON = new BossData(
