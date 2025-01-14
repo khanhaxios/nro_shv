@@ -1636,7 +1636,7 @@ public class CombineServiceNew {
                     Item dhd = null, dtl = null;
                     for (Item item : player.combineNew.itemsCombine) {
                         if (item.isNotNullItem()) {
-                                if (item.template.id == 674) {
+                            if (item.template.id == 674) {
                                 dtl = item;
                             } else if (item.template.id >= 1048 && item.template.id <= 1062) {
                                 dhd = item;
@@ -11913,7 +11913,7 @@ public class CombineServiceNew {
             case DAP_SET_KICH_HOAT_HD:
                 return "Cần 1 Trang Bị Thần Linh bất kỳ và 150 Đá Ngũ Sắc" + "Sau đó chọn 'Nâng cấp'";
             case DAP_SET_KICH_HOAT_TS:
-                return "Cần 1 Trang Bị Thần Linh bất kỳ và 200 Đá Ngũ Sắc" + "Sau đó chọn 'Nâng cấp'";
+                return "Cần 1 trang bị thiên sứ và x200 đá ngũ sắc sau đó chọn 'Nâng Cấp'";
 
             case TAY_SKH_TRANG_BI:
                 return "Cần 1 Trang Bị SKH ( Thần Linh, Hủy Diệt, Thiên Sứ và 1 Bùa Tẩy Pháp Sư" + "\nSau đó chọn 'Tẩy SKH'";

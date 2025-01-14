@@ -28,7 +28,7 @@ public class SongokuTaAc extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        Service.gI().dropItemMap(this.zone, new ItemMap(zone, 674, 1, this.location.x, this.location.y, plKill.id));
+        Service.gI().dropItemMap(this.zone, new ItemMap(zone, 674, Util.nextInt(1, 3), this.location.x, this.location.y, plKill.id));
 
         byte randomDo = (byte) new Random().nextInt(Manager.itemDC12.length);
         byte randomNR = (byte) new Random().nextInt(Manager.itemIds_NR_SB.length);

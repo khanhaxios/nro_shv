@@ -4679,7 +4679,6 @@ public class NpcFactory {
             public void openBaseMenu(Player player) {
                 if (canOpenNpc(player)) {
                     createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Quy đổi\n công đức", "Cửa hàng \n công đức", "Mở thành viên");
-//                    createOtherMenu(player, ConstNpc.BASE_MENU, "Xin chào, ta có một số vật phẩm đặt biệt cậu có muốn xem không?", "Cửa hàng", "Mở thành viên");
                 }
             }
 
@@ -5254,7 +5253,7 @@ public class NpcFactory {
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.DOI_CAI_TRANG_CONG_DUC) {
                             switch (select) {
                                 case 0:
-                                    int sum = player.congduc -= 5000000;
+                                    int sum = player.congduc - 5000000;
                                     if (sum < 0) {
                                         Service.gI().sendThongBao(player, "Bạn không đủ công đức");
                                         return;
@@ -5263,14 +5262,30 @@ public class NpcFactory {
                                         Service.gI().sendThongBao(player, "Cần ít nhất 1 ô hành trang trống");
                                         return;
                                     }
+                                    int ran = Util.nextInt(100);
+
                                     int[] idsCt = new int[]{904, 905, 1093, 2009, 2011, 2012, 1783, 1782, 1781, 629};
                                     int rand = Util.nextInt(0, idsCt.length - 1);
                                     Item item = new Item();
                                     item.template = ItemService.gI().getTemplate(idsCt[rand]);
                                     item.quantity = 1;
-                                    item.itemOptions.add(new ItemOption(50, Util.nextInt(800, 1200)));
-                                    item.itemOptions.add(new ItemOption(77, Util.nextInt(1000, 2000)));
-                                    item.itemOptions.add(new ItemOption(103, Util.nextInt(1000, 2000)));
+                                    int maxRan = 0;
+                                    int minRand = 0;
+                                    if (ran <= 5) {
+                                        minRand = 1500;
+                                        maxRan = 2000;
+                                    }
+                                    if (ran <= 20) {
+                                        minRand = 1000;
+                                        maxRan = 1500;
+                                    }
+                                    if (ran <= 100) {
+                                        minRand = 800;
+                                        maxRan = 1200;
+                                    }
+                                    item.itemOptions.add(new ItemOption(50, Util.nextInt(minRand, maxRan)));
+                                    item.itemOptions.add(new ItemOption(77, Util.nextInt(maxRan, maxRan)));
+                                    item.itemOptions.add(new ItemOption(103, Util.nextInt(maxRan, maxRan)));
                                     item.itemOptions.add(new ItemOption(95, 25));
                                     item.itemOptions.add(new ItemOption(96, 25));
                                     item.itemOptions.add(new ItemOption(101, Util.nextInt(500, 1000)));
@@ -5283,7 +5298,7 @@ public class NpcFactory {
                                     player.congduc = sum;
                                     break;
                                 case 1:
-                                    int sum2 = player.congduc -= 1000000;
+                                    int sum2 = player.congduc - 1000000;
                                     if (sum2 < 0) {
                                         Service.gI().sendThongBao(player, "Bạn không đủ công đức");
                                         return;
@@ -5300,7 +5315,7 @@ public class NpcFactory {
                                     player.congduc = sum2;
                                     break;
                                 case 2:
-                                    int sum3 = player.congduc -= 1000000;
+                                    int sum3 = player.congduc - 1000000;
                                     if (sum3 < 0) {
                                         Service.gI().sendThongBao(player, "Bạn không đủ công đức");
                                         return;
@@ -5318,7 +5333,7 @@ public class NpcFactory {
 
                                     break;
                                 case 3:
-                                    int sum4 = player.congduc -= 1000000;
+                                    int sum4 = player.congduc - 1000000;
                                     if (sum4 < 0) {
                                         Service.gI().sendThongBao(player, "Bạn không đủ công đức");
                                         return;

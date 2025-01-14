@@ -650,7 +650,6 @@ public class Mob {
                 byte random = 0;
                 if (Util.isTrue(5, 100)) {
                     random = 1;
-
                     Item i = Manager.RUBY_REWARDS.get(Util.nextInt(0, Manager.RUBY_REWARDS.size() - 1));
                     i.quantity = random;
                     InventoryServiceNew.gI().addItemBag(player, i);
@@ -675,6 +674,8 @@ public class Mob {
                             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2067, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                         }
                     }
+                } else {
+                    player.congduc += Util.nextInt(1, 15);
                 }
             }
             if (Util.isTrue(50, 150)) {
@@ -685,13 +686,6 @@ public class Mob {
                 ItemMap itemMap = new ItemMap(this.zone, 457, quan, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
-//            if (Util.isTrue(2, 10)) {
-//                int[] idspl = {441, 442, 443, 444, 445, 446, 447};
-//                int rd = Util.nextInt(0, idspl.length - 1);
-//                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
-//                itemMap.itemTemplate = ItemService.gI().getTemplate(idspl[rd]);
-//                Service.gI().dropItemMap(this.zone, itemMap);
-//            }
             if (Util.isTrue(5, 10)) {
                 int[] idspl = {220, 221, 222, 223, 224, 225, 226};
                 int rd = Util.nextInt(0, idspl.length - 1);
@@ -791,7 +785,7 @@ public class Mob {
         }
 
         //
-        if (player.itemTime.isUseMayDo && Util.isTrue(21, 100) && this.tempId > 57 && this.tempId < 66) {
+        if (this.tempId > 57 && this.tempId < 66) {
             list.add(new ItemMap(zone, 380, 1, x, player.location.y, player.id));
             if (Util.isTrue(1, 100) && this.tempId > 57 && this.tempId < 66) {    //up bí kíp
                 list.add(new ItemMap(zone, Util.nextInt(1099, 1102), 1, x, player.location.y, player.id));

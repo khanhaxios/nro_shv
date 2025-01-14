@@ -1927,8 +1927,8 @@ public class ItemService {
         if (nhan.contains(itemId)) {
             dots.itemOptions.add(new Item.ItemOption(14, Util.highlightsItem(gender == 1, new Random().nextInt(3) + 40))); // nhẫn 18-20%
         }
-        dots.itemOptions.add(new Item.ItemOption(21, 120));
-//        dots.itemOptions.add(new Item.ItemOption(30, 1));
+        dots.itemOptions.add(new Item.ItemOption(21, 60));
+        dots.itemOptions.add(new Item.ItemOption(30, 1));
         return dots;
     }
 
@@ -1952,36 +1952,62 @@ public class ItemService {
         short[][] itemIds = {{1048, 1051, 1054, 1057, 1060}, {1049, 1052, 1055, 1058, 1061}, {1050, 1053, 1056, 1059, 1062}}; // thứ tự td - 0,nm - 1, xd - 2
         short[] itemByGender = itemIds[gender];
         int rand = Util.nextInt(0, itemByGender.length - 1);
-        Item item = DoThienSu(itemByGender[rand], gender);
-        if (item.id >= 1054 && item.id <= 1056) {
-            item.itemOptions.remove(item.getOptionById(0));
-            item.itemOptions.add(new ItemOption(0, Util.nextInt(60000, 150000)));
+        Item item = createItemSetKichHoat(itemByGender[rand], 1);
+        int ran = 100000;
+        if (Util.isTrue(10, 100)) {
+            ran = 150000;
+        }
+        int sd1 = Util.nextInt(10000, 60000);
+        int sd2 = Util.nextInt(10000, 60000);
+        if (sd1 + sd2 >= 90000) {
+            sd1 = sd2 = 45000;
+        }
+        if (item.template.id >= 1048 && item.template.id <= 1050) {
+            item.itemOptions.add(new Item.ItemOption(47, Util.nextInt(15000, 45000)));
             item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
-            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
             item.itemOptions.add(new ItemOption(5, 20));
-        } else if (item.id >= 1051 && item.id <= 1053) {
-            item.itemOptions.remove(item.getOptionById(6));
+        } else if (item.template.id >= 1054 && item.template.id <= 1056) {
+            item.itemOptions.add(new ItemOption(0, 60000));
+            item.itemOptions.add(new ItemOption(0, sd1));
+            item.itemOptions.add(new ItemOption(0, sd2));
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.template.id >= 1051 && item.template.id <= 1053) {
             item.itemOptions.add(new ItemOption(6, Util.nextInt(150000, 250000)));
             item.itemOptions.add(new ItemOption(77, Util.nextInt(50, 200)));
-            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
             item.itemOptions.add(new ItemOption(5, 20));
-        } else if (item.id >= 1057 && item.id <= 1060) {
-            item.itemOptions.remove(item.getOptionById(7));
+        } else if (item.template.id >= 1057 && item.template.id <= 1059) {
             item.itemOptions.add(new ItemOption(7, Util.nextInt(150000, 250000)));
             item.itemOptions.add(new ItemOption(103, Util.nextInt(50, 200)));
-            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
             item.itemOptions.add(new ItemOption(5, 20));
-        } else if (item.id >= 1060 && item.id <= 1062) {
-            item.itemOptions.remove(item.getOptionById(0));
-            item.itemOptions.add(new ItemOption(0, Util.nextInt(60000, 150000)));
+        } else if (item.template.id >= 1060 && item.template.id <= 1062) {
+            item.itemOptions.add(new ItemOption(0, 60000));
+            item.itemOptions.add(new ItemOption(0, sd1));
+            item.itemOptions.add(new ItemOption(0, sd2));
             item.itemOptions.add(new ItemOption(14, 20));
-            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
             item.itemOptions.add(new ItemOption(5, 40));
         }
+        return item;
+    }
+
+    private Item removeItemOptionById(Item item, int removeId) {
+        List<ItemOption> options = item.itemOptions;
+        for (int i = 0; i < options.size(); i++) {
+            if (options.get(i).optionTemplate.id == removeId) {
+                options.remove(options.get(i));
+            }
+        }
+        item.itemOptions = options;
         return item;
     }
 
