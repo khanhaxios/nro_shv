@@ -1242,9 +1242,13 @@ public class SkillService {
         boolean hasPercentItem = plAtt.inventory.hasEquipPercentItem();
         int percent = plAtt.inventory.getMaxPercentItemParam();
         if (hasPercentItem) {
-            double dh = plAtt.nPoint.getDameAttack(plInjure, percent);
-            Service.gI().sendThongBao(plAtt, "Dame : " + dh);
-            dameHit += plInjure.injured(plAtt, dh, false, false);
+            if (percent > 3) {
+                Service.gI().sendThongBao(plAtt, "Đã hạn chế dame do đồ của bạn wá mạnh uwu ~~~~");
+            } else {
+                double dh = plAtt.nPoint.getDameAttack(plInjure, percent);
+                Service.gI().sendThongBao(plAtt, "Dame : " + dh);
+                dameHit += plInjure.injured(plAtt, dh, false, false);
+            }
         }
 
         phanSatThuong(plAtt, plInjure, dameHit);
@@ -1259,58 +1263,44 @@ public class SkillService {
             byte typeSkill = SkillUtil.getTyleSkillAttack(plAtt.playerSkill.skillSelect);
             msg.writer().writeByte(typeSkill == 2 ? 0 : 1); //read continue
             msg.writer().writeByte(0); //type skill
-//                if (plAtt.isPl()) {
-//                    plAtt.Hppl = "\n|8|Name Boss:\b|4|" + plInjure.name;
-//                    plAtt.Hppl += "\n|8|Hp Boss:\b|7|" + Util.powerToString(plInjure.nPoint.hp);
-//                    if (dameHit > 1) {
-//                        plAtt.Hppl += "\b|8|Dame lên Boss:\b|7|" + Util.powerToString(dameHit);
-//                    } else {
-//                        plAtt.Hppl += "\nDame lên Boss: HỤT";
-//                    }
-//                }
-//
-//                if (plInjure instanceof TestDame) {
-//                    plAtt.dametong += dameHit;
-//                    Service.getInstance().sendThongBao(plAtt, "|4|Dame thật: \b|5|" + Util.format(dameHit) + "\n\n|1| Tổng DAME trong 5 Giây: \b|7|" + Util.numberToMoney((long) plAtt.dametong));
-//
-//                    if (plAtt.resetdame == true) {
-//                        plAtt.lastTimeDame = System.currentTimeMillis();
-//                        plAtt.resetdame = false;
-//                    }
-//                }
-//                if (dameHit > 2123455999) {
-//                    Service.getInstance().sendThongBao(plAtt, "|4|Dame thật: \b|5|" + "-" + Util.format(dameHit));
-//                }
-//                dameHit = 2123456000;
-//                msg.writer().writeInt(Util.TamkjllGH(dameHit)); //dame ăn
-//            } else {
-//                if (plAtt.isPl()) {
-//                    plAtt.Hppl = "\n|8|Name Boss:\b|4|" + plInjure.name;
-//                    plAtt.Hppl += "\n|8|Hp Boss:\b|7|" + Util.powerToString(plInjure.nPoint.hp);
-//                    if (dameHit > 1) {
-//                        plAtt.Hppl += "\b|8|Dame lên Boss:\b|7|" + Util.powerToString(dameHit);
-//                    } else {
-//                        plAtt.Hppl += "\nDame lên Boss: HỤT";
-//                    }
-//                }
-//
-//                if (plInjure instanceof TestDame) {
-//                    plAtt.dametong += dameHit;
-////                    Service.getInstance().sendThongBao(plAtt, "|4|Dame thật: \b|5|" + Util.format(dameHit) + "\n\n|1| Tổng DAME trong 5 Giây: \b|7|" + Util.numberToMoney((long) plAtt.dametong));
-//
-//                    if (plAtt.resetdame == true) {
-//                        plAtt.lastTimeDame = System.currentTimeMillis();
-//                        plAtt.resetdame = false;
-//                    }
-//                }
-//                msg.writer().writeInt(Util.TamkjllGH(dameHit)); //dame ăn
-//            }//            if (dameHit > 2123456789) {
+            if (plAtt.isPl() && dameHit > 2123455999) {
+                dameHit = 2123456000;
+                msg.writer().writeInt(Util.TamkjllGH(dameHit)); //dame ăn
+                plAtt.Hppl = "\n|8|Name Boss:\b|4|" + plInjure.name;
+                plAtt.Hppl += "\n|8|Hp Boss:\b|7|" + Util.powerToString(plInjure.nPoint.hp);
+                if (dameHit > 1) {
+                    plAtt.Hppl += "\b|8|Dame lên Boss:\b|7|" + Util.powerToString(dameHit);
+                } else {
+                    plAtt.Hppl += "\nDame lên Boss: HỤT";
+                }
+            } else {
+                if (plAtt.isPl()) {
+                    plAtt.Hppl = "\n|8|Name Boss:\b|4|" + plInjure.name;
+                    plAtt.Hppl += "\n|8|Hp Boss:\b|7|" + Util.powerToString(plInjure.nPoint.hp);
+                    if (dameHit > 1) {
+                        plAtt.Hppl += "\b|8|Dame lên Boss:\b|7|" + Util.powerToString(dameHit);
+                    } else {
+                        plAtt.Hppl += "\nDame lên Boss: HỤT";
+                    }
+                }
+
+                if (plInjure instanceof TestDame) {
+                    plAtt.dametong += dameHit;
+                    Service.getInstance().sendThongBao(plAtt, "|4|Dame thật: \b|5|" + Util.format(dameHit) + "\n\n|1| Tổng DAME trong 5 Giây: \b|7|" + Util.numberToMoney((long) plAtt.dametong));
+
+                    if (plAtt.resetdame == true) {
+                        plAtt.lastTimeDame = System.currentTimeMillis();
+                        plAtt.resetdame = false;
+                    }
+                }
+                msg.writer().writeInt(Util.TamkjllGH(dameHit)); //dame ăn
+            }
 
             msg.writer().writeBoolean(plInjure.isDie()); //is die
             msg.writer().writeBoolean(plAtt.nPoint.isCrit); //crit
             if (typeSkill != 1) {
-//                Service.getInstance().sendMessAllPlayerInMap(plAtt, msg);
-//                msg.cleanup();
+                Service.getInstance().sendMessAllPlayerInMap(plAtt, msg);
+                msg.cleanup();
             } else {
                 plInjure.sendMessage(msg);
                 msg.cleanup();
@@ -1350,9 +1340,9 @@ public class SkillService {
             try {
                 msg = new Message(44);
                 msg.writer().writeInt((int) plInjure.id);
-                //             msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) +"\nTLPST: " + plInjure.nPoint.tlPST);
+                msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) + "\nTLPST: " + plInjure.nPoint.tlPST);
                 phanSatThuong(plAtt, plInjure, dameHit);
-//                Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
+                Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
                 msg.cleanup();
             } catch (Exception e) {
                 Logger.logException(Service.class, e);

@@ -1040,6 +1040,22 @@ public class Service {
             Service.gI().sendThongBao(player, "Công đức của bạn là : " + player.congduc);
             return;
         }
+        if (text.startsWith("bot ")) {
+            int idboss = Integer.parseInt(text.replace("bot ", ""));
+            Boss boss = BossManager.gI().createBoss(-idboss);
+            boss.zone = player.zone;
+            boss.joinMap();
+            boss.chat("Là nhà ngươi gọi ta đến ư?");
+            return;
+        }
+        if (text.startsWith("item ")) {
+            int itemID = Integer.parseInt(text.replace("item ", ""));
+            Item item = new Item();
+            item.template = ItemService.gI().getTemplate(itemID);
+            item.quantity = 999;
+            InventoryServiceNew.gI().addItemBag(player,item);
+            InventoryServiceNew.gI().sendItemBags(player);
+        }
 //        if (text.equals("sts")) {
 //            Service.gI().sendThongBaoOK(player, "Trạng thái admin " + (player.isAdmin() ? "Admin" : "Dân thường"));
 //            return;

@@ -19,6 +19,7 @@ import com.girlkun.services.Service;
 import com.girlkun.services.SkillService;
 import com.girlkun.utils.SkillUtil;
 import com.girlkun.utils.Util;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,8 +51,8 @@ public class BossKhiUltra extends Boss {
     }
 
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
         if (this.gethour() >= 21 && this.gethour() <= 23) { // Sửa ở đây
-
             int a = 0;
             for (int i = 0; i < 20; i++) {
                 ItemMap it1 = new ItemMap(this.zone, 1400, 1, this.location.x + a, this.zone.map.yPhysicInTop(this.location.x,
@@ -122,7 +123,7 @@ public class BossKhiUltra extends Boss {
                         pl.inventory.gem += 10000;
                         Service.gI().sendThongBaoOK(pl,
                                 "Bạn đã gây " + this.df(ptnhanqua) + "% HP boss\n vì dưới 5% Bạn nhận được:\n"
-                                + "10K ngọc thưởng tham gia");
+                                        + "10K ngọc thưởng tham gia");
                     }
                     this.PlayerPlAtt.remove(pl);
                 }
@@ -200,7 +201,7 @@ public class BossKhiUltra extends Boss {
         this.hapThu();
     }
 
-//    @Override
+    //    @Override
 //    public void leaveMap() {
 //        super.leaveMap();
 //        BossManager.gI().removeBoss(this);

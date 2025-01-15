@@ -28,6 +28,8 @@ public class BossThoDaiKa extends Boss {
 
     @Override
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
+
         int[] itemDos = new int[]{457};
         int[] NRs = new int[]{457};
         int randomDo = new Random().nextInt(itemDos.length);

@@ -17,6 +17,7 @@ public class Black extends Boss {
         if (Util.isTrue(BossManager.ratioReward, 20)) {
             Service.gI().dropItemMap(this.zone, Util.khongthegiaodich(zone, 992, 1, this.location.x, this.location.y, plKill.id));
         }
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
     }
 
     @Override

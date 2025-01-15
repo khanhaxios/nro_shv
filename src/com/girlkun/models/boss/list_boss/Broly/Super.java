@@ -19,6 +19,8 @@ public class Super extends Boss {
     }
 
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
+
         int[] itemCt = new int[]{568};
         int randomDo = new Random().nextInt(itemCt.length);
         if (Util.isTrue(99, 100)) {

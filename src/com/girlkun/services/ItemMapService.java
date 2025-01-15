@@ -21,7 +21,7 @@ public class ItemMapService {
     }
 
     public void pickItem(Player player, int itemMapId, boolean isThuHut) {
-        if (isThuHut || Util.canDoWithTime(player.iDMark.getLastTimePickItem(), 500)) {
+        if (isThuHut || Util.canDoWithTime(player.iDMark.getLastTimePickItem(), 3000)) {
             player.zone.pickItem(player, itemMapId);
             player.iDMark.setLastTimePickItem(System.currentTimeMillis());
         }

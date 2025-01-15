@@ -29,6 +29,8 @@ public class Xencon extends Boss {
 
     @Override
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(1000,2000));
+
         int[] itemDos = new int[]{16};
         int[] NRs = new int[]{16};
         int randomDo = new Random().nextInt(itemDos.length);

@@ -47,7 +47,7 @@ public class Zone {
     private final List<Player> humanoids; //player, boss, pet
     private final List<Player> notBosses; //player, pet
     public List<Player> players; //player
-    
+
     private final List<Player> bosses; //boss
     private final List<Player> pets; //pet
     public boolean finishMap22h;
@@ -274,7 +274,7 @@ public class Zone {
         return list;
     }
 
-//    public boolean PetinMap() {
+    //    public boolean PetinMap() {
 //        if (!this.petnho.isEmpty()) {
 //            return true;
 //        } else {
@@ -314,38 +314,38 @@ public class Zone {
                                 break;
                             default:
                                 switch (item.template.id) {
-                                    case 362:
-                                        Service.gI().sendThongBao(player, "Chỉ là cục đá thôi, nhặt làm gì?");
-                                        break;
-                                    case 353:
-                                    case 354:
-                                    case 355:
-                                    case 356:
-                                    case 357:
-                                    case 358:
-                                    case 359:
-                                        if (System.currentTimeMillis() >= NgocRongNamecService.gI().tOpenNrNamec) {
-                                            if (player.idNRNM == -1) {
-                                                PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_ALL);
-                                                player.idNRNM = item.template.id;
-                                                NgocRongNamecService.gI().mapNrNamec[item.template.id - 353] = player.zone.map.mapId;
-                                                NgocRongNamecService.gI().nameNrNamec[item.template.id - 353] = player.zone.map.mapName;
-                                                NgocRongNamecService.gI().zoneNrNamec[item.template.id - 353] = (byte) player.zone.zoneId;
-                                                NgocRongNamecService.gI().pNrNamec[item.template.id - 353] = player.name;
-                                                NgocRongNamecService.gI().idpNrNamec[item.template.id - 353] = (int) player.id;
-                                                player.lastTimePickNRNM = System.currentTimeMillis();
-                                                Service.gI().sendFlagBag(player);
-                                                msg.writer().writeUTF("Bạn đã nhặt được " + item.template.name);
-                                                msg.writer().writeShort(item.quantity);
-                                                player.sendMessage(msg);
-                                                msg.cleanup();
-                                            } else {
-                                                Service.gI().sendThongBao(player, "Bạn đã mang ngọc rồng trên người");
-                                            }
-                                        } else {
-                                            Service.gI().sendThongBao(player, "Chỉ là cục đá thôi, nhặt làm gì?");
-                                        }
-                                        break;
+//                                    case 362:
+//                                        Service.gI().sendThongBao(player, "Chỉ là cục đá thôi, nhặt làm gì?");
+//                                        break;
+//                                    case 353:
+//                                    case 354:
+//                                    case 355:
+//                                    case 356:
+//                                    case 357:
+//                                    case 358:
+//                                    case 359:
+//                                        if (System.currentTimeMillis() >= NgocRongNamecService.gI().tOpenNrNamec) {
+//                                            if (player.idNRNM == -1) {
+//                                                PlayerService.gI().changeAndSendTypePK(player, ConstPlayer.PK_ALL);
+//                                                player.idNRNM = item.template.id;
+//                                                NgocRongNamecService.gI().mapNrNamec[item.template.id - 353] = player.zone.map.mapId;
+//                                                NgocRongNamecService.gI().nameNrNamec[item.template.id - 353] = player.zone.map.mapName;
+//                                                NgocRongNamecService.gI().zoneNrNamec[item.template.id - 353] = (byte) player.zone.zoneId;
+//                                                NgocRongNamecService.gI().pNrNamec[item.template.id - 353] = player.name;
+//                                                NgocRongNamecService.gI().idpNrNamec[item.template.id - 353] = (int) player.id;
+//                                                player.lastTimePickNRNM = System.currentTimeMillis();
+//                                                Service.gI().sendFlagBag(player);
+//                                                msg.writer().writeUTF("Bạn đã nhặt được " + item.template.name);
+//                                                msg.writer().writeShort(item.quantity);
+//                                                player.sendMessage(msg);
+//                                                msg.cleanup();
+//                                            } else {
+//                                                Service.gI().sendThongBao(player, "Bạn đã mang ngọc rồng trên người");
+//                                            }
+//                                        } else {
+//                                            Service.gI().sendThongBao(player, "Chỉ là cục đá thôi, nhặt làm gì?");
+//                                        }
+//                                        break;
                                     case 73:
                                         msg.writer().writeUTF("");
                                         msg.writer().writeShort(item.quantity);
@@ -370,7 +370,6 @@ public class Zone {
                                         InventoryServiceNew.gI().sendItemBags(player);
                                         break;
                                 }
-
                         }
                         msg.writer().writeShort(item.quantity);
                         player.sendMessage(msg);
@@ -689,7 +688,7 @@ public class Zone {
 
             msg.writer().writeByte(this.map.bgType);
             msg.writer().writeByte(pl.iDMark.getIdSpaceShip());
-            msg.writer().writeByte(this.map.mapId == 148 ? 1:0);
+            msg.writer().writeByte(this.map.mapId == 148 ? 1 : 0);
             pl.sendMessage(msg);
 
             msg.cleanup();
@@ -720,6 +719,7 @@ public class Zone {
 //            }
         }
     }
+
     public long getTotalHP() {
         long total = 0;
         synchronized (mobs) {

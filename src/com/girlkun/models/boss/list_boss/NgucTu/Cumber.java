@@ -10,8 +10,11 @@ import com.girlkun.models.boss.BossID;
 import com.girlkun.models.boss.BossManager;
 import com.girlkun.models.boss.BossesData;
 import com.girlkun.models.map.ItemMap;
+import com.girlkun.models.map.Map;
+import com.girlkun.models.map.Zone;
 import com.girlkun.models.player.Player;
 import com.girlkun.server.Manager;
+import com.girlkun.services.MapService;
 import com.girlkun.services.Service;
 import com.girlkun.utils.Util;
 
@@ -28,7 +31,7 @@ public class Cumber extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        Service.gI().dropItemMap(this.zone, new ItemMap(zone, 674, 1, this.location.x, this.location.y, plKill.id));
+        Service.gI().dropItemMap(this.zone, new ItemMap(zone, 674, Util.nextInt(20, 50), this.location.x, this.location.y, plKill.id));
 
         byte randomDo = (byte) new Random().nextInt(Manager.itemDC12.length);
         byte randomNR = (byte) new Random().nextInt(Manager.itemIds_NR_SB.length);
@@ -62,10 +65,21 @@ public class Cumber extends Boss {
     }
 
     @Override
+    public void update() {
+        super.update();
+
+    }
+
+    @Override
+    public Zone getRandomZone(int mapId) {
+        Map map = MapService.gI().getMapById(mapId);
+        return map.zones.get(0);
+    }
+
+    @Override
     public void leaveMap() {
         super.leaveMap();
         super.dispose();
         BossManager.gI().removeBoss(this);
     }
-
 }

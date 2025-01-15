@@ -26,6 +26,8 @@ public class XenBoHung extends Boss {
 
     @Override
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(1000,2000));
+
         int[] itemDos = new int[]{674};
         int[] NRs = new int[]{77};
         byte randomDo122 = (byte) new Random().nextInt(Manager.itemIds_TL.length - 1);

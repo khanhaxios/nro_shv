@@ -23,6 +23,7 @@ import com.girlkun.utils.Logger;
 import com.girlkun.utils.Util;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class Mob {
 
@@ -372,7 +373,7 @@ public class Mob {
                     }
                 }
                 this.lastTimeAttackPlayer = System.currentTimeMillis();
-            } else if (Util.canDoWithTime(lastTimeAttackPlayer, 500)) {
+            } else if (Util.canDoWithTime(lastTimeAttackPlayer, 2000)) {
                 Player pl = getPlayerCanAttack();
                 if (pl != null) {
                     this.mobAttackPlayer(pl);
@@ -573,7 +574,8 @@ public class Mob {
             msg.writer().writeByte(this.id);
             msg.writer().writeInt(Util.TamkjllGH(dameHit));
             msg.writer().writeBoolean(plKill.nPoint.isCrit); // crit
-            List<ItemMap> items = mobReward(plKill, this.dropItemTask(plKill), msg);
+            mobReward(plKill, this.dropItemTask(plKill), msg);
+
             Service.getInstance().sendMessAllPlayerInMap(this.zone, msg);
             msg.cleanup();
             if (plKill.zone != null && plKill.isPl()) {
@@ -583,9 +585,8 @@ public class Mob {
                         Service.getInstance().sendMoney(plKill);
                     }
                 }
-
             }
-            hutItem(plKill, items);
+            hutItem(plKill);
         } catch (Exception e) {
         }
     }
@@ -608,7 +609,7 @@ public class Mob {
             List<ItemMap> items = mobReward(plKill, this.dropItemTask(plKill), msg);
             Service.getInstance().sendMessAllPlayerInMap(this.zone, msg);
             msg.cleanup();
-            hutItem(plKill, items);
+            hutItem(plKill);
         } catch (IOException e) {
             Logger.logException(Mob.class, e);
         }
@@ -623,16 +624,16 @@ public class Mob {
         this.lastTimeDie = System.currentTimeMillis();
     }
 
-    private void hutItem(Player player, List<ItemMap> items) {
+    private void hutItem(Player player) {
+        // get all mine item map
+        List<ItemMap> itemMaps = player.zone.items.stream().filter(i -> i.playerId == player.id).collect(Collectors.toList());
         if (!player.isPet && !player.isNewPet) {
-            for (ItemMap item : items) {
-                if (item.itemTemplate.id != 590) {
-                    ItemMapService.gI().pickItem(player, item.itemMapId, true);
-                }
+            for (ItemMap item : itemMaps) {
+                ItemMapService.gI().pickItem(player, item.itemMapId, true);
             }
         } else {
             if (((Pet) player).master.charms.tdThuHut > System.currentTimeMillis()) {
-                for (ItemMap item : items) {
+                for (ItemMap item : itemMaps) {
                     if (item.itemTemplate.id != 590) {
                         ItemMapService.gI().pickItem(((Pet) player).master, item.itemMapId, true);
                     }
@@ -640,6 +641,7 @@ public class Mob {
             }
         }
     }
+
 
     private List<ItemMap> mobReward(Player player, ItemMap itemTask, Message msg) {
         int mapid = player.zone.map.mapId;
@@ -664,12 +666,12 @@ public class Mob {
                     if (Util.isTrue(10, 20)) {
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 541, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                     }
-                    player.congduc += Util.nextInt(15, 50);
+                    player.congduc += Util.nextInt(5, 20);
                     if (Util.isTrue(5, 10)) {
                         // roi long de chau
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2066, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                     } else {
-                        if (Util.isTrue(5, 10)) {
+                        if (Util.isTrue(1, 10)) {
                             // roi hoang tuyen hoa
                             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2067, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                         }

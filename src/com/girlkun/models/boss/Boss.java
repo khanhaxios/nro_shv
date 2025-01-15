@@ -230,7 +230,6 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
     @Override
     public void update() {
         super.update();
-//        System.out.println("this status: " + this.bossStatus + " (" + this.id + ")");
         this.nPoint.mp = this.nPoint.mpg;
         this.nPoint.tlPST = this.tilepst;
         if (this.effectSkill.isHaveEffectSkill()) {
@@ -244,7 +243,6 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                 }
                 break;
             case RESPAWN:
-
                 this.respawn();
                 if (this.id == BossID.TRUNG_UY_TRANG) {
                     System.err.println("statusREESPAWN ");
@@ -255,10 +253,9 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                 }
                 break;
             case JOIN_MAP:
-
                 this.joinMap();
                 this.changeStatus(BossStatus.CHAT_S);
-                //    System.out.println("Map: " + this.zone.map.mapId + ", Zone: " + this.zone.zoneId + ", Boss: " + this.name);
+                    System.out.println("Map: " + this.zone.map.mapId + ", Zone: " + this.zone.zoneId + ", Boss: " + this.name);
                 break;
             case CHAT_S:
                 if (chatS()) {
@@ -315,6 +312,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
 
     @Override
     public void joinMap() {
+
         if (zoneFinal != null) {
             joinMapByZone(zoneFinal);
 
@@ -639,8 +637,8 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
 
     @Override
     public void wakeupAnotherBossWhenAppear() {
-        Logger.log(Logger.CYAN, "LOADING BOSS -> ");
-        System.out.println(Logger.BLACK_BOLD + this.name + ":" + this.zone.map.mapName + " khu vực " + this.zone.zoneId + "(" + this.zone.map.mapId + ")");
+//        Logger.log(Logger.CYAN, "LOADING BOSS -> ");
+//        System.out.println(Logger.BLACK_BOLD + this.name + ":" + this.zone.map.mapName + " khu vực " + this.zone.zoneId + "(" + this.zone.map.mapId + ")");
         if (MapService.gI().isMapKhiGas(this.zone.map.mapId)
                 && MapService.gI().isMapMaBu(this.zone.map.mapId)
                 && MapService.gI().isMapDoanhTrai(this.zone.map.mapId)

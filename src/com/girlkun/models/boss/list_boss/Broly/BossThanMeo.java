@@ -46,6 +46,8 @@ public class BossThanMeo extends Boss {
     }
 
     public void reward(Player plKill) {
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
+
         if (this.gethour() >= 20 && this.gethour() <= 22) { // Sửa ở đây
 
             if (plKill != null) {

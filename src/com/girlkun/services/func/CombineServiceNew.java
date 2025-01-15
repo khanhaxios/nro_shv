@@ -1643,7 +1643,7 @@ public class CombineServiceNew {
                             }
                         }
                     }
-                    if (dhd.isSKH() && dhd != null && dtl != null) {
+                    if (dhd.isSKH() || dhd != null || dtl != null) {
                         this.baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Ta cần Trang Bị Thiên Sứ chưa có SKH và 200 viên Đá Ngũ Sắc", "Đóng");
                     } else if (dhd != null && dtl != null) {
                         String npcSay = "|6|" + dhd.template.name + "\n";
@@ -1651,7 +1651,7 @@ public class CombineServiceNew {
                             npcSay += "|2|" + io.getOptionString() + "\n";
                         }
                         npcSay += "Ngươi có muốn chuyển hóa thành\n";
-                        npcSay += "|1|" + getNameItemC1(dhd.template.gender, dhd.template.type) + " (ngẫu nhiên Set Kích Hoạt)\n|7|Tỉ lệ thành công " + (dtl != null ? "100%" : "40%") + "\n|2|Cần " + Util.numberToMoney(COST_DAP_DO_KICH_HOAT) + " Vàng" + Util.numberToMoney(RUBY_DAP_DO_KICH_HOAT) + " Hồng Ngọc" + Util.numberToMoney(GEM_DAP_DO_KICH_HOAT) + " Ngọc Xanh";
+                        npcSay += "|1|" + getNameItemC0Ts(dhd.template.gender, dhd.template.type) + " (ngẫu nhiên Set Kích Hoạt)\n|7|Tỉ lệ thành công " + (dtl != null ? "100%" : "40%") + "\n|2|Cần " + Util.numberToMoney(COST_DAP_DO_KICH_HOAT) + " Vàng" + Util.numberToMoney(RUBY_DAP_DO_KICH_HOAT) + " Hồng Ngọc" + Util.numberToMoney(GEM_DAP_DO_KICH_HOAT) + " Ngọc Xanh";
                         if (player.inventory.gold >= COST_DAP_DO_KICH_HOAT) {
                             this.baHatMit.createOtherMenu(player, ConstNpc.MENU_START_COMBINE, npcSay, "Cần " + Util.numberToMoney(COST_DAP_DO_KICH_HOAT) + " Vàng" + Util.numberToMoney(RUBY_DAP_DO_KICH_HOAT) + " Hồng Ngọc" + Util.numberToMoney(GEM_DAP_DO_KICH_HOAT) + " Ngọc Xanh");
                         } else {
@@ -11401,6 +11401,51 @@ public class CombineServiceNew {
                 break;
         }
         return -1;
+    }
+
+    private String getNameItemC0Ts(int gender, int type) {
+        if (type == 4) {
+            return "Rada cấp 1";
+        }
+        switch (gender) {
+            case 0:
+                switch (type) {
+                    case 0:
+                        return "Áo Thiên sứ";
+                    case 1:
+                        return "Quần Thiên sứ";
+                    case 2:
+                        return "Găng Thiên sứ";
+                    case 3:
+                        return "Giầy Thiên sứ";
+                }
+                break;
+            case 1:
+                switch (type) {
+                    case 0:
+                        return "Áo Thiên sứ";
+                    case 1:
+                        return "Quần Thiên sứ";
+                    case 2:
+                        return "Găng Thiên sứ";
+                    case 3:
+                        return "Giầy Thiên sứ";
+                }
+                break;
+            case 2:
+                switch (type) {
+                    case 0:
+                        return "Áo Thiên sứ";
+                    case 1:
+                        return "Quần Thiên sứ";
+                    case 2:
+                        return "Găng Thiên sứ";
+                    case 3:
+                        return "Giầy Thiên sứ";
+                }
+                break;
+        }
+        return "";
     }
 
     private String getNameItemC0hd(int gender, int type) {

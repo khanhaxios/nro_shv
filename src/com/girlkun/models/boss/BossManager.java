@@ -82,10 +82,14 @@ import com.girlkun.utils.Logger;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BossManager implements Runnable {
+
+    public List<Boss> ngucTuBoss = new ArrayList<>();
 
     private static BossManager I;
     public static final byte ratioReward = 50;
@@ -174,12 +178,29 @@ public class BossManager implements Runnable {
             this.createBoss(BossID.BOSS_BANG_TINH);
             this.createBoss(BossID.BOSS_HOA_TINH);
             this.createBoss(BossID.BOSS_THO_DAI_KA);
+            this.createBoss(BossID.KAMILOC);
+            this.createBoss(BossID.KAMI_SOOME);
+            this.createBoss(BossID.KAMIRIN);
+            this.createBoss(BossID.COOLER);
+            this.createBoss(BossID.ANDROID_13);
+            this.createBoss(BossID.ANDROID_14);
+            this.createBoss(BossID.ANDROID_15);
+            this.createBoss(BossID.SUPER_ANDROID_17);
+            this.createBoss(BossID.PICPOCKING);
+            this.createBoss(BossID.VUA_COLD);
+            this.createBoss(BossID.CHILL_1);
+            this.createBoss(BossID.CHILL_2);
+            this.createBoss(BossID.FIDE_ROBOT);
+            this.createBoss(BossID.THIEN_SU_VADOS);
+            this.createBoss(BossID.THAN_HUY_DIET_CHAMPA);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         this.loadedBoss = true;
         new Thread(BossManager.I, "Update boss").start();
     }
+
 
     public Boss createBossDoanhTrai(int bossID, int dame, int hp, Zone zone) {
         System.out.println("create boss donh trai");
@@ -401,22 +422,13 @@ public class BossManager implements Runnable {
     }
 
     public void showListBoss(Player player) {
-        if (!player.isAdmin() && !player.isAdmin()) {
-            return;
-        }
         Message msg;
         try {
             msg = new Message(-96);
             msg.writer().writeByte(1);
             msg.writer().writeUTF("Menu Boss");
 
-            List<Boss> aliveBosses = bosses.stream()
-                    .filter(boss -> boss.zone != null)
-                    .filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                            && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                            && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])
-                            && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]))
-                    .collect(Collectors.toList());
+            List<Boss> aliveBosses = bosses.stream().filter(boss -> boss.zone != null).filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])).collect(Collectors.toList());
 
             msg.writer().writeByte(aliveBosses.size());
             for (int i = 0; i < aliveBosses.size(); i++) {
@@ -463,22 +475,10 @@ public class BossManager implements Runnable {
             msg = new Message(-96);
             msg.writer().writeByte(0);
             msg.writer().writeUTF("Boss");
-            msg.writer()
-                    .writeByte(
-                            (int) bosses.stream()
-                                    .filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]))
-                                    .count());
+            msg.writer().writeByte((int) bosses.stream().filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])).count());
             for (int i = 0; i < bosses.size(); i++) {
                 Boss boss = this.bosses.get(i);
-                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])) {
+                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])) {
                     continue;
                 }
                 msg.writer().writeInt((int) boss.id);
@@ -492,8 +492,7 @@ public class BossManager implements Runnable {
                 msg.writer().writeUTF(boss.data[0].getName());
                 if (boss.zone != null) {
                     msg.writer().writeUTF("Sống");
-                    msg.writer().writeUTF(
-                            boss.zone.map.mapName + "(" + boss.zone.map.mapId + ")");
+                    msg.writer().writeUTF(boss.zone.map.mapName + "(" + boss.zone.map.mapId + ")");
                 } else {
                     msg.writer().writeUTF("Chết");
                     msg.writer().writeUTF("Chết rồi");
@@ -517,27 +516,14 @@ public class BossManager implements Runnable {
             msg = new Message(-96);
             msg.writer().writeByte(1);
             msg.writer().writeUTF("Menu Boss For Mem");
-            msg.writer()
-                    .writeByte(
-                            (int) bosses.stream()
-                                    .filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapConDuongRanDoc(boss.data[0].getMapJoin()[0])
+            msg.writer().writeByte((int) bosses.stream().filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapConDuongRanDoc(boss.data[0].getMapJoin()[0])
 //                                    && !MapService.gI().isMapKhiGaHuyDiet(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])
+                    && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])
 //                                    && !MapService.gI().isMapKhiGaHuyDiet(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]))
-                                    .count());
+                    && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])).count());
             for (int i = 0; i < bosses.size(); i++) {
                 Boss boss = this.bosses.get(i);
-                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])
-                        || !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapConDuongRanDoc(boss.data[0].getMapJoin()[0])) {
+                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0]) || !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapConDuongRanDoc(boss.data[0].getMapJoin()[0])) {
 //                        || MapService.gI().isMapKhiGaHuyDiet(boss.data[0].getMapJoin()[0])) {
                     continue;
                 }
@@ -572,25 +558,12 @@ public class BossManager implements Runnable {
             msg = new Message(-96);
             msg.writer().writeByte(0);
             msg.writer().writeUTF("Boss");
-            msg.writer()
-                    .writeByte(
-                            (int) bosses.stream()
-                                    .filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0])
+            msg.writer().writeByte((int) bosses.stream().filter(boss -> !MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0])
 //                                    && !MapService.gI().isMapKhiGaHuyDiet(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])
-                                            && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]))
-                                    .count());
+                    && !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0]) && !MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])).count());
             for (int i = 0; i < bosses.size(); i++) {
                 Boss boss = this.bosses.get(i);
-                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0])
-                        || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0])
-                        || !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]
+                if (MapService.gI().isMapMaBu(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBanDoKhoBau(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapBlackBallWar(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapSatan(boss.data[0].getMapJoin()[0]) || MapService.gI().isMapDoanhTrai(boss.data[0].getMapJoin()[0]) || !MapService.gI().isMapVodai(boss.data[0].getMapJoin()[0]
 //                        || MapService.gI().isMapKhiGaHuyDiet(boss.data[0].getMapJoin()[0]
                 )) {
                     continue;
@@ -606,8 +579,7 @@ public class BossManager implements Runnable {
                 msg.writer().writeUTF(boss.data[0].getName());
                 if (boss.zone != null) {
                     msg.writer().writeUTF("Sống");
-                    msg.writer().writeUTF(
-                            "Tự đi tìm đi");
+                    msg.writer().writeUTF("Tự đi tìm đi");
                 } else {
                     msg.writer().writeUTF("Chết");
                     msg.writer().writeUTF("Chết rồi");
@@ -623,9 +595,7 @@ public class BossManager implements Runnable {
 
     public synchronized void callBoss(Player player, int mapId) {
         try {
-            if (BossManager.gI().existBossOnPlayer(player)
-                    || player.zone.items.stream().anyMatch(itemMap -> ItemMapService.gI().isBlackBall(itemMap.itemTemplate.id))
-                    || player.zone.getPlayers().stream().anyMatch(p -> p.iDMark.isHoldBlackBall())) {
+            if (BossManager.gI().existBossOnPlayer(player) || player.zone.items.stream().anyMatch(itemMap -> ItemMapService.gI().isBlackBall(itemMap.itemTemplate.id)) || player.zone.getPlayers().stream().anyMatch(p -> p.iDMark.isHoldBlackBall())) {
                 return;
             }
             Boss k = null;

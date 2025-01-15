@@ -37,6 +37,7 @@ public class SieuBoHung extends Boss {
         } else if (Util.isTrue(50, 100)) {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, NRs[randomNR], 1, this.location.x, zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
         }
+        Service.gI().addCongDuc(plKill,Util.nextInt(1000,2000));
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
     }
 

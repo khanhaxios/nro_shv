@@ -5699,7 +5699,7 @@ public class NpcFactory {
                                     createOtherMenu(player, ConstNpc.DOI_SKILL, "Đổi Skill Đệ Tử\n" + "|2|Chào bạn : " + player.name + "\nSố Dư : " + player.congduc + " công đức\n" + "|7|Bạn muốn đổi skill nào?", "SKILL 2,3\n10.000 công đức", "SKILL 3,4\n20.000 công đức");
                                     break;
                                 case 2:
-                                    BossManager.gI().showListBossNormal(player);
+                                    BossManager.gI().showListBoss(player);
                                     break;
                             }
                         } else if (player.iDMark.getIndexMenu() == ConstNpc.DOI_HANH_TINH) {

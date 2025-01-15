@@ -21,6 +21,9 @@ public class ZamasKaio extends Boss {
         if (Util.isTrue(20, 50)) {
             Service.gI().dropItemMap(this.zone, new ItemMap(zone, 1548, Util.nextInt(1, 5), this.location.x, this.location.y, plKill.id));
         }
+        Service.gI().addCongDuc(plKill,Util.nextInt(25000,50000));
+
+
         byte randomDo = (byte) new Random().nextInt(Manager.itemDC12.length);
         byte randomNR = (byte) new Random().nextInt(Manager.itemIds_NR_SB.length);
         int[] itemDos = new int[]{233, 237, 241, 245, 249, 253, 257, 261, 265, 269, 273, 277, 281};

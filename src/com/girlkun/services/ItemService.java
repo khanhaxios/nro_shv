@@ -1970,8 +1970,12 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(5, 20));
         } else if (item.template.id >= 1054 && item.template.id <= 1056) {
             item.itemOptions.add(new ItemOption(0, 60000));
-            item.itemOptions.add(new ItemOption(0, sd1));
-            item.itemOptions.add(new ItemOption(0, sd2));
+            if (Util.isTrue(30, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd1));
+            }
+            if (Util.isTrue(10, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd2));
+            }
             item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
             item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
@@ -1990,12 +1994,16 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(5, 20));
         } else if (item.template.id >= 1060 && item.template.id <= 1062) {
             item.itemOptions.add(new ItemOption(0, 60000));
-            item.itemOptions.add(new ItemOption(0, sd1));
-            item.itemOptions.add(new ItemOption(0, sd2));
+            if (Util.isTrue(30, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd1));
+            }
+            if (Util.isTrue(10, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd2));
+            }
             item.itemOptions.add(new ItemOption(14, 20));
             item.itemOptions.add(new ItemOption(95, 25));
             item.itemOptions.add(new ItemOption(96, 25));
-            item.itemOptions.add(new ItemOption(5, 40));
+            item.itemOptions.add(new ItemOption(5, 20));
         }
         return item;
     }
@@ -2024,6 +2032,8 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 400)));
         } else if (rand == 2) {
             item.itemOptions.add(new ItemOption(5, Util.nextInt(100, 200)));
+        } else {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 400)));
         }
         return item;
     }
@@ -2041,6 +2051,8 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 200)));
         } else if (rand == 2) {
             item.itemOptions.add(new ItemOption(5, Util.nextInt(50, 100)));
+        } else {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 200)));
         }
         return item;
     }

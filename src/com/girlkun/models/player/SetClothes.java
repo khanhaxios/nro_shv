@@ -10,6 +10,7 @@ public class SetClothes {
     public SetClothes(Player player) {
         this.player = player;
     }
+
     // skh sgk
     public byte songoku;
     public byte thienXinHang;
@@ -31,7 +32,7 @@ public class SetClothes {
     public byte SetThienSu;
     public boolean godClothes;
     public int ctHaiTac = -1;
-    
+
     public int tilesongoku;
     public int tilethienXinHang;
     public int tilekirin;
@@ -74,7 +75,6 @@ public class SetClothes {
                 case 627:
                     this.ctHaiTac = ct.template.id;
                     break;
-
             }
         }
 
@@ -83,7 +83,6 @@ public class SetClothes {
             Item item = this.player.inventory.itemsBody.get(i);
             if (item.isNotNullItem()) {
                 if (item.template.id >= 1048 && item.template.id <= 1062) {
-
                     player.setClothes.SetThienSu++;
                 }
             }
@@ -252,7 +251,7 @@ public class SetClothes {
         this.worldcup = 0;
         this.godClothes = false;
         this.ctHaiTac = -1;
-        
+
         this.tilesongoku = 0;
         this.tilethienXinHang = 0;
         this.tilekirin = 0;

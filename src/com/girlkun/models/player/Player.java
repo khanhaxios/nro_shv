@@ -414,33 +414,31 @@ public class Player {
                         timeudmv = System.currentTimeMillis();
                     }
                     if (this.isPl() && this.setClothes.ocTieu == 5) {
-                        Service.gI().sendTitle(this, 890);
+//                        Service.gI().sendTitle(this, 890);
                     }
                     if (this.isPl() && this.setClothes.picolo == 5) {
-                        Service.gI().sendTitle(this, 890);
+//                        Service.gI().sendTitle(this, 890);
                     }
                     if (this.isPl() && this.setClothes.pikkoroDaimao == 5) {
-                        Service.gI().sendTitle(this, 890);
+//                        Service.gI().sendTitle(this, 890);
                     }
                     if (this.isPl() && this.setClothes.nappa == 5) {
-                        Service.gI().sendTitle(this, 889);
+//                        Service.gI().sendTitle(this, 889);
                     }
                     if (this.isPl() && this.setClothes.cadic == 5) {
-                        Service.gI().sendTitle(this, 889);
+//                        Service.gI().sendTitle(this, 889);
                     }
                     if (this.isPl() && this.setClothes.kakarot == 5) {
-                        Service.gI().sendTitle(this, 889);
+//                        Service.gI().sendTitle(this, 889);
                     }
                     if (this.isPl() && this.setClothes.songoku == 5) {
-                        Service.gI().sendTitle(this, 891);
+//                        Service.gI().sendTitle(this, 891);
                     }
                     if (this.isPl() && this.setClothes.kirin == 5) {
-                        Service.gI().sendTitle(this, 891);
+//                        Service.gI().sendTitle(this, 891);
                     }
                     if (this.isPl() && this.setClothes.thienXinHang == 5) {
-                        Service.gI().sendTitle(this, 891);
-                    }
-                    if (isPl()) {
+//                        Service.gI().sendTitle(this, 891);
                     }
                     if (this.thoigianduhanh > 0 && Util.canDoWithTime(this.thoigianduhanh, 1000)) {
                         this.thoigianduhanh = 0;
