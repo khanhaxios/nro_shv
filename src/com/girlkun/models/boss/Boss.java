@@ -244,18 +244,11 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
                 break;
             case RESPAWN:
                 this.respawn();
-                if (this.id == BossID.TRUNG_UY_TRANG) {
-                    System.err.println("statusREESPAWN ");
-                }
-                this.changeStatus(BossStatus.JOIN_MAP);
-                if (this.id == BossID.TRUNG_UY_TRANG) {
-                    System.err.println("currr statusc :::: " + this.bossStatus);
-                }
                 break;
             case JOIN_MAP:
                 this.joinMap();
                 this.changeStatus(BossStatus.CHAT_S);
-                    System.out.println("Map: " + this.zone.map.mapId + ", Zone: " + this.zone.zoneId + ", Boss: " + this.name);
+                System.out.println("Map: " + this.zone.map.mapId + ", Zone: " + this.zone.zoneId + ", Boss: " + this.name);
                 break;
             case CHAT_S:
                 if (chatS()) {
@@ -308,6 +301,7 @@ public class Boss extends Player implements IBossNew, IBossOutfit {
         }
         this.initBase();
         this.changeToTypeNonPK();
+        this.changeStatus(BossStatus.JOIN_MAP);
     }
 
     @Override

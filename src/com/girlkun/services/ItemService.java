@@ -2008,6 +2008,63 @@ public class ItemService {
         return item;
     }
 
+    public Item createGangCongDuc(int id) {
+        Item item = createItemSetKichHoat(id, 1);
+        int ran = 100000;
+        if (Util.isTrue(10, 100)) {
+            ran = 150000;
+        }
+        int sd1 = Util.nextInt(10000, 60000);
+        int sd2 = Util.nextInt(10000, 60000);
+        if (sd1 + sd2 >= 90000) {
+            sd1 = sd2 = 45000;
+        }
+        if (item.template.id >= 1048 && item.template.id <= 1050) {
+            item.itemOptions.add(new Item.ItemOption(47, Util.nextInt(15000, 45000)));
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.template.id >= 1054 && item.template.id <= 1056) {
+            item.itemOptions.add(new ItemOption(0, 60000));
+            if (Util.isTrue(30, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd1));
+            }
+            if (Util.isTrue(10, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd2));
+            }
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.template.id >= 1051 && item.template.id <= 1053) {
+            item.itemOptions.add(new ItemOption(6, Util.nextInt(150000, 250000)));
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(50, 200)));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.template.id >= 1057 && item.template.id <= 1059) {
+            item.itemOptions.add(new ItemOption(7, Util.nextInt(150000, 250000)));
+            item.itemOptions.add(new ItemOption(103, Util.nextInt(50, 200)));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        } else if (item.template.id >= 1060 && item.template.id <= 1062) {
+            item.itemOptions.add(new ItemOption(0, 60000));
+            if (Util.isTrue(30, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd1));
+            }
+            if (Util.isTrue(10, 100)) {
+                item.itemOptions.add(new ItemOption(0, sd2));
+            }
+            item.itemOptions.add(new ItemOption(14, 20));
+            item.itemOptions.add(new ItemOption(95, 25));
+            item.itemOptions.add(new ItemOption(96, 25));
+            item.itemOptions.add(new ItemOption(5, 20));
+        }
+        return item;
+    }
+
     private Item removeItemOptionById(Item item, int removeId) {
         List<ItemOption> options = item.itemOptions;
         for (int i = 0; i < options.size(); i++) {
@@ -2034,6 +2091,44 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(5, Util.nextInt(100, 200)));
         } else {
             item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 400)));
+        }
+        return item;
+    }
+
+    public Item createLinhThuCongDuc(int percent) {
+        int[] ids = new int[]{1500, 1501, 1502, 1503, 1504, 1505, 1506, 1507};
+        int rand = Util.nextInt(0, ids.length - 1);
+        int ranGen = Util.nextInt(0, 2);
+        Item item = new Item();
+        item.template = ItemService.gI().getTemplate(ids[rand]);
+        item.quantity = 1;
+        if (ranGen == 0) {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(percent)));
+        } else if (ranGen == 1) {
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(percent)));
+        } else if (rand == 2) {
+            item.itemOptions.add(new ItemOption(5, Util.nextInt(percent)));
+        } else {
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(percent)));
+        }
+        return item;
+    }
+
+    public Item createDeoLungCongDuc(int percent) {
+        int[] ids = new int[]{1752, 1753, 1754, 1755, 1756, 1757, 1758, 1687};
+        int rand = Util.nextInt(0, ids.length - 1);
+        int ranGen = Util.nextInt(0, 2);
+        Item item = new Item();
+        item.template = ItemService.gI().getTemplate(ids[rand]);
+        item.quantity = 1;
+        if (ranGen == 0) {
+            item.itemOptions.add(new ItemOption(50, percent));
+        } else if (ranGen == 1) {
+            item.itemOptions.add(new ItemOption(77, percent));
+        } else if (rand == 2) {
+            item.itemOptions.add(new ItemOption(5, percent));
+        } else {
+            item.itemOptions.add(new ItemOption(50, percent));
         }
         return item;
     }

@@ -189,4 +189,8 @@ public class BossID {
     public static final int THODAUBAC = -666;
     public static final int DRACULA = -555;
     public static final int SATAN = -444;
+    public static final int VO_LUONG_THIEN_TON = 13123312;
+    public static final int MA_HAU_LAO_TO = -1312332;
+    public static final int HONG_QUAN_LAO_TO = 1123312;
+
 }

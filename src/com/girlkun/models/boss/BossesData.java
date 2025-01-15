@@ -3,7 +3,6 @@ package com.girlkun.models.boss;
 import com.girlkun.consts.ConstPlayer;
 import com.girlkun.models.skill.Skill;
 import com.girlkun.utils.Util;
-import com.girlkun.models.boss.BossID;
 
 /**
  * @Stole By BARCOLL ZALO 0358176187❤
@@ -39,6 +38,7 @@ public class BossesData {
     private static final int REST_60_M = 3600;
     private static final int REST_24_H = 86400000;
 
+
     //************************************************************************** Boss nappa
     public static final BossData KUKU = new BossData(
             "Kuku", //name
@@ -61,6 +61,90 @@ public class BossesData {
                     "|-1|Ta sẽ tàn sát khu này trong vòng 5 phút nữa",
                     "|-1|Hahaha mày đây rồi",
                     "|-1|Tao đã có lệnh từ đại ca Fide rồi"
+            }, //text chat 2
+            new String[]{"|-2|Đẹp trai nó phải thế"}, //text chat 3
+            REST_5_M //second rest
+    );
+
+    public static final BossData VOLUONGTHIENTON = new BossData(
+            "Vô lượng thiên tôn(hóa thân)", //name
+            ConstPlayer.TRAI_DAT, //gender
+            new short[]{89, 90, 91, -1, -1, -1},
+            1500000, //dame
+            new long[]{1000000000000L}, //hp
+            new int[]{5}, //map join
+            new int[][]{
+                    {Skill.KAMEJOKO, 7, 1000},
+                    {Skill.THAI_DUONG_HA_SAN, 7, 3000},
+                    {Skill.DICH_CHUYEN_TUC_THOI, 7, 5000}
+            },
+            new String[]{"|-1|Hế lô anh em tao , đứng đây từ chiều",
+                    "|-1|Mày hiểu thế là sao chứ? Cuối cùng tao đã có thể giết mày!",
+                    "|-2|Tao lại sợ mày quá cơ,cho bố cái địa chỉ!",
+                    "|-1|Mày làm tao phấn khích rồi đấy hahaha.."
+            }, //text chat 1
+            new String[]{"|-1|Tao hơn hẳn mày, mày nên cầu cho may mắn ở phía mày đi",
+                    "|-1|Ha ha ha! Mắt mày mù à? Nhìn máy đo chỉ số đi!!",
+                    "|-1|Định chạy trốn hả, hử",
+                    "|-1|Ta sẽ tàn sát khu này trong vòng 5 phút nữa",
+                    "|-1|Hahaha mày đây rồi",
+                    "|-1|Thí chủ có cái vòng ngon đấy h là của tại hạ"
+            }, //text chat 2
+            new String[]{"|-2|Đẹp trai nó phải thế"}, //text chat 3
+            REST_5_M //second rest
+    );
+
+    public static final BossData HONGQUANLAOTO = new BossData(
+            "Hồng Quân Lão Tổ(hóa thân)", //name
+            ConstPlayer.XAYDA, //gender
+            new short[]{1264, 1265, 1266, -1, -1, -1},
+            1500000, //dame
+            new long[]{1000000000000L}, //hp
+            new int[]{5}, //map join
+            new int[][]{
+                    {Skill.LIEN_HOAN, 7, 1000},
+                    {Skill.SOCOLA, 7, 3000},
+                    {Skill.THOI_MIEN, 7, 5000}
+            },
+            new String[]{"|-1|Hãy giết chúng nào ma hầu",
+                    "|-1|Tạo hóa ngọc diệp",
+                    "|-2|Thiên đạo chi ngôn",
+                    "|-1|Hừ chết đi"
+            }, //text chat 1
+            new String[]{"|-1|Tao hơn hẳn mày, mày nên cầu cho may mắn ở phía mày đi",
+                    "|-1|Ha ha ha! Mắt mày mù à? Nhìn máy đo chỉ số đi!!",
+                    "|-1|Định chạy trốn hả, hử",
+                    "|-1|Ta sẽ tàn sát khu này trong vòng 5 phút nữa",
+                    "|-1|Hahaha mày đây rồi",
+                    "|-1|Thí chủ có cái vòng ngon đấy h là của tại hạ"
+            }, //text chat 2
+            new String[]{"|-2|Đẹp trai nó phải thế"}, //text chat 3
+            REST_5_M //second rest
+    );
+
+    public static final BossData MAHAU = new BossData(
+            "Ma Hầu Lão Tổ (hóa thân)", //name
+            ConstPlayer.TRAI_DAT, //gender
+            new short[]{550, 880, 881, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
+            1500000, //dame
+            new long[]{1000000000000L}, //hp
+            new int[]{5}, //map join
+            new int[][]{
+                    {Skill.BIEN_KHI, 7, 160000},
+                    {Skill.TAI_TAO_NANG_LUONG, 7, 10000},
+                    {Skill.GALICK, 7, 500}
+            },
+            new String[]{"|-1|Hế lô anh em tao , đứng đây từ chiều",
+                    "|-1|Mày hiểu thế là sao chứ? Cuối cùng tao đã có thể giết mày!",
+                    "|-2|Tao lại sợ mày quá cơ,cho bố cái địa chỉ!",
+                    "|-1|Mày làm tao phấn khích rồi đấy hahaha.."
+            }, //text chat 1
+            new String[]{"|-1|Tao hơn hẳn mày, mày nên cầu cho may mắn ở phía mày đi",
+                    "|-1|Ha ha ha! Mắt mày mù à? Nhìn máy đo chỉ số đi!!",
+                    "|-1|Định chạy trốn hả, hử",
+                    "|-1|Ta sẽ tàn sát khu này trong vòng 5 phút nữa",
+                    "|-1|Hahaha mày đây rồi",
+                    "|-1|Thí chủ có cái vòng ngon đấy h là của tại hạ"
             }, //text chat 2
             new String[]{"|-2|Đẹp trai nó phải thế"}, //text chat 3
             REST_5_M //second rest

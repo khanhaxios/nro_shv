@@ -26,7 +26,6 @@ public class MaBuCom extends Boss {
     private int timeHapThu;
 
     public MaBuCom() throws Exception {
-
         super(BossID.BOSS_MA_BU_COM, BossesData.BOSS_MA_BU_COM);
     }
 

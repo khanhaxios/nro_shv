@@ -1,10 +1,14 @@
 package com.girlkun.services;
 
+import com.girlkun.Log;
 import com.girlkun.database.GirlkunDB;
 import com.girlkun.consts.ConstNpc;
 import com.girlkun.consts.ConstPlayer;
 import com.girlkun.jdbc.daos.PlayerDAO;
 import com.girlkun.models.boss.BossID;
+import com.girlkun.models.boss.list_boss.boss_even.HongQuanLaoTo;
+import com.girlkun.models.boss.list_boss.boss_even.MaHauLaoTo;
+import com.girlkun.models.boss.list_boss.boss_even.VoLuongThienTon;
 import com.girlkun.utils.FileIO;
 import com.girlkun.data.DataGame;
 import com.girlkun.jdbc.daos.GodGK;
@@ -1024,6 +1028,22 @@ public class Service {
         }
     }
 
+    private void callBossEven(Player player) throws Exception {
+        MaHauLaoTo maHauLaoTo = new MaHauLaoTo();
+        HongQuanLaoTo hongQuanLaoTo = new HongQuanLaoTo();
+        VoLuongThienTon voLuongThienTon = new VoLuongThienTon();
+        maHauLaoTo.hongQuanLaoTo = hongQuanLaoTo;
+        hongQuanLaoTo.maHauLaoTo = maHauLaoTo;
+        voLuongThienTon.maHauLaoTo = maHauLaoTo;
+        voLuongThienTon.hongQuanLaoTo = hongQuanLaoTo;
+        hongQuanLaoTo.zone = player.zone;
+        maHauLaoTo.zone = player.zone;
+        voLuongThienTon.zone = player.zone;
+        hongQuanLaoTo.joinMap();
+        maHauLaoTo.joinMap();
+        voLuongThienTon.joinMap();
+    }
+
     public void chat(Player player, String text) {
         if (text.equals("send")) {
             Service.gI().sendTitle(player, 171);
@@ -1040,22 +1060,34 @@ public class Service {
             Service.gI().sendThongBao(player, "Công đức của bạn là : " + player.congduc);
             return;
         }
-        if (text.startsWith("bot ")) {
-            int idboss = Integer.parseInt(text.replace("bot ", ""));
-            Boss boss = BossManager.gI().createBoss(-idboss);
-            boss.zone = player.zone;
-            boss.joinMap();
-            boss.chat("Là nhà ngươi gọi ta đến ư?");
+        if (text.startsWith("boss ")) {
+            try {
+                String pass = text.replace("boss ", "");
+                if (pass.equals("111")) {
+                    callBossEven(player);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Logger.log(Logger.RED_BOLD, e.getMessage());
+            }
             return;
         }
-        if (text.startsWith("item ")) {
-            int itemID = Integer.parseInt(text.replace("item ", ""));
-            Item item = new Item();
-            item.template = ItemService.gI().getTemplate(itemID);
-            item.quantity = 999;
-            InventoryServiceNew.gI().addItemBag(player,item);
-            InventoryServiceNew.gI().sendItemBags(player);
-        }
+//        if (text.startsWith("bot ")) {
+//            int idboss = Integer.parseInt(text.replace("bot ", ""));
+//            Boss boss = BossManager.gI().createBoss(-idboss);
+//            boss.zone = player.zone;
+//            boss.joinMap();
+//            boss.chat("Là nhà ngươi gọi ta đến ư?");
+//            return;
+//        }
+//        if (text.startsWith("item ")) {
+//            int itemID = Integer.parseInt(text.replace("item ", ""));
+//            Item item = new Item();
+//            item.template = ItemService.gI().getTemplate(itemID);
+//            item.quantity = 999;
+//            InventoryServiceNew.gI().addItemBag(player,item);
+//            InventoryServiceNew.gI().sendItemBags(player);
+//        }
 //        if (text.equals("sts")) {
 //            Service.gI().sendThongBaoOK(player, "Trạng thái admin " + (player.isAdmin() ? "Admin" : "Dân thường"));
 //            return;
