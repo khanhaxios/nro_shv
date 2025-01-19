@@ -1485,6 +1485,9 @@ public class NPoint {
                     percentXDame = this.player.setClothes.tilesongoku;
 //                    percentXDame = 100;
                 }
+                if (this.player.playerSkill.skillSelect.point == 7) {
+                    percentXDame += 3;
+                }
                 break;
             case Skill.GALICK:
                 if (intrinsic.id == 16) {
@@ -1494,6 +1497,9 @@ public class NPoint {
                 if (this.player.setClothes.kakarot == 5) {
                     percentXDame = this.player.setClothes.tilekakarot;
 //                    percentXDame = 100;
+                    if (this.player.playerSkill.skillSelect.point == 7) {
+                        percentXDame += 1.5;
+                    }
                 }
                 break;
             case Skill.ANTOMIC:
@@ -1531,6 +1537,9 @@ public class NPoint {
                 if (this.player.setClothes.ocTieu == 5) {
                     percentXDame = this.player.setClothes.tileocTieu;
 //                    percentXDame = 100;
+                }
+                if (this.player.playerSkill.skillSelect.point == 7) {
+                    percentXDame += 1.2;
                 }
                 break;
             case Skill.DICH_CHUYEN_TUC_THOI:
@@ -1803,6 +1812,9 @@ public class NPoint {
         return 0;
     }
 
+    public int getMaxDameLimit(){
+        return 66000;
+    }
     public int getDameLimit() {
         if (limitPower == 0) {
             return 16000;

@@ -5,6 +5,7 @@ import com.girlkun.network.io.Message;
 import com.girlkun.utils.Logger;
 import com.girlkun.utils.TimeUtil;
 import com.girlkun.utils.Util;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,14 +54,10 @@ public class ChatGlobalService implements Runnable {
 
         if (player.inventory.ruby >= 5) {
             if (player.isAdmin() || Util.canDoWithTime(player.iDMark.getLastTimeChatGlobal(), 360000)) {
-                if (player.isAdmin() || player.nPoint.power > 2000000000) {
-//                    player.inventory.subGemAndRuby(5); 
+//                    player.inventory.subGemAndRuby(5);
 //                    Service.gI().sendMoney(player);
-                    player.iDMark.setLastTimeChatGlobal(System.currentTimeMillis());
-                    waitingChat.add(new ChatGlobal(player, text.length() > 100 ? text.substring(0, 100) : text));
-                } else {
-                    Service.gI().sendThongBao(player, "Sức mạnh phải ít nhất 2tỷ mới có thể chat thế giới");
-                }
+                player.iDMark.setLastTimeChatGlobal(System.currentTimeMillis());
+                waitingChat.add(new ChatGlobal(player, text.length() > 100 ? text.substring(0, 100) : text));
             } else {
                 Service.gI().sendThongBao(player, "Không thể chat thế giới lúc này, vui lòng đợi "
                         + TimeUtil.getTimeLeft(player.iDMark.getLastTimeChatGlobal(), 240));

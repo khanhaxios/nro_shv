@@ -352,7 +352,7 @@ public class Mob {
 
     public void attackPlayer() {
         if (!isDie() && !effectSkill.isHaveEffectSkill() && !(tempId == 0) && !(tempId == 82) && !(tempId == 83) && !(tempId == 84)) {
-            if ((this.tempId == 72 || this.tempId == 71) && Util.canDoWithTime(lastTimeAttackPlayer, 300)) {
+            if ((this.tempId == 72 || this.tempId == 71) && Util.canDoWithTime(lastTimeAttackPlayer, 2000)) {
                 List<Player> pl = getListPlayerCanAttack();
                 if (!pl.isEmpty()) {
                     this.sendMobBossBdkbAttack(pl, this.point.getDameAttack());
@@ -423,7 +423,7 @@ public class Mob {
 
     private List<Player> getListPlayerCanAttack() {
         List<Player> plAttack = new ArrayList<>();
-        int distance = (this.tempId == 71 ? 250 : 600);
+        int distance = 250;
         try {
             List<Player> players = this.zone.getNotBosses();
             for (Player pl : players) {
@@ -666,7 +666,7 @@ public class Mob {
                     if (Util.isTrue(10, 20)) {
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 541, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
                     }
-                    player.congduc += Util.nextInt(5, 20);
+                    player.congduc += Util.nextInt(3, 6);
                     if (Util.isTrue(5, 10)) {
                         // roi long de chau
                         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2066, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id));
@@ -677,7 +677,7 @@ public class Mob {
                         }
                     }
                 } else {
-                    player.congduc += Util.nextInt(1, 15);
+                    player.congduc += Util.nextInt(1, 3);
                 }
             }
             if (Util.isTrue(50, 150)) {
@@ -686,6 +686,18 @@ public class Mob {
                     quan = Util.nextInt(1, 3);
                 }
                 ItemMap itemMap = new ItemMap(this.zone, 457, quan, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                Service.gI().dropItemMap(this.zone, itemMap);
+            }
+            if (Util.isTrue(1, 50)) {
+                int[] idspl = {964, 965};
+                int rd = Util.nextInt(0, idspl.length - 1);
+
+                ItemMap itemMap = new ItemMap(this.zone, idspl[rd], 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+                if (idspl[rd] == 964) {
+                    itemMap.options.add(new Item.ItemOption(50, 10));
+                } else {
+                    itemMap.options.add(new Item.ItemOption(Util.isTrue(5, 100) ? 77 : 103, 20));
+                }
                 Service.gI().dropItemMap(this.zone, itemMap);
             }
             if (Util.isTrue(5, 10)) {

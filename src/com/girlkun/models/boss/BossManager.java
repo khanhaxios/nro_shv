@@ -1,5 +1,8 @@
 package com.girlkun.models.boss;
 
+import com.girlkun.models.boss.list_boss.boss_even.HongQuanLaoTo;
+import com.girlkun.models.boss.list_boss.boss_even.MaHauLaoTo;
+import com.girlkun.models.boss.list_boss.boss_even.VoLuongThienTon;
 import com.girlkun.models.boss.list_boss.doanh_trai_old.NinjaAoTim;
 import com.girlkun.models.boss.list_boss.doanh_trai_old.RobotVeSi;
 import com.girlkun.models.boss.list_boss.doanh_trai_old.TrungUyThep;
@@ -125,6 +128,9 @@ public class BossManager implements Runnable {
             return;
         }
         try {
+            this.createBoss(BossID.HONG_QUAN_LAO_TO);
+            this.createBoss(BossID.MA_HAU_LAO_TO);
+            this.createBoss(BossID.VO_LUONG_THIEN_TON);
             this.createBoss(BossID.SU);
             this.createBoss(BossID.MAI);
             this.createBoss(BossID.PI_LAP);
@@ -140,18 +146,10 @@ public class BossManager implements Runnable {
             this.createBoss(BossID.BOSS_THAN_MEO);
             this.createBoss(BossID.BOSS_KHI_ULTRA);
             this.createBoss(BossID.BOSS_THO_DAI_KA);
-            this.createBoss(BossID.BOSS_BANG_TINH);
-            this.createBoss(BossID.BOSS_HOA_TINH);
             this.createBoss(BossID.BLACK);
             this.createBoss(BossID.SUPPER_BLACK_GOKU);
             this.createBoss(BossID.ZAMASZIN);
-            this.createBoss(BossID.ZAMASZIN);
-            this.createBoss(BossID.ZAMASZIN);
             this.createBoss(BossID.ZAMASMAX);
-            this.createBoss(BossID.ZAMASMAX);
-            this.createBoss(BossID.ZAMASMAX);
-            this.createBoss(BossID.TAPSU4);
-            this.createBoss(BossID.TAPSU4);
             this.createBoss(BossID.TAPSU4);
             this.createBoss(BossID.BOSS_MA_VUONG_PICOLO);
             this.createBoss(BossID.BOSS_MA_BU_COM);
@@ -382,6 +380,12 @@ public class BossManager implements Runnable {
                     return new Broly();
                 case BossID.TAPSU4:
                     return new tapsu4();
+                case BossID.HONG_QUAN_LAO_TO:
+                    return new HongQuanLaoTo();
+                case BossID.MA_HAU_LAO_TO:
+                    return new MaHauLaoTo();
+                case BossID.VO_LUONG_THIEN_TON:
+                    return new VoLuongThienTon();
                 default:
                     return null;
             }

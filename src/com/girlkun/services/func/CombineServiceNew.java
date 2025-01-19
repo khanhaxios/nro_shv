@@ -33,9 +33,9 @@ public class CombineServiceNew {
     private static final int GEM_TINH_LUYEN = 10000;
 
     private static final int TIME_COMBINE = 1500;
-    private static final byte MAX_STAR_ITEM_VIP = 8;
+    private static final byte MAX_STAR_ITEM_VIP = 9;
     private static final byte MAX_STAR_KHAM_DA = 10;
-    private static final byte MAX_STAR_ITEM = 8;
+    private static final byte MAX_STAR_ITEM = 9;
     private static final byte MAX_EP_CHUNG_NHAN = 30;
     private static final byte MAX_STAR_ITEM_TC1 = 17;
     private static final byte MAX_LEVEL_ITEM = 8;
@@ -8562,9 +8562,9 @@ public class CombineServiceNew {
                 return;
             }
             if (isTrangBiHakai(item)) {
-                int idItemKichHoatTDop[][] = {{1048, 1048}, {1051, 1051}, {1054, 1054}, {1057, 1057}, {1060, 1060}};
-                int idItemKichHoatNMop[][] = {{1049, 1049}, {1052, 1052}, {1055, 1055}, {1058, 1058}, {1061, 1061}};
-                int idItemKichHoatXDop[][] = {{1050, 1050}, {1053, 1053}, {1056, 1056}, {1059, 1059}, {1062, 1062}};
+                int[][] idItemKichHoatTDop = {{1048, 1048}, {1051, 1051}, {1054, 1054}, {1057, 1057}, {1060, 1060}};
+                int[][] idItemKichHoatNMop = {{1049, 1049}, {1052, 1052}, {1055, 1055}, {1058, 1058}, {1061, 1061}};
+                int[][] idItemKichHoatXDop = {{1050, 1050}, {1053, 1053}, {1056, 1056}, {1059, 1059}, {1062, 1062}};
                 int type = item.template.type;
                 int gender = item.template.gender;
                 int random = Util.nextInt(0, 2);
@@ -8581,13 +8581,13 @@ public class CombineServiceNew {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1600 + (Util.nextInt(10, 25)) * 16));
                         }
                         if (itemKichHoat.template.id == 1051) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1054) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(0, 32000 + (Util.nextInt(10, 25)) * 88));
                         }
                         if (itemKichHoat.template.id == 1057) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1060) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(20, 22)));
@@ -8601,13 +8601,13 @@ public class CombineServiceNew {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1700 + (Util.nextInt(10, 25)) * 17));
                         }
                         if (itemKichHoat.template.id == 1052) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1055) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(0, 30000 + (Util.nextInt(10, 25)) * 86));
                         }
                         if (itemKichHoat.template.id == 1058) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1061) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(20, 22)));
@@ -8621,13 +8621,13 @@ public class CombineServiceNew {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1800 + (Util.nextInt(10, 25)) * 18));
                         }
                         if (itemKichHoat.template.id == 1053) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1056) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(0, 36000 + (Util.nextInt(10, 25)) * 90));
                         }
                         if (itemKichHoat.template.id == 1059) {
-                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(10, 25)) * 1));
+                            itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(10, 25))));
                         }
                         if (itemKichHoat.template.id == 1062) {
                             itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(20, 22)));
@@ -8647,7 +8647,6 @@ public class CombineServiceNew {
                 InventoryServiceNew.gI().removeItemBag(player, item);
                 InventoryServiceNew.gI().subQuantityItemsBag(player, thoivang, 20);
                 InventoryServiceNew.gI().subQuantityItemsBag(player, thoivang2, 9);
-//                InventoryServiceNew.gI().removeItemBag(player, item1);
                 InventoryServiceNew.gI().sendItemBags(player);
                 Service.getInstance().sendMoney(player);
                 reOpenItemCombine(player);
@@ -8656,7 +8655,6 @@ public class CombineServiceNew {
     }
 
     private void khTl(Player player) {
-
         //Barcoll
         if (player.combineNew.itemsCombine.size() == 2) {
             Item dtl1 = null;
@@ -8708,12 +8706,11 @@ public class CombineServiceNew {
                 return;
             }
             if (isTrangBiGod1(item)) {
-                int idItemKichHoatTDop[][] = {{650, 650}, {651, 651}, {657, 657}, {658, 658}, {656, 656}};
-                int idItemKichHoatNMop[][] = {{652, 652}, {653, 653}, {659, 659}, {660, 660}, {656, 656}};
-                int idItemKichHoatXDop[][] = {{654, 654}, {655, 655}, {661, 661}, {662, 662}, {656, 656}};
+                int[][] idItemKichHoatTDop = {{650, 650}, {651, 651}, {657, 657}, {658, 658}, {656, 656}};
+                int[][] idItemKichHoatNMop = {{652, 652}, {653, 653}, {659, 659}, {660, 660}, {656, 656}};
+                int[][] idItemKichHoatXDop = {{654, 654}, {655, 655}, {661, 661}, {662, 662}, {656, 656}};
                 int type = item.template.type;
                 int gender = item.template.gender;
-                int random = Util.nextInt(0, 2);
                 if (gender == 3) {
                     gender = player.gender;
                 }
@@ -8728,13 +8725,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1600 + (Util.nextInt(10, 15)) * 16));
                             }
                             if (itemKichHoat.template.id == 651) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 657) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 8800 + (Util.nextInt(10, 15)) * 88));
                             }
                             if (itemKichHoat.template.id == 658) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(17, 18)));
@@ -8744,13 +8741,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1600 + (Util.nextInt(1, 9)) * 16));
                             }
                             if (itemKichHoat.template.id == 651) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 104 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 657) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 8800 + (Util.nextInt(1, 9)) * 88));
                             }
                             if (itemKichHoat.template.id == 658) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 96 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, 16));
@@ -8765,13 +8762,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1700 + (Util.nextInt(10, 15)) * 17));
                             }
                             if (itemKichHoat.template.id == 653) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 659) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 8600 + (Util.nextInt(10, 15)) * 86));
                             }
                             if (itemKichHoat.template.id == 660) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(16, 18)));
@@ -8781,13 +8778,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1700 + (Util.nextInt(1, 9)) * 17));
                             }
                             if (itemKichHoat.template.id == 653) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 94 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 659) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 8600 + (Util.nextInt(1, 9)) * 86));
                             }
                             if (itemKichHoat.template.id == 660) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 104 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, 16));
@@ -8802,13 +8799,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1800 + (Util.nextInt(10, 15)) * 18));
                             }
                             if (itemKichHoat.template.id == 655) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 661) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 9000 + (Util.nextInt(10, 15)) * 90));
                             }
                             if (itemKichHoat.template.id == 662) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(10, 15)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(10, 15))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, Util.nextInt(16, 18)));
@@ -8818,13 +8815,13 @@ public class CombineServiceNew {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(47, 1800 + (Util.nextInt(1, 9)) * 18));
                             }
                             if (itemKichHoat.template.id == 655) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(22, 95 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 661) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(0, 9000 + (Util.nextInt(1, 9)) * 90));
                             }
                             if (itemKichHoat.template.id == 662) {
-                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(1, 9)) * 1));
+                                itemKichHoat.itemOptions.add(new Item.ItemOption(23, 100 + (Util.nextInt(1, 9))));
                             }
                             if (itemKichHoat.template.id == 656) {
                                 itemKichHoat.itemOptions.add(new Item.ItemOption(14, 16));
@@ -8841,7 +8838,6 @@ public class CombineServiceNew {
                 }
                 InventoryServiceNew.gI().removeItemBag(player, item);
                 InventoryServiceNew.gI().subQuantityItemsBag(player, thoivang, 5);
-                //InventoryServiceNew.gI().removeItemBag(player, item1);
                 InventoryServiceNew.gI().sendItemBags(player);
                 Service.getInstance().sendMoney(player);
                 reOpenItemCombine(player);
@@ -9991,15 +9987,15 @@ public class CombineServiceNew {
             case 4:
                 return 10f;
             case 5:
-                return 9f;
+                return 3f;
             case 6:
-                return 8f;
+                return 1f;
             case 7:
-                return 7f;
+                return .5f;
             case 8:
-                return 0.9f;
+                return 0.2f;
             case 9:
-                return 0.7f;
+                return 0.1f;
             case 10:
                 return 0.5f;
             case 11:
@@ -11225,33 +11221,27 @@ public class CombineServiceNew {
         }
         switch (daPhaLe.template.id) {
             case 20:
+            case 931:
                 return 77;
             case 19:
+            case 930:
                 return 103;
             case 18:
+            case 929:
                 return 80;
             case 17:
+            case 928:
                 return 81;
             case 16:
                 return 50;
             case 15:
-                return 94;
-            case 14:
-                return 108;
-            case 931:
-                return 77;
-            case 930:
-                return 103;
-            case 929:
-                return 80;
-            case 928:
-                return 81;
-            case 927:
-                return 50; // sức đánh
             case 926:
                 return 94;
+            case 14:
             case 925:
                 return 108;
+            case 927:
+                return 50; // sức đánh
             default:
                 return -1;
         }

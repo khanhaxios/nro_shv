@@ -54,6 +54,7 @@ public class ThanHuyDiet extends Boss {
             int randomIndex = rand.nextInt(ids100.length);
             Service.gI().dropItemMap(this.zone, items[randomIndex]);
         }
+        Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2047, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
         Service.gI().addCongDuc(plKill, 3000);
     }
 

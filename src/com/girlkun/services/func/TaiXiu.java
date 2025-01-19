@@ -122,17 +122,17 @@ public class TaiXiu implements Runnable {
                         ketquaTai = false;
                     }
 
-                    if (ketquaTai == true) {
+                    if (ketquaTai) {
                         if (!TaiXiu.gI().PlayersTai.isEmpty()) {
                             for (int i = 0; i < PlayersTai.size(); i++) {
                                 Player pl = this.PlayersTai.get(i);
                                 if (pl != null && Client.gI().getPlayer(pl.name) != null) {
                                     int goldC = pl.goldTai + pl.goldTai * 80 / 100;
-                                    Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                            + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(TÀI)\n\n|1|Bạn đã chiến thắng!!");
-                                    Service.getInstance().sendThongBao(pl, "Chúc mừng bạn đã dành chiến thắng và nhận được " + Util.format(goldC) + " Hồng ngọc");
-                                    ChatGlobalService.gI().chat(pl, pl.name + " đã chiến thắng và nhận được " + Util.format(goldC) + " Hồng ngọc");
-                                    pl.inventory.ruby += goldC;
+                                    Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                            + y + " : " + z + "\nTổng là : " + tong + "\n(TÀI)\n\nBạn đã chiến thắng!!");
+                                    Service.getInstance().sendThongBao(pl, "Chúc mừng bạn đã dành chiến thắng và nhận được " + Util.format(goldC) + " Công Đức");
+                                    ChatGlobalService.gI().chat(pl, pl.name + " đã chiến thắng và nhận được " + Util.format(goldC) + " Công Đức");
+                                    pl.congduc += goldC;
                                     Service.getInstance().sendMoney(pl);
                                     InventoryServiceNew.gI().sendItemBags(pl);
                                 }
@@ -141,21 +141,21 @@ public class TaiXiu implements Runnable {
                         for (int i = 0; i < PlayersXiu.size(); i++) {
                             Player pl = this.PlayersXiu.get(i);
                             if (pl != null && Client.gI().getPlayer(pl.name) != null) {
-                                Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                        + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(TÀI)\n\n|7|Trắng tay gòi, chơi lại đi!!!");
+                                Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                        + y + " : " + z + "\nTổng là : " + tong + "\n(TÀI)\n\nTrắng tay gòi, chơi lại đi!!!");
                             }
                         }
-                    } else if (ketquaXiu == true) {
+                    } else if (ketquaXiu) {
                         if (!TaiXiu.gI().PlayersXiu.isEmpty()) {
                             for (int i = 0; i < PlayersXiu.size(); i++) {
                                 Player pl = this.PlayersXiu.get(i);
                                 if (pl != null && Client.gI().getPlayer(pl.name) != null) {
                                     int goldC = pl.goldXiu + pl.goldXiu * 80 / 100;
-                                    Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                            + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(XỈU)\n\n|1|Bạn đã chiến thắng!!");
-                                    Service.getInstance().sendThongBao(pl, "Chúc mừng bạn đã dành chiến thắng và nhận được " + Util.format(goldC) + " Hồng ngọc");
-                                    ChatGlobalService.gI().chat(pl, pl.name + " đã chiến thắng và nhận được " + Util.format(goldC) + " Hồng ngọc");
-                                    pl.inventory.ruby += goldC;
+                                    Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                            + y + " : " + z + "\nTổng là : " + tong + "\n(XỈU)\n\nBạn đã chiến thắng!!");
+                                    Service.getInstance().sendThongBao(pl, "Chúc mừng bạn đã dành chiến thắng và nhận được " + Util.format(goldC) + " Công đức");
+                                    ChatGlobalService.gI().chat(pl, pl.name + " đã chiến thắng và nhận được " + Util.format(goldC) + " Công đức");
+                                    pl.congduc += goldC;
                                     Service.getInstance().sendMoney(pl);
                                     InventoryServiceNew.gI().sendItemBags(pl);
                                 }
@@ -164,23 +164,23 @@ public class TaiXiu implements Runnable {
                         for (int i = 0; i < PlayersTai.size(); i++) {
                             Player pl = this.PlayersTai.get(i);
                             if (pl != null && Client.gI().getPlayer(pl.name) != null) {
-                                Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                        + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(XỈU)\n\n|7|Trắng tay gòi, chơi lại đi!!!");
+                                Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                        + y + " : " + z + "\nTổng là : " + tong + "\n(XỈU)\n\nTrắng tay gòi, chơi lại đi!!!");
                             }
                         }
                     } else {
                         for (int i = 0; i < PlayersTai.size(); i++) {
                             Player pl = this.PlayersTai.get(i);
                             if (pl != null && Client.gI().getPlayer(pl.name) != null) {
-                                Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                        + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(TAM HOA)\n\n|7|Hahaha Nhà cái lụm hết nha!!!");
+                                Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                        + y + " : " + z + "\nTổng là : " + tong + "\n(TAM HOA)\n\nHahaha Nhà cái lụm hết nha!!!");
                             }
                         }
                         for (int i = 0; i < PlayersXiu.size(); i++) {
                             Player pl = this.PlayersXiu.get(i);
                             if (pl != null && Client.gI().getPlayer(pl.name) != null) {
-                                Service.getInstance().sendThongBao(pl, "Số hệ thống quay ra\n" + x + " : "
-                                        + y + " : " + z + "\n|5|Tổng là : " + tong + "\n(TAM HOA)\n\n|7|Hahaha Nhà cái lụm hết nha!!!");
+                                Service.getInstance().sendThongBaoOK(pl, "Số hệ thống quay ra\n" + x + " : "
+                                        + y + " : " + z + "\nTổng là : " + tong + "\n(TAM HOA)\n\nHahaha Nhà cái lụm hết nha!!!");
                             }
                         }
                     }

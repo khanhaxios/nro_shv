@@ -1032,10 +1032,6 @@ public class Service {
         MaHauLaoTo maHauLaoTo = new MaHauLaoTo();
         HongQuanLaoTo hongQuanLaoTo = new HongQuanLaoTo();
         VoLuongThienTon voLuongThienTon = new VoLuongThienTon();
-        maHauLaoTo.hongQuanLaoTo = hongQuanLaoTo;
-        hongQuanLaoTo.maHauLaoTo = maHauLaoTo;
-        voLuongThienTon.maHauLaoTo = maHauLaoTo;
-        voLuongThienTon.hongQuanLaoTo = hongQuanLaoTo;
         hongQuanLaoTo.zone = player.zone;
         maHauLaoTo.zone = player.zone;
         voLuongThienTon.zone = player.zone;

@@ -1076,7 +1076,6 @@ public class SkillService {
                 Service.gI().point(player);
                 Service.gI().Send_Info_NV(player);
                 Service.gI().sendInfoPlayerEatPea(player);
-
                 affterUseSkill(player, player.playerSkill.skillSelect.template.id);
 
                 break;
@@ -1105,7 +1104,7 @@ public class SkillService {
                     }
                     //nổ
                     player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
-                    long dame = player.nPoint.hpMax;
+                    long dame = player.nPoint.hpMax * 2;
                     for (Mob mob : player.zone.mobs) {
                         mob.injured(player, dame, true);
                     }
@@ -1118,14 +1117,14 @@ public class SkillService {
                     if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {
                         for (Player pl : playersMap) {
                             if (!player.equals(pl) && canAttackPlayer(player, pl)) {
-                                pl.injured(player, pl.isBoss ? dame / 2 : dame, false, false);
+                                pl.injured(player, dame, false, false);
                                 PlayerService.gI().sendInfoHpMpMoney(pl);
                                 Service.getInstance().Send_Info_NV(pl);
                             }
                         }
                     }
                     affterUseSkill(player, player.playerSkill.skillSelect.template.id);
-                    player.injured(null, 2100000000, true, false);
+                    player.injured(null, player.nPoint.hpMax * 2, true, false);
                     if (player.effectSkill.tiLeHPHuytSao != 0) {
                         player.effectSkill.tiLeHPHuytSao = 0;
                         EffectSkillService.gI().removeHuytSao(player);

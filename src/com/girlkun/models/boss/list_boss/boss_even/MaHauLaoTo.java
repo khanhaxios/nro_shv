@@ -18,7 +18,6 @@ public class MaHauLaoTo extends Boss {
     long timeUseThiThanThuong;
     long lastTimeUseThiThanThuong;
 
-    public Boss hongQuanLaoTo;
 
     public MaHauLaoTo() throws Exception {
         super(BossID.MA_HAU_LAO_TO, BossesData.MAHAU);
@@ -34,7 +33,7 @@ public class MaHauLaoTo extends Boss {
             player.injured(this, player.nPoint.hpMax, true, false);
         }
         lastTimeUseThiThanThuong = System.currentTimeMillis();
-        timeUseThiThanThuong = Util.nextInt(10000, 15000);
+        timeUseThiThanThuong = Util.nextInt(5000, 15000);
         this.chat("Hãy chết hết đi gaagaaa");
     }
 
@@ -46,8 +45,8 @@ public class MaHauLaoTo extends Boss {
             this.chat("Già La Phiên Thiên");
             return 0;
         }
-        Service.gI().addCongDuc(plAtt, Util.nextInt(5, 100) * 100);
-        timeUseThiThanThuong -= 1000;
+        Service.gI().addCongDuc(plAtt, 20);
+        timeUseThiThanThuong -= 150;
         return super.injured(plAtt, damage, piercing, isMobAttack);
     }
 
@@ -62,12 +61,7 @@ public class MaHauLaoTo extends Boss {
     }
 
     public void buffHongQuanAfterDie() {
-        if (hongQuanLaoTo != null) {
-            hongQuanLaoTo.nPoint.hpMax += this.nPoint.hpMax * 1.5;
-            hongQuanLaoTo.nPoint.dame += this.nPoint.dame;
-            hongQuanLaoTo.nPoint.setFullHpMp();
-            PlayerService.gI().sendInfoHpMp(this);
-        }
+
     }
 
     @Override
@@ -75,9 +69,9 @@ public class MaHauLaoTo extends Boss {
         this.chat("Không thể nào aaaaaa,Ta sẽ quay lại sớm , Hồng Quân hãy trả thù cho ta");
         buffHongQuanAfterDie();
         // reward for user kill;
-        Service.gI().addCongDuc(plKill, 6666666);
+        Service.gI().addCongDuc(plKill, 100000);
         // create linh thu
-        Item item = null;
+        Item item = ItemService.gI().createItemNull();
         if (Util.isTrue(20, 100)) {
             item = ItemService.gI().createLinhThuCongDuc(500);
         } else if (Util.isTrue(50, 100)) {
@@ -103,7 +97,7 @@ public class MaHauLaoTo extends Boss {
                     break;
             }
         }
-        Item dns = ItemService.gI().createNewItem((short) 674, 200);
+        Item dns = ItemService.gI().createNewItem((short) 674, Util.nextInt(10, 50));
         InventoryServiceNew.gI().addItemBag(plKill, dns);
         InventoryServiceNew.gI().addItemBag(plKill, item);
         InventoryServiceNew.gI().sendItemBags(plKill);

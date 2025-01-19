@@ -164,6 +164,7 @@ public class GodGK {
                             player.point_gapthu = rs.getInt("point_gapthu");
                             player.point_cauca = rs.getInt("point_cauca");
                             player.thachdauwhis = rs.getInt("thachdauwhis");
+                            player.mocnap = rs.getInt("mocnap");
                             player.tongtien = rs.getInt("tongtien");
                             player.flagMoc10k = rs.getInt("flagMoc10k");
                             player.flagMoc20k = rs.getInt("flagMoc20k");

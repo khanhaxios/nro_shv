@@ -68,6 +68,7 @@ public class Player {
     public int rubyVIP;
     public int rubyNormar;
     public int gemVIP;
+    public int mocnap;
     public byte countBDKB;
     public boolean firstJoinBDKB;
     public long lastimeJoinBDKB;

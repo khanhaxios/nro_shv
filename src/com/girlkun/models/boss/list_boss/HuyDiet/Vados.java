@@ -62,6 +62,7 @@ public class Vados extends Boss {
         }
         if (Util.isTrue(100, 100)) {
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
+            Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
         }
         Service.gI().subCongDuc(plKill, 2000);
     }

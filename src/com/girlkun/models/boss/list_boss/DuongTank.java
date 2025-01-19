@@ -89,14 +89,15 @@ public class DuongTank extends Boss {
 
     private void rewardPlayer() {
         playerTarger.haveDuongTang = false;
-        playerTarger.diemhotong += 100;
+        int d = Util.nextInt(1, 3);
+        playerTarger.diemhotong += d;
         playerTarger.inventory.ruby += 1000;
         Item xuacquy = ItemService.gI().createNewItem((short) 1664);
         xuacquy.quantity = Util.nextInt(1, 5);
         playerTarger.inventory.gem += 2000;
         Service.getInstance().sendMoney(playerTarger);
         InventoryServiceNew.gI().addItemBag(playerTarger, xuacquy);
-        Service.getInstance().sendThongBaoOK(playerTarger, "Bạn nhận được 2k hồng ngọc, " + xuacquy.quantity + " Đá ngũ sắc xanh!");
+        Service.getInstance().sendThongBaoOK(playerTarger, "Bạn nhận được " + d + " CĐHT " + xuacquy.quantity + " Đá ngũ sắc xanh!");
     }
 
     private boolean isPlayerInDifferentZone() {

@@ -295,9 +295,9 @@ public class Util {
     public static Item petccrandom(int tempId) {
         Item gapcc = ItemService.gI().createNewItem((short) tempId);
         if (Util.isTrue(90, 100)) {
-            gapcc.itemOptions.add(new Item.ItemOption(50, Util.nextInt(50, 100)));
-            gapcc.itemOptions.add(new Item.ItemOption(103, Util.nextInt(50, 100)));
-            gapcc.itemOptions.add(new Item.ItemOption(77, Util.nextInt(50, 100)));
+            gapcc.itemOptions.add(new Item.ItemOption(50, Util.nextInt(50, 85)));
+            gapcc.itemOptions.add(new Item.ItemOption(103, Util.nextInt(50, 85)));
+            gapcc.itemOptions.add(new Item.ItemOption(77, Util.nextInt(50, 85)));
             if (Util.isTrue(30, 100)) {
                 gapcc.itemOptions.add(new Item.ItemOption(93, Util.nextInt(5, 12)));
             }
@@ -310,9 +310,9 @@ public class Util {
         gapvip.template = ItemService.gI().getTemplate(tempId);
         gapvip.quantity = 1;
         if (Util.isTrue(90, 100)) {
-            gapvip.itemOptions.add(new Item.ItemOption(50, Util.nextInt(150, 250)));
-            gapvip.itemOptions.add(new Item.ItemOption(103, Util.nextInt(150, 250)));
-            gapvip.itemOptions.add(new Item.ItemOption(77, Util.nextInt(150, 250)));
+            gapvip.itemOptions.add(new Item.ItemOption(50, Util.nextInt(86, 100)));
+            gapvip.itemOptions.add(new Item.ItemOption(103, Util.nextInt(86, 100)));
+            gapvip.itemOptions.add(new Item.ItemOption(77, Util.nextInt(86, 100)));
             if (Util.isTrue(30, 100)) {
                 gapvip.itemOptions.add(new Item.ItemOption(93, Util.nextInt(7, 15)));
             }

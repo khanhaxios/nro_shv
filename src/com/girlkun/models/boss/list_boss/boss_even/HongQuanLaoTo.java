@@ -6,16 +6,31 @@ import com.girlkun.models.boss.*;
 import com.girlkun.models.item.Item;
 import com.girlkun.models.player.Player;
 import com.girlkun.services.*;
-import com.girlkun.utils.Logger;
 import com.girlkun.utils.Util;
 
 public class HongQuanLaoTo extends Boss {
     long timeBuffChoMaHauLaoTo;
     long lastTimeBuffChoMaHauLaoTo;
-    public Boss maHauLaoTo;
+
+    byte timeUseVoDic = 0;
+
+    boolean isVodich = false;
+    long timeBuffVoDich;
 
     public HongQuanLaoTo() throws Exception {
         super(BossID.HONG_QUAN_LAO_TO, BossesData.HONGQUANLAOTO);
+    }
+
+    private void activeVoDich() {
+        if (timeUseVoDic > 0 || isVodich) {
+            return;
+        }
+        if (this.nPoint.hp < this.nPoint.hpMax * .2) {
+            timeUseVoDic++;
+            isVodich = true;
+            this.nPoint.dame*=2;
+            timeBuffVoDich = 15000;
+        }
     }
 
     private void buffChoMaHauLaoTo() {
@@ -25,21 +40,14 @@ public class HongQuanLaoTo extends Boss {
         int typeBuff = Util.nextInt(0, 1);
         if (typeBuff == 0) {
             // buff dam
-            if (maHauLaoTo != null) {
-                maHauLaoTo.nPoint.dame += maHauLaoTo.nPoint.dame * 0.2;
-                maHauLaoTo.chat("Ha ha ta cảm thấy nguồn sức mạnh đang dâng trào aaaa., chết đi lũ kia");
-                this.chat("Ma hầu đón lấy ..... aa");
-            }
+            this.nPoint.dame += this.nPoint.dame * .2;
+            this.chat("Tạo hóa ngọc diệp");
         } else if (typeBuff == 1) {
-            if (maHauLaoTo != null) {
-                double point = this.nPoint.hpMax * 0.2;
-                maHauLaoTo.nPoint.hp += point;
-                this.nPoint.hp -= point;
-                PlayerService.gI().sendInfoHp(maHauLaoTo);
-                PlayerService.gI().sendInfoHpMp(this);
-                maHauLaoTo.chat("Ha ha ta cảm thấy nguồn sức mạnh đang dâng trào aaaa., chết đi lũ kia");
-                this.chat("Ma hầu đón lấy ..... aa");
-            }
+            double point = this.nPoint.hpMax * 0.2;
+            this.nPoint.addHp((long) point);
+            PlayerService.gI().sendInfoHpMp(this);
+            this.chat("Ha ha ta cảm thấy nguồn sức mạnh đang dâng trào aaaa., chết đi lũ kia");
+            this.chat("Ma hầu đón lấy ..... aa");
         }
         timeBuffChoMaHauLaoTo = Util.nextInt(15000, 25000);
         lastTimeBuffChoMaHauLaoTo = System.currentTimeMillis();
@@ -48,12 +56,14 @@ public class HongQuanLaoTo extends Boss {
 
     @Override
     public double injured(Player plAtt, double damage, boolean piercing, boolean isMobAttack) {
-        if (maHauLaoTo != null) {
-            if (!maHauLaoTo.isDie()) {
-                return 1;
+        Service.gI().addCongDuc(plAtt, Util.nextInt(1, 2));
+        if (isVodich) {
+            timeBuffVoDich -= 150;
+            if (timeBuffVoDich <= 0) {
+                isVodich = false;
             }
+            return 0;
         }
-        Service.gI().addCongDuc(plAtt, Util.nextInt(5, 100) * 500);
         return super.injured(plAtt, damage, piercing, isMobAttack);
     }
 
@@ -63,7 +73,8 @@ public class HongQuanLaoTo extends Boss {
             this.changeToTypePK();
         }
         this.attack();
-        buffChoMaHauLaoTo();
+        this.buffChoMaHauLaoTo();
+        this.activeVoDich();
         super.active();
     }
 
@@ -71,16 +82,14 @@ public class HongQuanLaoTo extends Boss {
     public void reward(Player plKill) {
         this.chat("Không thể nào aaaaaa,Ta sẽ quay lại sớm thôi, La Hầu ta đi cùng ngươi aaa");
         // reward for user kill;
-        Service.gI().addCongDuc(plKill, 6666666);
+        Service.gI().addCongDuc(plKill, 100000);
         // create linh thu
         Item item = null;
         if (Util.isTrue(20, 100)) {
-            item = ItemService.gI().createLinhThuCongDuc(500);
+            item = ItemService.gI().createLinhThuCongDuc(200);
         } else if (Util.isTrue(50, 100)) {
             item = ItemService.gI().createDeoLungCongDuc();
         } else {
-            // roi do thien su kich hoat
-            // gang
             switch (plKill.gender) {
                 case 0:
                     item = ItemService.gI().createGangCongDuc(plKill.gender);

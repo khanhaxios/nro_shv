@@ -826,7 +826,7 @@ public class PlayerDAO {
                         + "items_body = ?, items_bag = ?, items_box = ?, items_box_lucky_round = ?, friends = ?,"
                         + "enemies = ?, data_intrinsic = ?, data_item_time = ?, data_item_time_sieu_cap = ?, data_task = ?, data_mabu_egg = ?, pet = ?,"
                         + "data_black_ball = ?, data_side_task = ?, data_charm = ?, skills = ?,"
-                        + " skills_shortcut = ?, violate=?, pointPvp=?, NguHanhSonPoint=?, pointCauCa=?, pointNroNamec=?,registeredVodai = ?, ischeckjoinvodai =?, ismonkey = ?, isbroly =?, xuatsu=?, damethanmeo=?, ptdame=?, diemtrungthu=?, diemnaubanhtrung=?, diemsontinh=?, diemthuytinh=?, diemsukientet=?, diemsukienhe=?, diembitich=?,data_card=?,bill_data =? ,info_phoban =?, congduc =?, data_offtrain =?, capboss=?, point_gapthu =?, point_cauca =?, thoigianduhanh = ?, thachdauwhis = ?, tongtien=?, flagMoc10k = ?, flagMoc20k = ?, flagMoc50k = ?, flagMoc100k = ?, flagMoc200k = ?, flagMoc500k = ?, flagMoc1cu = ?, diemhotong = ?, Month_Card = ? where id = ?";
+                        + " skills_shortcut = ?, violate=?, pointPvp=?, NguHanhSonPoint=?, pointCauCa=?, pointNroNamec=?,registeredVodai = ?, ischeckjoinvodai =?, ismonkey = ?, isbroly =?, xuatsu=?, damethanmeo=?, ptdame=?, diemtrungthu=?, diemnaubanhtrung=?, diemsontinh=?, diemthuytinh=?, diemsukientet=?, diemsukienhe=?, diembitich=?,data_card=?,bill_data =? ,info_phoban =?, congduc =?, data_offtrain =?, capboss=?, point_gapthu =?, point_cauca =?, thoigianduhanh = ?, thachdauwhis = ?, tongtien=?, flagMoc10k = ?, flagMoc20k = ?, flagMoc50k = ?, flagMoc100k = ?, flagMoc200k = ?, flagMoc500k = ?, flagMoc1cu = ?, diemhotong = ?, Month_Card = ? , mocnap = ? where id = ?";
                 GirlkunDB.executeUpdate(query,
                         info_achive,
                         itemMayDo,
@@ -895,6 +895,7 @@ public class PlayerDAO {
                         player.flagMoc1cu,
                         player.diemhotong,
                         player.Month_Card,
+                        player.mocnap,
                         player.id);
                 Logger.success("Total time save player " + player.name + " thành công! " + (System.currentTimeMillis() - st) + "\n");
             } catch (Exception e) {
@@ -944,15 +945,7 @@ public class PlayerDAO {
 
     public static boolean subquydoi(Player player, int num) {
         try {
-            PreparedStatement ps = null;
-            Connection con = GirlkunDB.getConnection();
-            ps = con.prepareStatement("update account set vnd = (vnd - ?) where id = ?");
-            ps.setInt(1, num);
-            ps.setInt(2, player.getSession().userId);
-            ps.executeUpdate();
-            player.getSession().vnd -= num;
-            ps.close();
-            con.close();
+            player.congduc -= num;
             return true;
         } catch (Exception e) {
             Logger.error("lỗi subvnd kêu admin fix nhé các member");

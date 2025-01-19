@@ -25,14 +25,11 @@ public class ThienSuWhis extends Boss {
     }
 
     public void reward(Player plKill) {
-        int[][] idDoThienSu = {
-                {1048, 1051, 1054, 1057, 1060},
-                {1049, 1052, 1055, 1058, 1061},
-                {1050, 1053, 1056, 1059, 1062}// trai dat
+        int[][] idDoThienSu = {{1048, 1051, 1054, 1057, 1060}, {1049, 1052, 1055, 1058, 1061}, {1050, 1053, 1056, 1059, 1062}// trai dat
         };
 
-        if (Util.isTrue(20, 100)) {
-            Service.gI().dropItemMap(this.zone, createItemMap(2009, plKill, new int[]{0, 50, 77, 103, 108, 209, 93}, new int[]{40000, 20, 200, 200, 99, 1, 1}, new int[]{60000, 1000, 2000, 2000, 99, 1, 1}));
+        if (Util.isTrue(5, 100)) {
+            Service.gI().dropItemMap(this.zone, createItemMap(2009, plKill, new int[]{0, 50, 77, 103, 108, 209, 93}, new int[]{12000, 20, 50, 50, 99, 1, 1}, new int[]{24000, 250, 300, 300, 99, 1, 1}));
         }
         if (Util.isTrue(10, 1000)) {
             int[] itemsFromGender = idDoThienSu[plKill.gender];
@@ -59,6 +56,7 @@ public class ThienSuWhis extends Boss {
             Service.gI().dropItemMap(this.zone, ItemMapService.gI().createItemMapFromItem(this.zone, this.location, doTs, plKill));
         }
         if (Util.isTrue(100, 100)) {
+            Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 2047, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, Util.nextInt(1066, 1070), Util.nextInt(1, 6), this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 4), plKill.id));
         }
         Service.gI().subCongDuc(plKill, 2000);
@@ -66,8 +64,7 @@ public class ThienSuWhis extends Boss {
 
 
     private ItemMap createItemMap(int itemId, Player player, int[] optIds, int[] optMin, int[] optMax) {
-        ItemMap itemMap = new ItemMap(this.zone, itemId, 1, this.location.x,
-                this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
+        ItemMap itemMap = new ItemMap(this.zone, itemId, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), player.id);
         Random rand = new Random();
         for (int i = 0; i < optIds.length; i++) {
             itemMap.options.add(new Item.ItemOption(optIds[i], rand.nextInt(optMax[i] - optMin[i] + 1) + optMin[i]));
@@ -92,8 +89,7 @@ public class ThienSuWhis extends Boss {
 
     @Override
     public void doneChatE() {
-        if (this.parentBoss == null || this.parentBoss.bossAppearTogether == null
-                || this.parentBoss.bossAppearTogether[this.parentBoss.currentLevel] == null) {
+        if (this.parentBoss == null || this.parentBoss.bossAppearTogether == null || this.parentBoss.bossAppearTogether[this.parentBoss.currentLevel] == null) {
         }
     }
 

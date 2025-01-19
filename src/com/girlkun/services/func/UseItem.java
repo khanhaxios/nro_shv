@@ -1063,35 +1063,14 @@ public class UseItem {
 
     private void useItemHopQuaTanThu(Player pl, Item item) {
         if (InventoryServiceNew.gI().getCountEmptyBag(pl) > 0) {
-            short[] temp = {14, 16, 17, 18, 19, 20, 21, 22, 23};
-            int[][] gold = {{100000000, 200000000}};
+            short[] temp = {14, 16, 17, 18, 19, 20};
             byte index = (byte) Util.nextInt(0, temp.length - 1);
             short[] icon = new short[2];
             icon[0] = item.template.iconID;
-            if (index <= 3) {
-                pl.inventory.gold += Util.nextInt(gold[0][0], gold[0][1]);
-                if (pl.inventory.gold > Inventory.LIMIT_GOLD) {
-                    pl.inventory.gold = Inventory.LIMIT_GOLD;
-                }
-                PlayerService.gI().sendInfoHpMpMoney(pl);
-                icon[1] = 930;
-            } else {
-                if (index > 5) {
-                    if (Util.isTrue(5, 50)) {
-                        int percent = Util.nextInt(1, 3);
-                        Item it = ItemService.gI().createPercentItem(temp[index], percent);
-                        it.itemOptions.add(new ItemOption(30, 0));
-                        InventoryServiceNew.gI().addItemBag(pl, it);
-                        icon[1] = it.template.iconID;
-                        Service.gI().sendThongBao(pl, "Bạn vừa nhận được một vật phẩm đặc biệt");
-                    }
-                } else {
-                    Item it = ItemService.gI().createNewItem(temp[index]);
-                    it.itemOptions.add(new ItemOption(73, 0));
-                    InventoryServiceNew.gI().addItemBag(pl, it);
-                    icon[1] = it.template.iconID;
-                }
-            }
+            Item it = ItemService.gI().createNewItem(temp[index]);
+            it.itemOptions.add(new ItemOption(73, 0));
+            InventoryServiceNew.gI().addItemBag(pl, it);
+            icon[1] = it.template.iconID;
 
             InventoryServiceNew.gI().subQuantityItemsBag(pl, item, 1);
             InventoryServiceNew.gI().sendItemBags(pl);

@@ -242,20 +242,20 @@ public class Input {
                     int sotvxiu1 = Integer.valueOf(text[0]);
                     try {
                         if (sotvxiu1 >= 1000 && sotvxiu1 <= 1000000000) {
-                            if (player.inventory.ruby >= sotvxiu1) {
-                                player.inventory.ruby -= sotvxiu1;
+                            if (player.congduc >= sotvxiu1) {
+                                player.congduc -= sotvxiu1;
                                 player.goldTai += sotvxiu1;
                                 TaiXiu.gI().goldTai += sotvxiu1;
-                                Service.gI().sendThongBao(player, "Bạn đã đặt " + Util.format(sotvxiu1) + " Hồng ngọc vào TÀI");
+                                Service.gI().sendThongBao(player, "Bạn đã đặt " + Util.format(sotvxiu1) + " Công đức vào TÀI");
                                 TaiXiu.gI().addPlayerTai(player);
                                 InventoryServiceNew.gI().sendItemBags(player);
                                 Service.getInstance().sendMoney(player);
                                 PlayerDAO.updatePlayer(player);
                             } else {
-                                Service.gI().sendThongBao(player, "Bạn không đủ Hồng ngọc để chơi.");
+                                Service.gI().sendThongBao(player, "Bạn không đủ Công dức để chơi.");
                             }
                         } else {
-                            Service.gI().sendThongBao(player, "Cược ít nhất 1.000 - nhiều nhất 1.000.000.000 Hồng ngọc");
+                            Service.gI().sendThongBao(player, "Cược ít nhất 1.000 - nhiều nhất 1.000.000 Công đức");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

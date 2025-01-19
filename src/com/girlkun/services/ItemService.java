@@ -1902,7 +1902,7 @@ public class ItemService {
         //găng
         if (Util.isTrue(80, 100)) {
             if (gang.contains(itemId)) {
-                dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(651) + 20000))); // 9350-10000
+                dots.itemOptions.add(new Item.ItemOption(0, Util.highlightsItem(gender == 2, new Random().nextInt(651) + 26000))); // 9350-10000
             }
         } else {
             if (gang.contains(itemId)) {
@@ -1953,10 +1953,6 @@ public class ItemService {
         short[] itemByGender = itemIds[gender];
         int rand = Util.nextInt(0, itemByGender.length - 1);
         Item item = createItemSetKichHoat(itemByGender[rand], 1);
-        int ran = 100000;
-        if (Util.isTrue(10, 100)) {
-            ran = 150000;
-        }
         int sd1 = Util.nextInt(10000, 60000);
         int sd2 = Util.nextInt(10000, 60000);
         if (sd1 + sd2 >= 90000) {
@@ -1969,11 +1965,11 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(96, 25));
             item.itemOptions.add(new ItemOption(5, 20));
         } else if (item.template.id >= 1054 && item.template.id <= 1056) {
-            item.itemOptions.add(new ItemOption(0, 60000));
-            if (Util.isTrue(30, 100)) {
+            item.itemOptions.add(new ItemOption(0, Util.nextInt(30000, 40000)));
+            if (Util.isTrue(20, 100)) {
                 item.itemOptions.add(new ItemOption(0, sd1));
             }
-            if (Util.isTrue(10, 100)) {
+            if (Util.isTrue(1, 100)) {
                 item.itemOptions.add(new ItemOption(0, sd2));
             }
             item.itemOptions.add(new ItemOption(50, Util.nextInt(50, 100)));
@@ -1994,10 +1990,10 @@ public class ItemService {
             item.itemOptions.add(new ItemOption(5, 20));
         } else if (item.template.id >= 1060 && item.template.id <= 1062) {
             item.itemOptions.add(new ItemOption(0, 60000));
-            if (Util.isTrue(30, 100)) {
+            if (Util.isTrue(10, 100)) {
                 item.itemOptions.add(new ItemOption(0, sd1));
             }
-            if (Util.isTrue(10, 100)) {
+            if (Util.isTrue(1, 100)) {
                 item.itemOptions.add(new ItemOption(0, sd2));
             }
             item.itemOptions.add(new ItemOption(14, 20));
@@ -2084,13 +2080,13 @@ public class ItemService {
         item.template = ItemService.gI().getTemplate(ids[rand]);
         item.quantity = 1;
         if (ranGen == 0) {
-            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 400)));
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 200)));
         } else if (ranGen == 1) {
-            item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 400)));
+            item.itemOptions.add(new ItemOption(77, Util.nextInt(100, 200)));
         } else if (rand == 2) {
             item.itemOptions.add(new ItemOption(5, Util.nextInt(100, 200)));
         } else {
-            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 400)));
+            item.itemOptions.add(new ItemOption(50, Util.nextInt(100, 200)));
         }
         return item;
     }
