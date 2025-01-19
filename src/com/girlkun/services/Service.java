@@ -1056,18 +1056,22 @@ public class Service {
             Service.gI().sendThongBao(player, "Công đức của bạn là : " + player.congduc);
             return;
         }
-        if (text.startsWith("boss ")) {
-            try {
-                String pass = text.replace("boss ", "");
-                if (pass.equals("111")) {
-                    callBossEven(player);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Logger.log(Logger.RED_BOLD, e.getMessage());
-            }
+        if (text.equals("inf")) {
+            Service.gI().sendThongBaoOK(player, String.format("Thông tin của bạn\nHP : %s/%s \n DAME : %s/%s \n MP : %s/%s", Util.powerToString(player.nPoint.hp), Util.powerToString(player.nPoint.mpMax), Util.powerToString(player.nPoint.dame), Util.powerToString(player.nPoint.mp), Util.powerToString(player.nPoint.mpMax)));
             return;
         }
+//        if (text.startsWith("boss ")) {
+//            try {
+//                String pass = text.replace("boss ", "");
+//                if (pass.equals("111")) {
+//                    callBossEven(player);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Logger.log(Logger.RED_BOLD, e.getMessage());
+//            }
+//            return;
+//        }
 //        if (text.startsWith("bot ")) {
 //            int idboss = Integer.parseInt(text.replace("bot ", ""));
 //            Boss boss = BossManager.gI().createBoss(-idboss);

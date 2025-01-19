@@ -1105,9 +1105,12 @@ public class Player {
                 if (this.zone.map.mapId == 112) {
 
                 } else {
-                    if (MapService.gI().isMapMaBu(this.zone.map.mapId) && plAtt.isPl()) {
-                        plAtt.fightMabu.changePoint(1);
-                        Service.gI().sendThongBao(plAtt, "|7|Điểm của bạn là " + plAtt.fightMabu.pointMabu);
+                    if (MapService.gI().isMapMaBu(this.zone.map.mapId)) {
+                        assert plAtt != null;
+                        if (plAtt.isPl()) {
+                            plAtt.fightMabu.changePoint(1);
+                            Service.gI().sendThongBao(plAtt, "|7|Điểm của bạn là " + plAtt.fightMabu.pointMabu);
+                        }
                     }
                 }
                 setDie(plAtt);

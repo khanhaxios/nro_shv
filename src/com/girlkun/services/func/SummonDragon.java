@@ -87,7 +87,7 @@ public class SummonDragon {
             = new String[]{"Giàu có\n+2000 Kim \nTệ", "Găng tay\nđang mang\nlên 1 cấp", "Chí mạng\nGốc +2%",
             "Thay\nChiêu 2-3\nĐệ tử", "Thay\nChiêu 3-4\nĐệ tử", "Nhận Skill\nLiên Hoàn\nCho Đệ", "Điều ước\nkhác"};
     public static final String[] SHENRON_1_STAR_WISHES_2
-            = new String[]{"Đẹp trai\nnhất\nVũ trụ", "Giàu có\n+100\nHồng Ngọc", "+500 tất \ncả chỉ \nsố gốc",
+            = new String[]{"Đẹp trai\nnhất\nVũ trụ", "Giàu có\n+50000\nCông đức", "+500 tất \ncả chỉ \nsố gốc",
             "Găng tay đệ\nđang mang\nlên 1 cấp", "Thay\nChiêu 4-5\nĐệ tử",
             "Điều ước\nkhác"};
     public static final String[] SHENRON_2_STARS_WHISHES
@@ -728,7 +728,7 @@ public class SummonDragon {
                         }
                         break;
                     case 1: //+1,5 ngọc
-                        this.playerSummonShenron.inventory.ruby += 100;
+                        this.playerSummonShenron.congduc += 50000;
                         PlayerService.gI().sendInfoHpMpMoney(this.playerSummonShenron);
                         break;
                     case 2:
@@ -741,6 +741,8 @@ public class SummonDragon {
                             playerSummonShenron.nPoint.dameg += 500;
                             playerSummonShenron.nPoint.hpg += 500;
                             playerSummonShenron.nPoint.mpg += 500;
+                            playerSummonShenron.nPoint.setBasePoint();
+                            PlayerService.gI().sendInfoHp(playerSummonShenron);
                         }
                         break;
                     case 3: //găng tay đệ lên 1 cấp
@@ -807,38 +809,38 @@ public class SummonDragon {
             case ConstNpc.SHENRON_2:
                 switch (this.select) {
                     case 0: //+150 ngọc
-                        this.playerSummonShenron.inventory.ruby += 10;
-                        PlayerService.gI().sendInfoHpMpMoney(this.playerSummonShenron);
+                        Item item = ItemService.gI().createNewItem((short) 457, 200);
+                        InventoryServiceNew.gI().addItemBag(playerSummonShenron, item);
+                        InventoryServiceNew.gI().sendItemBags(playerSummonShenron);
                         break;
                     case 1: //+20 tr smtn
-                        Service.getInstance().addSMTN(this.playerSummonShenron, (byte) 2, 20000000, false);
+                        playerSummonShenron.nPoint.hpg += 200;
+                        playerSummonShenron.nPoint.dameg += 200;
+                        playerSummonShenron.nPoint.mpg += 200;
+                        playerSummonShenron.nPoint.setBasePoint();
+                        PlayerService.gI().sendInfoHp(playerSummonShenron);
                         break;
                     case 2: //2 tr vàng
-                        if (this.playerSummonShenron.inventory.gold > 1800000000) {
-                            this.playerSummonShenron.inventory.gold = Inventory.LIMIT_GOLD;
-                        } else {
-                            this.playerSummonShenron.inventory.gold += 200000000;
-                        }
-                        PlayerService.gI().sendInfoHpMpMoney(this.playerSummonShenron);
+                        playerSummonShenron.congduc += 20000;
                         break;
                 }
                 break;
             case ConstNpc.SHENRON_3:
                 switch (this.select) {
                     case 0: //+15 ngọc
-                        this.playerSummonShenron.inventory.ruby += 1;
-                        PlayerService.gI().sendInfoHpMpMoney(this.playerSummonShenron);
+                        Item item = ItemService.gI().createNewItem((short) 457, 100);
+                        InventoryServiceNew.gI().addItemBag(playerSummonShenron, item);
+                        InventoryServiceNew.gI().sendItemBags(playerSummonShenron);
                         break;
                     case 1: //+2 tr smtn
-                        Service.getInstance().addSMTN(this.playerSummonShenron, (byte) 2, 2000000, false);
+                        playerSummonShenron.nPoint.hpg += 50;
+                        playerSummonShenron.nPoint.dameg += 50;
+                        playerSummonShenron.nPoint.mpg += 50;
+                        playerSummonShenron.nPoint.setBasePoint();
+                        PlayerService.gI().sendInfoHp(playerSummonShenron);
                         break;
                     case 2: //200k vàng
-                        if (this.playerSummonShenron.inventory.gold > (2000000000 - 20000000)) {
-                            this.playerSummonShenron.inventory.gold = Inventory.LIMIT_GOLD;
-                        } else {
-                            this.playerSummonShenron.inventory.gold += 20000000;
-                        }
-                        PlayerService.gI().sendInfoHpMpMoney(this.playerSummonShenron);
+                        playerSummonShenron.congduc += 5000;
                         break;
                 }
                 break;

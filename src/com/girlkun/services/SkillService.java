@@ -1104,7 +1104,7 @@ public class SkillService {
                     }
                     //nổ
                     player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
-                    long dame = player.nPoint.hpMax * 2;
+                    long dame = player.nPoint.hp * 2;
                     for (Mob mob : player.zone.mobs) {
                         mob.injured(player, dame, true);
                     }
@@ -1117,14 +1117,14 @@ public class SkillService {
                     if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {
                         for (Player pl : playersMap) {
                             if (!player.equals(pl) && canAttackPlayer(player, pl)) {
-                                pl.injured(player, dame, false, false);
+                                pl.injured(player, dame, true, false);
                                 PlayerService.gI().sendInfoHpMpMoney(pl);
                                 Service.getInstance().Send_Info_NV(pl);
                             }
                         }
                     }
                     affterUseSkill(player, player.playerSkill.skillSelect.template.id);
-                    player.injured(null, player.nPoint.hpMax * 2, true, false);
+                    player.injured(null, player.nPoint.hpMax, true, false);
                     if (player.effectSkill.tiLeHPHuytSao != 0) {
                         player.effectSkill.tiLeHPHuytSao = 0;
                         EffectSkillService.gI().removeHuytSao(player);
@@ -1337,9 +1337,10 @@ public class SkillService {
 
         if (plInjure.isBoss) {
             try {
+                plInjure.name = String.format("%s/%s", Util.powerToString(plInjure.nPoint.hp),Util.powerToString(plInjure.nPoint.hpMax));
                 msg = new Message(44);
                 msg.writer().writeInt((int) plInjure.id);
-                msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) + "\nTLPST: " + plInjure.nPoint.tlPST);
+//                msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) + "\nTLPST: " + plInjure.nPoint.tlPST);
                 phanSatThuong(plAtt, plInjure, dameHit);
                 Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
                 msg.cleanup();
