@@ -1057,7 +1057,7 @@ public class Service {
             return;
         }
         if (text.equals("inf")) {
-            Service.gI().sendThongBaoOK(player, String.format("Thông tin của bạn\nHP : %s/%s \n DAME : %s/%s \n MP : %s/%s", Util.powerToString(player.nPoint.hp), Util.powerToString(player.nPoint.mpMax), Util.powerToString(player.nPoint.dame), Util.powerToString(player.nPoint.mp), Util.powerToString(player.nPoint.mpMax)));
+            Service.gI().sendThongBaoOK(player, String.format("Thông tin của bạn\nHP : %s/%s \n DAME : %s \n MP : %s/%s", Util.powerToString(player.nPoint.hp), Util.powerToString(player.nPoint.mpMax), Util.powerToString(player.nPoint.dame), Util.powerToString(player.nPoint.mp), Util.powerToString(player.nPoint.mpMax)));
             return;
         }
 //        if (text.startsWith("boss ")) {
