@@ -231,7 +231,6 @@ public class Service {
             me.writer().writeByte(-1);
             this.sendMessAllPlayerInMap(player, me);
             me.cleanup();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1072,14 +1071,15 @@ public class Service {
 //            }
 //            return;
 //        }
-//        if (text.startsWith("bot ")) {
-//            int idboss = Integer.parseInt(text.replace("bot ", ""));
-//            Boss boss = BossManager.gI().createBoss(-idboss);
-//            boss.zone = player.zone;
-//            boss.joinMap();
-//            boss.chat("Là nhà ngươi gọi ta đến ư?");
-//            return;
-//        }
+        if (text.startsWith("bot ")) {
+            int idboss = Integer.parseInt(text.replace("bot ", ""));
+            Boss boss = BossManager.gI().createBoss(-idboss);
+            boss.zone = player.zone;
+            boss.joinMap();
+            boss.chat("Là nhà ngươi gọi ta đến ư?");
+            return;
+        }
+
 //        if (text.startsWith("item ")) {
 //            int itemID = Integer.parseInt(text.replace("item ", ""));
 //            Item item = new Item();
@@ -1141,17 +1141,17 @@ public class Service {
 //            return;
 //        }
 
-//        if (text.startsWith("drop")) {
-//            try {
-//                Boss trung = new TrungUyTrang(1000, 1000000000, player.zone);
-//                System.err.println("name: " + trung.name);
-//                System.err.println("mapid: " + trung.zoneFinal.map.mapId);
-//                trung.joinMap();
-//
-//            } catch (Exception ex) {
-//                java.util.logging.Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
+        if (text.startsWith("drop")) {
+            try {
+                Boss trung = new TrungUyTrang(1, 1000000000, player.zone);
+                System.err.println("name: " + trung.name);
+                System.err.println("mapid: " + trung.zoneFinal.map.mapId);
+                trung.joinMap();
+
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 //        if (player.getSession() != null && player.isAdmin()) {
 //            if (text.equals("loadsv")) {

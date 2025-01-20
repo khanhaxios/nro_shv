@@ -1,6 +1,7 @@
 package com.girlkun.services;
 
 import com.girlkun.consts.ConstPlayer;
+import com.girlkun.models.boss.Boss;
 import com.girlkun.models.intrinsic.Intrinsic;
 import com.girlkun.models.item.Item;
 import com.girlkun.models.mob.Mob;
@@ -1092,8 +1093,7 @@ public class SkillService {
                 break;
             case Skill.TU_SAT:
                 if (!player.playerSkill.prepareTuSat) {
-                    //gồng tự sát
-                    player.playerSkill.prepareTuSat = !player.playerSkill.prepareTuSat;
+                    player.playerSkill.prepareTuSat = true;
                     player.playerSkill.lastTimePrepareTuSat = System.currentTimeMillis();
                     sendPlayerPrepareBom(player, 2000);
                 } else {
@@ -1117,9 +1117,7 @@ public class SkillService {
                     if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {
                         for (Player pl : playersMap) {
                             if (!player.equals(pl) && canAttackPlayer(player, pl)) {
-                                pl.injured(player, dame, true, false);
-                                PlayerService.gI().sendInfoHpMpMoney(pl);
-                                Service.getInstance().Send_Info_NV(pl);
+                                    double dh = pl.injured(player, dame, true, false);
                             }
                         }
                     }
@@ -1337,13 +1335,14 @@ public class SkillService {
 
         if (plInjure.isBoss) {
             try {
-                plInjure.name = String.format("%s/%s", Util.powerToString(plInjure.nPoint.hp),Util.powerToString(plInjure.nPoint.hpMax));
+//                plInjure.name = String.format("%s[%s/%s]", plInjure.name, Util.powerToString(plInjure.nPoint.hp), Util.powerToString(plInjure.nPoint.hpMax));
                 msg = new Message(44);
                 msg.writer().writeInt((int) plInjure.id);
-//                msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp) + "\nTLPST: " + plInjure.nPoint.tlPST);
+//                msg.writer().writeUTF("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp));
                 phanSatThuong(plAtt, plInjure, dameHit);
                 Service.getInstance().sendMessAllPlayerInMap(plInjure, msg);
                 msg.cleanup();
+                plInjure.chat("Hp của ta:\b|7| " + Util.format(plInjure.nPoint.hp));
             } catch (Exception e) {
                 Logger.logException(Service.class, e);
             }

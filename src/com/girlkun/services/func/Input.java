@@ -276,20 +276,20 @@ public class Input {
                     int sotvxiu2 = Integer.valueOf(text[0]);
                     try {
                         if (sotvxiu2 >= 1000 && sotvxiu2 <= 1000000000) {
-                            if (player.inventory.ruby >= sotvxiu2) {
-                                player.inventory.ruby -= sotvxiu2;
+                            if (player.congduc >= sotvxiu2) {
+                                player.congduc -= sotvxiu2;
                                 player.goldXiu += sotvxiu2;
                                 TaiXiu.gI().goldXiu += sotvxiu2;
-                                Service.gI().sendThongBao(player, "Bạn đã đặt " + Util.format(sotvxiu2) + " Hồng ngọc vào XỈU");
+                                Service.gI().sendThongBao(player, "Bạn đã đặt " + Util.format(sotvxiu2) + " Công đức vào XỈU");
                                 TaiXiu.gI().addPlayerXiu(player);
                                 InventoryServiceNew.gI().sendItemBags(player);
                                 Service.getInstance().sendMoney(player);
                                 PlayerDAO.updatePlayer(player);
                             } else {
-                                Service.gI().sendThongBao(player, "Bạn không đủ Hồng ngọc để chơi.");
+                                Service.gI().sendThongBao(player, "Bạn không đủ Công đức để chơi.");
                             }
                         } else {
-                            Service.gI().sendThongBao(player, "Cược ít nhất 1.000 - nhiều nhất 1.000.000.000 Hồng ngọc ");
+                            Service.gI().sendThongBao(player, "Cược ít nhất 1.000 - nhiều nhất 1.000.000.000 Công đức ");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -2806,7 +2806,7 @@ public class Input {
     }
 
     public void XIU_taixiu(Player pl) {
-        createForm(pl, XIU_taixiu, "Chọn số hồng ngọc đặt Xỉu", new SubInput("Số Hồng ngọc cược", ANY));//????
+        createForm(pl, XIU_taixiu, "Chọn số công đức đặt Xỉu", new SubInput("Số công đức đặt cược", ANY));//????
     }
 
     public void createFormChooseLevelCDRD(Player pl) {

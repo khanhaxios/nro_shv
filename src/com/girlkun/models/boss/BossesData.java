@@ -2258,7 +2258,7 @@ public class BossesData {
             "Trung úy xanh lơ", //name
             ConstPlayer.TRAI_DAT, //gender
             new short[]{141, 142, 143, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
-            500000, //dame
+            1, //dame
             new long[]{1500000L}, //hp
             new int[]{137}, //map join
             (int[][]) Util.addArray(FULL_DEMON), //skill
